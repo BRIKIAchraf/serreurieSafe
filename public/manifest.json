@@ -1,0 +1,21 @@
+{
+  "name": "Serrure Safe - Serrurier Paris",
+  "short_name": "Serrure Safe",
+  "description": "Serrurier professionnel à Paris - Intervention 24h/24",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ea580c",
+  "icons": [
+    {
+      "src": "/WhatsApp_Image_2025-10-17_à_15.12.18_29f18722-removebg-preview.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/WhatsApp_Image_2025-10-17_à_15.12.18_29f18722-removebg-preview.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
