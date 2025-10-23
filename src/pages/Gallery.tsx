@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
+import LocksmithProjectMosaic from '../components/LocksmithProjectMosaic';
 
 const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -95,6 +96,8 @@ const Gallery: React.FC = () => {
           </motion.div>
         </div>
       </section>
+
+      <LocksmithProjectMosaic />
 
       {/* Category Filter */}
       <section className="py-10">

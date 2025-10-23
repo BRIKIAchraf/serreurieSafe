@@ -17,6 +17,9 @@ import {
 import GlassCard from "../components/GlassCard";
 import MagneticButton from "../components/MagneticButton";
 import AnimatedCanvas from "../components/AnimatedCanvas";
+import SectionDivider from "../components/SectionDivider";
+import LocksmithPhotoShowcase from "../components/LocksmithPhotoShowcase";
+import LocksmithServiceGallery from "../components/LocksmithServiceGallery";
 
 const Services: React.FC = () => {
   const mainServices = [
@@ -216,6 +219,8 @@ const Services: React.FC = () => {
         </div>
       </section>
 
+      <SectionDivider variant="locksmith" color="#2563eb" intensity={0.9} />
+
       {/* Services Grid */}
       <section className="py-20 bg-white relative">
         <AnimatedCanvas type="dots" color="#e5e7eb" intensity={0.2} />
@@ -323,6 +328,12 @@ const Services: React.FC = () => {
         </div>
       </section>
 
+      <SectionDivider variant="blueprint" color="#1f2937" intensity={0.85} />
+
+      <LocksmithServiceGallery />
+
+      <SectionDivider variant="locksmith" color="#1d4ed8" intensity={0.85} />
+
       {/* Certifications Section */}
       <section className="py-20 bg-gray-50 relative">
         <AnimatedCanvas type="geometric" color="#f97316" intensity={0.1} />
@@ -364,6 +375,10 @@ const Services: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <SectionDivider variant="blueprint" color="#111827" intensity={0.7} flip />
+
+      <LocksmithPhotoShowcase />
 
       {/* Emergency CTA */}
       <section className="py-20 bg-gradient-to-r from-gray-800 to-gray-900 relative">

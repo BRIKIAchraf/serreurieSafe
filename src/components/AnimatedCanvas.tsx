@@ -2,10 +2,32 @@ import React, { useEffect, useRef } from "react";
 
 interface AnimatedCanvasProps {
   className?: string;
-  type?: "particles" | "waves" | "geometric" | "dots";
+  type?:
+    | "particles"
+    | "waves"
+    | "geometric"
+    | "dots"
+    | "locksmith"
+    | "blueprint";
   color?: string;
   intensity?: number;
 }
+
+const hexToRgba = (hex: string, alpha: number) => {
+  let stripped = hex.replace("#", "");
+  if (stripped.length === 3) {
+    stripped = stripped
+      .split("")
+      .map((char) => char + char)
+      .join("");
+  }
+
+  const intValue = parseInt(stripped, 16);
+  const r = (intValue >> 16) & 255;
+  const g = (intValue >> 8) & 255;
+  const b = intValue & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
 
 const AnimatedCanvas: React.FC<AnimatedCanvasProps> = ({
   className = "",
@@ -94,6 +116,47 @@ const AnimatedCanvas: React.FC<AnimatedCanvasProps> = ({
           size: Math.random() * 3 + 1,
           opacity: Math.random() * 0.3 + 0.1,
           pulse: Math.random() * Math.PI * 2,
+        });
+      }
+    };
+
+    const createLocksmith = () => {
+      particles = [];
+      const shapeCount = Math.max(
+        12,
+        Math.floor((canvas.width + canvas.height) / 70)
+      );
+
+      for (let i = 0; i < shapeCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          driftX: (Math.random() - 0.5) * 0.6,
+          driftY: (Math.random() - 0.5) * 0.6,
+          scale: 0.5 + Math.random() * 1.4,
+          rotation: Math.random() * Math.PI * 2,
+          rotationSpeed: (Math.random() - 0.5) * 0.008,
+          offset: Math.random() * Math.PI * 2,
+          type: Math.random() > 0.4 ? "lock" : "key",
+          opacity: 0.12 + Math.random() * 0.18,
+        });
+      }
+    };
+
+    const createBlueprint = () => {
+      particles = [];
+      const nodeCount = Math.max(
+        16,
+        Math.floor((canvas.width * canvas.height) / 60000)
+      );
+
+      for (let i = 0; i < nodeCount; i++) {
+        particles.push({
+          baseX: Math.random() * canvas.width,
+          baseY: Math.random() * canvas.height,
+          radius: 3 + Math.random() * 4,
+          pulse: Math.random() * Math.PI * 2,
+          speed: 0.01 + Math.random() * 0.02,
         });
       }
     };
@@ -191,12 +254,153 @@ const AnimatedCanvas: React.FC<AnimatedCanvasProps> = ({
             .padStart(2, "0")}`;
           ctx.fill();
         });
+      } else if (type === "locksmith") {
+        particles.forEach((shape) => {
+          shape.rotation += shape.rotationSpeed;
+          const oscillationX = Math.sin(time + shape.offset) * 20 * shape.driftX;
+          const oscillationY = Math.cos(time + shape.offset) * 15 * shape.driftY;
+
+          ctx.save();
+          ctx.translate(shape.x + oscillationX, shape.y + oscillationY);
+          ctx.rotate(shape.rotation);
+          ctx.globalAlpha = shape.opacity;
+          ctx.lineWidth = 2 * shape.scale;
+          ctx.strokeStyle = hexToRgba(color, 0.6);
+          ctx.fillStyle = hexToRgba(color, 0.08);
+
+          if (shape.type === "lock") {
+            const bodyWidth = 36 * shape.scale;
+            const bodyHeight = 44 * shape.scale;
+            const shackleRadius = bodyWidth * 0.6;
+            const radius = 6 * shape.scale;
+
+            ctx.beginPath();
+            ctx.arc(0, -bodyHeight / 2, shackleRadius / 2, Math.PI, 0);
+            ctx.stroke();
+
+            ctx.beginPath();
+            const rectX = -bodyWidth / 2;
+            const rectY = -bodyHeight / 2;
+            ctx.moveTo(rectX + radius, rectY);
+            ctx.lineTo(rectX + bodyWidth - radius, rectY);
+            ctx.quadraticCurveTo(
+              rectX + bodyWidth,
+              rectY,
+              rectX + bodyWidth,
+              rectY + radius
+            );
+            ctx.lineTo(rectX + bodyWidth, rectY + bodyHeight - radius);
+            ctx.quadraticCurveTo(
+              rectX + bodyWidth,
+              rectY + bodyHeight,
+              rectX + bodyWidth - radius,
+              rectY + bodyHeight
+            );
+            ctx.lineTo(rectX + radius, rectY + bodyHeight);
+            ctx.quadraticCurveTo(
+              rectX,
+              rectY + bodyHeight,
+              rectX,
+              rectY + bodyHeight - radius
+            );
+            ctx.lineTo(rectX, rectY + radius);
+            ctx.quadraticCurveTo(rectX, rectY, rectX + radius, rectY);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(0, rectY + bodyHeight * 0.65, 4 * shape.scale, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, rectY + bodyHeight * 0.65);
+            ctx.lineTo(0, rectY + bodyHeight * 0.9);
+            ctx.stroke();
+          } else {
+            const shaftLength = 60 * shape.scale;
+            const toothDepth = 10 * shape.scale;
+            const headRadius = 12 * shape.scale;
+
+            ctx.beginPath();
+            ctx.arc(-shaftLength / 2, 0, headRadius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(-shaftLength / 2 + headRadius, 0);
+            ctx.lineTo(shaftLength / 2, 0);
+            ctx.stroke();
+
+            const toothCount = 4;
+            for (let i = 0; i < toothCount; i++) {
+              const toothX =
+                (-shaftLength / 2 + headRadius + 8 * shape.scale) +
+                i * 12 * shape.scale;
+              ctx.beginPath();
+              ctx.moveTo(toothX, 0);
+              ctx.lineTo(toothX + 4 * shape.scale, toothDepth);
+              ctx.lineTo(toothX + 8 * shape.scale, 0);
+              ctx.stroke();
+            }
+          }
+
+          ctx.restore();
+        });
+      } else if (type === "blueprint") {
+        const spacing = 70;
+        const offset = (time * 20) % spacing;
+
+        ctx.strokeStyle = hexToRgba(color, 0.12);
+        ctx.lineWidth = 1;
+        for (let x = -spacing; x < canvas.width + spacing; x += spacing) {
+          ctx.beginPath();
+          ctx.moveTo(x + offset, 0);
+          ctx.lineTo(x + offset, canvas.height);
+          ctx.stroke();
+        }
+        for (let y = -spacing; y < canvas.height + spacing; y += spacing) {
+          ctx.beginPath();
+          ctx.moveTo(0, y + offset);
+          ctx.lineTo(canvas.width, y + offset);
+          ctx.stroke();
+        }
+
+        ctx.strokeStyle = hexToRgba(color, 0.08);
+        ctx.setLineDash([8, 12]);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(canvas.width, canvas.height);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(canvas.width, 0);
+        ctx.lineTo(0, canvas.height);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        particles.forEach((node) => {
+          node.pulse += node.speed;
+          const pulseRadius =
+            node.radius + Math.sin(node.pulse + time) * node.radius * 0.4;
+
+          ctx.beginPath();
+          ctx.arc(node.baseX, node.baseY, pulseRadius, 0, Math.PI * 2);
+          ctx.fillStyle = hexToRgba(color, 0.15);
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(node.baseX, node.baseY, pulseRadius + 6, 0, Math.PI * 2);
+          ctx.strokeStyle = hexToRgba(color, 0.08);
+          ctx.stroke();
+        });
       }
 
       animationRef.current = requestAnimationFrame(animate);
     };
 
     const init = () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
       resizeCanvas();
 
       switch (type) {
@@ -211,6 +415,12 @@ const AnimatedCanvas: React.FC<AnimatedCanvasProps> = ({
           break;
         case "dots":
           createDots();
+          break;
+        case "locksmith":
+          createLocksmith();
+          break;
+        case "blueprint":
+          createBlueprint();
           break;
       }
 

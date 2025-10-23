@@ -1,42 +1,86 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const CustomCursor: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isTouchInput, setIsTouchInput] = useState(false);
 
   useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    if (typeof window === "undefined") {
+      return;
     };
 
-    const handleMouseEnter = () => setIsHovering(true);
-    const handleMouseLeave = () => setIsHovering(false);
+    const coarsePointerQuery = window.matchMedia("(pointer: coarse)");
+    const updateTouchState = (event: MediaQueryList | MediaQueryListEvent) => {
+      setIsTouchInput(event.matches);
+    };
 
-    // Add event listeners for interactive elements
-    const interactiveElements = document.querySelectorAll('button, a, [role="button"]');
-    
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', handleMouseEnter);
-      el.addEventListener('mouseleave', handleMouseLeave);
-    });
-
-    window.addEventListener('mousemove', updateMousePosition);
+    updateTouchState(coarsePointerQuery);
+    if (typeof coarsePointerQuery.addEventListener === "function") {
+      coarsePointerQuery.addEventListener("change", updateTouchState);
+    } else {
+      coarsePointerQuery.addListener(updateTouchState);
+    }
 
     return () => {
-      window.removeEventListener('mousemove', updateMousePosition);
-      interactiveElements.forEach(el => {
-        el.removeEventListener('mouseenter', handleMouseEnter);
-        el.removeEventListener('mouseleave', handleMouseLeave);
-      });
+      if (typeof coarsePointerQuery.removeEventListener === "function") {
+        coarsePointerQuery.removeEventListener("change", updateTouchState);
+      } else {
+        coarsePointerQuery.removeListener(updateTouchState);
+      }
     };
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || isTouchInput) {
+      return;
+    }
+
+    const updateMousePosition = (event: PointerEvent) => {
+      setMousePosition({ x: event.clientX, y: event.clientY });
+    };
+
+    const updateHoverState = (event: PointerEvent) => {
+      const baseTarget =
+        event.type === "pointerout"
+          ? ((event.relatedTarget as Element | null) ?? null)
+          : ((event.target as Element | null) ?? null);
+
+      const target = baseTarget;
+      if (!target) {
+        setIsHovering(false);
+        return;
+      }
+
+      const interactive = target.closest(
+        'a, button, input, textarea, select, [role="button"], [data-cursor="interactive"]'
+      );
+      setIsHovering(Boolean(interactive));
+    };
+
+    window.addEventListener("pointermove", updateMousePosition, {
+      passive: true,
+    });
+    document.addEventListener("pointerover", updateHoverState);
+    document.addEventListener("pointerout", updateHoverState);
+
+    return () => {
+      window.removeEventListener("pointermove", updateMousePosition);
+      document.removeEventListener("pointerover", updateHoverState);
+      document.removeEventListener("pointerout", updateHoverState);
+    };
+  }, [isTouchInput]);
+
+  if (isTouchInput) {
+    return null;
+  }
 
   return (
     <>
       {/* Main cursor */}
       <motion.div
-        className="fixed top-0 left-0 w-6 h-6 pointer-events-none z-50 mix-blend-difference"
+        className="pointer-events-none fixed top-0 left-0 z-[9999] h-6 w-6 mix-blend-difference"
         animate={{
           x: mousePosition.x - 12,
           y: mousePosition.y - 12,
@@ -48,12 +92,12 @@ const CustomCursor: React.FC = () => {
           damping: 28,
         }}
       >
-        <div className="w-full h-full bg-orange-500 rounded-full opacity-80" />
+        <div className="h-full w-full rounded-full bg-orange-500 opacity-80" />
       </motion.div>
 
       {/* Trailing cursor */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 pointer-events-none z-50"
+        className="pointer-events-none fixed top-0 left-0 z-[9998] h-2 w-2"
         animate={{
           x: mousePosition.x - 4,
           y: mousePosition.y - 4,
@@ -64,7 +108,7 @@ const CustomCursor: React.FC = () => {
           damping: 15,
         }}
       >
-        <div className="w-full h-full bg-red-500 rounded-full opacity-60" />
+        <div className="h-full w-full rounded-full bg-red-500 opacity-60" />
       </motion.div>
     </>
   );

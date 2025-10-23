@@ -19,6 +19,7 @@ import {
   Shield,
 } from "lucide-react";
 import GlassCard from "../components/GlassCard";
+import LocksmithCaseCarousel from "../components/LocksmithCaseCarousel";
 
 interface Intervention {
   id: string;
@@ -239,6 +240,8 @@ const ClientArea: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <LocksmithCaseCarousel />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Navigation Tabs */}

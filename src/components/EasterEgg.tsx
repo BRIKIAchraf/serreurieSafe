@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslation } from "react-i18next";
 import {
   Cog,
   Settings,
-  Zap,
   Star,
-  Sparkles,
-  Heart,
-  Award,
-  Trophy,
-  Gift,
   X,
   RotateCcw,
   Play,
@@ -38,14 +31,7 @@ interface Particle {
 }
 
 const EasterEgg: React.FC = () => {
-<<<<<<< HEAD
-  const [isTriggered, setIsTriggered] = useState(false);
-  const [keySequence, setKeySequence] = useState<string[]>([]);
-  const [showReward, setShowReward] = useState(false);
-  const [cornerClicks, setCornerClicks] = useState(0);
-=======
-  const { t } = useTranslation();
-  const { playUnlockSound, playKeySound } = useSounds();
+  const { playUnlockSound } = useSounds();
   const [isActive, setIsActive] = useState(false);
   const [clickCount, setClickCount] = useState(0);
   const [showAnimation, setShowAnimation] = useState(false);
@@ -54,7 +40,6 @@ const EasterEgg: React.FC = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [showMessage, setShowMessage] = useState(false);
   const [message, setMessage] = useState("");
->>>>>>> f45891d (add new feature)
 
   const messages = [
     "🎉 Félicitations ! Vous avez trouvé l'easter egg !",
@@ -86,88 +71,7 @@ const EasterEgg: React.FC = () => {
     "#54a0ff",
     "#5f27cd",
   ];
-
   useEffect(() => {
-<<<<<<< HEAD
-    const handleKeyPress = (event: KeyboardEvent) => {
-      const key = event.key.toLowerCase();
-
-      setKeySequence(prev => {
-        const newSequence = [...prev, key].slice(-secretSequence.length);
-
-        // Vérifier si la séquence correspond
-        if (newSequence.length === secretSequence.length) {
-          const matches = newSequence.every((k, i) => k === secretSequence[i]);
-          if (matches && !isTriggered) {
-            triggerEasterEgg();
-          }
-        }
-
-        return newSequence;
-      });
-    };
-
-    const handleClick = (event: MouseEvent) => {
-      const x = event.clientX;
-      const y = event.clientY;
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-
-      // Détecter les clics dans les coins (50px de marge)
-      const isCorner = (x < 50 && y < 50) || // Coin supérieur gauche
-                      (x > w - 50 && y < 50) || // Coin supérieur droit
-                      (x < 50 && y > h - 50) || // Coin inférieur gauche
-                      (x > w - 50 && y > h - 50); // Coin inférieur droit
-
-      if (isCorner && !isTriggered) {
-        setCornerClicks(prev => {
-          const newCount = prev + 1;
-          if (newCount >= 3) {
-            triggerEasterEgg();
-            return 0;
-          }
-          return newCount;
-        });
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyPress);
-    document.addEventListener('click', handleClick);
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-      document.removeEventListener('click', handleClick);
-    };
-  }, [isTriggered]);
-
-  const triggerEasterEgg = () => {
-    setIsTriggered(true);
-    setShowReward(true);
-
-    // Créer des particules dorées
-    createGoldenParticles();
-
-    // Jouer un son de réussite
-    playSuccessSound();
-
-    // Masquer après 5 secondes
-    setTimeout(() => setShowReward(false), 5000);
-  };
-
-  const createGoldenParticles = () => {
-    const particles = document.createElement('div');
-    particles.className = 'fixed inset-0 pointer-events-none z-50';
-    document.body.appendChild(particles);
-
-    for (let i = 0; i < 50; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'absolute w-2 h-2 bg-yellow-400 rounded-full animate-bounce';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.top = Math.random() * 100 + '%';
-      particle.style.animationDelay = Math.random() * 2 + 's';
-      particle.style.animationDuration = (Math.random() * 2 + 1) + 's';
-      particles.appendChild(particle);
-=======
     if (isActive) {
       initializeGears();
       startAnimation();
@@ -203,7 +107,6 @@ const EasterEgg: React.FC = () => {
         speed: (Math.random() - 0.5) * 4,
         color: gearColors[Math.floor(Math.random() * gearColors.length)],
       });
->>>>>>> f45891d (add new feature)
     }
 
     setGears(newGears);
@@ -521,3 +424,4 @@ const EasterEgg: React.FC = () => {
 };
 
 export default EasterEgg;
+

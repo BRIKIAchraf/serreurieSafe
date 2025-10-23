@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Clock, Phone, MapPin, Shield, AlertTriangle, CheckCircle, Star, Zap } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
+import EmergencyResponseShowcase from '../components/EmergencyResponseShowcase';
 
 const Emergency: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -13,26 +14,26 @@ const Emergency: React.FC = () => {
   });
 
   const urgencyTypes = [
-    { value: 'locked-out', label: 'Porte claquée / Clés perdues', icon: '🔐' },
-    { value: 'broken-lock', label: 'Serrure cassée', icon: '🔧' },
-    { value: 'burglary', label: 'Tentative d\'effraction', icon: '🚨' },
-    { value: 'key-stuck', label: 'Clé cassée dans serrure', icon: '🗝️' },
-    { value: 'other', label: 'Autre urgence', icon: '⚡' },
+    { value: 'locked-out', label: 'Porte claqu├®e / Cl├®s perdues', icon: '­ƒöÉ' },
+    { value: 'broken-lock', label: 'Serrure cass├®e', icon: '­ƒöº' },
+    { value: 'burglary', label: 'Tentative d\'effraction', icon: '­ƒÜ¿' },
+    { value: 'key-stuck', label: 'Cl├® cass├®e dans serrure', icon: '­ƒùØ´©Å' },
+    { value: 'other', label: 'Autre urgence', icon: 'ÔÜí' },
   ];
 
   const interventionZones = [
-    { zone: 'Paris 1er - 4ème', time: '15-20 min', areas: ['Châtelet', 'Louvre', 'Marais', 'Île Saint-Louis'] },
-    { zone: 'Paris 5ème - 8ème', time: '20-25 min', areas: ['Quartier Latin', 'Saint-Germain', 'Champs-Élysées', 'Opéra'] },
-    { zone: 'Paris 9ème - 12ème', time: '20-30 min', areas: ['Pigalle', 'République', 'Bastille', 'Nation'] },
-    { zone: 'Paris 13ème - 16ème', time: '25-30 min', areas: ['Montparnasse', 'Trocadéro', 'Auteuil', 'Passy'] },
-    { zone: 'Paris 17ème - 20ème', time: '25-35 min', areas: ['Batignolles', 'Montmartre', 'Belleville', 'Ménilmontant'] },
+    { zone: 'Paris 1er - 4├¿me', time: '15-20 min', areas: ['Ch├ótelet', 'Louvre', 'Marais', '├Äle Saint-Louis'] },
+    { zone: 'Paris 5├¿me - 8├¿me', time: '20-25 min', areas: ['Quartier Latin', 'Saint-Germain', 'Champs-├ëlys├®es', 'Op├®ra'] },
+    { zone: 'Paris 9├¿me - 12├¿me', time: '20-30 min', areas: ['Pigalle', 'R├®publique', 'Bastille', 'Nation'] },
+    { zone: 'Paris 13├¿me - 16├¿me', time: '25-30 min', areas: ['Montparnasse', 'Trocad├®ro', 'Auteuil', 'Passy'] },
+    { zone: 'Paris 17├¿me - 20├¿me', time: '25-35 min', areas: ['Batignolles', 'Montmartre', 'Belleville', 'M├®nilmontant'] },
     { zone: 'Banlieue proche', time: '30-45 min', areas: ['Boulogne', 'Neuilly', 'Vincennes', 'Saint-Denis'] },
   ];
 
   const guarantees = [
-    { title: 'Intervention rapide', description: 'Arrivée sur site en moins de 30 minutes', icon: Zap },
-    { title: 'Devis transparent', description: 'Prix annoncé avant intervention', icon: CheckCircle },
-    { title: 'Sans casse', description: 'Ouverture sans dégâts dans 95% des cas', icon: Shield },
+    { title: 'Intervention rapide', description: 'Arriv├®e sur site en moins de 30 minutes', icon: Zap },
+    { title: 'Devis transparent', description: 'Prix annonc├® avant intervention', icon: CheckCircle },
+    { title: 'Sans casse', description: 'Ouverture sans d├®g├óts dans 95% des cas', icon: Shield },
     { title: 'Disponible 24h/24', description: 'Service d\'urgence tous les jours', icon: Clock },
   ];
 
@@ -58,7 +59,7 @@ const Emergency: React.FC = () => {
           <div 
             className="absolute inset-0 opacity-15"
             style={{
-              backgroundImage: 'url("/WhatsApp_Image_2025-10-17_à_15.12.18_29f18722-removebg-preview.png")',
+              backgroundImage: 'url("/WhatsApp_Image_2025-10-17_├á_15.12.18_29f18722-removebg-preview.png")',
               backgroundSize: '700px 525px',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -100,6 +101,8 @@ const Emergency: React.FC = () => {
         </div>
       </section>
 
+      <EmergencyResponseShowcase />
+
       {/* Emergency Form */}
       <section className="py-20 relative">
         <div className="container mx-auto px-4">
@@ -130,7 +133,7 @@ const Emergency: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">Téléphone *</label>
+                      <label className="block text-gray-700 font-semibold mb-2">T├®l├®phone *</label>
                       <input
                         type="tel"
                         name="phone"
@@ -149,7 +152,7 @@ const Emergency: React.FC = () => {
                       name="address"
                       value={formData.address}
                       onChange={handleInputChange}
-                      placeholder="Adresse complète avec arrondissement"
+                      placeholder="Adresse compl├¿te avec arrondissement"
                       className="w-full px-4 py-3 rounded-xl backdrop-blur-sm bg-white/20 border border-white/30 focus:border-orange-500 focus:outline-none transition-all"
                       required
                     />
@@ -164,7 +167,7 @@ const Emergency: React.FC = () => {
                       className="w-full px-4 py-3 rounded-xl backdrop-blur-sm bg-white/20 border border-white/30 focus:border-orange-500 focus:outline-none transition-all"
                       required
                     >
-                      <option value="">Sélectionnez le type d'urgence</option>
+                      <option value="">S├®lectionnez le type d'urgence</option>
                       {urgencyTypes.map((type) => (
                         <option key={type.value} value={type.value}>
                           {type.icon} {type.label}
@@ -180,7 +183,7 @@ const Emergency: React.FC = () => {
                       value={formData.description}
                       onChange={handleInputChange}
                       rows={4}
-                      placeholder="Décrivez brièvement votre situation..."
+                      placeholder="D├®crivez bri├¿vement votre situation..."
                       className="w-full px-4 py-3 rounded-xl backdrop-blur-sm bg-white/20 border border-white/30 focus:border-orange-500 focus:outline-none transition-all resize-none"
                     ></textarea>
                   </div>
@@ -189,7 +192,7 @@ const Emergency: React.FC = () => {
                     type="submit"
                     className="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                   >
-                    Demander une intervention immédiate
+                    Demander une intervention imm├®diate
                   </button>
                 </form>
               </GlassCard>
@@ -249,7 +252,7 @@ const Emergency: React.FC = () => {
               Zones d'<span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">intervention</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Temps d'intervention estimés selon votre localisation
+              Temps d'intervention estim├®s selon votre localisation
             </p>
           </motion.div>
 
@@ -292,10 +295,10 @@ const Emergency: React.FC = () => {
                 <Star className="w-16 h-16 text-yellow-500" />
               </div>
               <h2 className="text-4xl font-bold text-gray-800 mb-6">
-                Une urgence ? <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">Nous sommes là !</span>
+                Une urgence ? <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">Nous sommes l├á !</span>
               </h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Notre équipe d'experts est disponible 24h/24 et 7j/7 pour toutes vos urgences de serrurerie. 
+                Notre ├®quipe d'experts est disponible 24h/24 et 7j/7 pour toutes vos urgences de serrurerie. 
                 Intervention rapide garantie sur Paris et banlieue.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">

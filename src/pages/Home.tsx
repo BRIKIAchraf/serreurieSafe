@@ -22,8 +22,9 @@ import InteractiveCatalog from "../components/InteractiveCatalog";
 import { useSounds } from "../components/SoundManager";
 import NavigationGuide from "../components/NavigationGuide";
 import FloatingCTA from "../components/FloatingCTA";
-import UserJourneyGuide from "../components/UserJourneyGuide";
 import SmartCTA from "../components/SmartCTA";
+import SectionDivider from "../components/SectionDivider";
+import LocksmithExpandingOptions from "../components/LocksmithExpandingOptions";
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -241,6 +242,10 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      <SectionDivider variant="locksmith" color="#2563eb" intensity={1} />
+
+      <LocksmithExpandingOptions />
+
       {/* Services Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -284,6 +289,8 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      <SectionDivider variant="blueprint" color="#0f172a" intensity={0.8} />
+
       {/* Interactive Map Section */}
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -310,6 +317,13 @@ const Home: React.FC = () => {
 
       {/* Interactive Catalog Section */}
       <InteractiveCatalog />
+
+      <SectionDivider
+        variant="locksmith"
+        color="#f97316"
+        intensity={0.7}
+        flip
+      />
 
       {/* Why Choose Us Section */}
       <section className="py-24 bg-gray-50">
@@ -382,6 +396,8 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      <SectionDivider variant="blueprint" color="#1e293b" intensity={0.75} />
+
       {/* CTA Section */}
       <section className="relative py-24 bg-gradient-to-r from-gray-800 to-gray-900">
         {/* Background with Logo Overlay */}
@@ -442,8 +458,6 @@ const Home: React.FC = () => {
         isVisible={showNavigationGuide}
         onClose={() => setShowNavigationGuide(false)}
       />
-
-      <UserJourneyGuide onComplete={() => {}} autoStart={false} />
 
       <FloatingCTA variant="emergency" delay={5000} triggerScroll={300} />
 

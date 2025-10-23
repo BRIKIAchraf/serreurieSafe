@@ -10,6 +10,7 @@ import Chatbot from "./Chatbot";
 import LockConfigurator from "./LockConfigurator";
 import EasterEgg from "./EasterEgg";
 import NavigationAssistant from "./NavigationAssistant";
+import UserJourneyGuide from "./UserJourneyGuide";
 import WhatsAppButton from "./WhatsAppButton";
 import VirtualBusinessCard from "./VirtualBusinessCard";
 import Lock3DViewer from "./Lock3DViewer";
@@ -33,6 +34,7 @@ const Layout: React.FC = () => {
         <Chatbot />
         <LockConfigurator />
         <EasterEgg />
+        <UserJourneyGuide delay={4000} />
         <NavigationAssistant />
         <WhatsAppButton />
         <VirtualBusinessCard />

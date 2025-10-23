@@ -17,19 +17,33 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Register service worker for PWA
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker
-          .register("/sw.js")
-          .then((registration) => {
-            console.log("SW registered: ", registration);
-          })
-          .catch((registrationError) => {
-            console.log("SW registration failed: ", registrationError);
-          });
-      });
+    if (!("serviceWorker" in navigator)) {
+      return;
     }
+
+    if (import.meta.env.DEV) {
+      // Ensure dev server requests stay untouched.
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        registrations.forEach((registration) => registration.unregister());
+      });
+      return;
+    }
+
+    const handleLoad = () => {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then((registration) => {
+          console.log("SW registered: ", registration);
+        })
+        .catch((registrationError) => {
+          console.log("SW registration failed: ", registrationError);
+        });
+    };
+
+    window.addEventListener("load", handleLoad);
+    return () => {
+      window.removeEventListener("load", handleLoad);
+    };
   }, []);
 
   return (

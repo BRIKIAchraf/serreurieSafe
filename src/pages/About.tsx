@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Award, Users, Clock, CheckCircle, Star } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
+import LocksmithHeritageTimeline from '../components/LocksmithHeritageTimeline';
 
 const About: React.FC = () => {
   const stats = [
@@ -95,6 +96,8 @@ const About: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <LocksmithHeritageTimeline />
 
       {/* Story Section */}
       <section className="py-20">

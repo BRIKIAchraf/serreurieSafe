@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Clock, Send, MessageCircle, Calendar, Star } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
+import ContactTeamSpotlight from '../components/ContactTeamSpotlight';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -20,16 +21,16 @@ const Contact: React.FC = () => {
     'Ouverture de porte',
     'Changement de serrure',
     'Installation blindage',
-    'Dépannage urgent',
-    'Conseil sécurité',
-    'Devis personnalisé',
+    'D├®pannage urgent',
+    'Conseil s├®curit├®',
+    'Devis personnalis├®',
     'Autre',
   ];
 
   const contactInfo = [
     {
       icon: Phone,
-      title: 'Téléphone',
+      title: 'T├®l├®phone',
       details: '01 23 45 67 89',
       subtitle: 'Disponible 24h/24 - 7j/7',
       action: 'tel:+33123456789',
@@ -38,14 +39,14 @@ const Contact: React.FC = () => {
       icon: Mail,
       title: 'Email',
       details: 'contact@serruresafe.fr',
-      subtitle: 'Réponse sous 2h en moyenne',
+      subtitle: 'R├®ponse sous 2h en moyenne',
       action: 'mailto:contact@serruresafe.fr',
     },
     {
       icon: MapPin,
       title: 'Zone d\'intervention',
-      details: 'Paris et Île-de-France',
-      subtitle: 'Déplacement gratuit',
+      details: 'Paris et ├Äle-de-France',
+      subtitle: 'D├®placement gratuit',
       action: null,
     },
     {
@@ -59,24 +60,24 @@ const Contact: React.FC = () => {
 
   const faq = [
     {
-      question: 'Combien coûte une intervention d\'urgence ?',
-      answer: 'Nos tarifs sont transparents et annoncés avant intervention. Le devis est gratuit et sans engagement. Les prix varient selon le type d\'intervention et l\'heure.',
+      question: 'Combien co├╗te une intervention d\'urgence ?',
+      answer: 'Nos tarifs sont transparents et annonc├®s avant intervention. Le devis est gratuit et sans engagement. Les prix varient selon le type d\'intervention et l\'heure.',
     },
     {
       question: 'Intervenez-vous vraiment 24h/24 ?',
-      answer: 'Oui, notre service d\'urgence est disponible 24h/24 et 7j/7, y compris les weekends et jours fériés. Nous garantissons une intervention en moins de 30 minutes.',
+      answer: 'Oui, notre service d\'urgence est disponible 24h/24 et 7j/7, y compris les weekends et jours f├®ri├®s. Nous garantissons une intervention en moins de 30 minutes.',
     },
     {
       question: 'Puis-je avoir un devis avant l\'intervention ?',
-      answer: 'Absolument ! Nous établissons toujours un devis gratuit et détaillé avant de commencer les travaux. Aucune surprise sur la facture.',
+      answer: 'Absolument ! Nous ├®tablissons toujours un devis gratuit et d├®taill├® avant de commencer les travaux. Aucune surprise sur la facture.',
     },
     {
-      question: 'Vos serrures sont-elles certifiées ?',
-      answer: 'Toutes nos serrures sont certifiées A2P et répondent aux normes de sécurité les plus strictes. Nous travaillons avec les meilleures marques du marché.',
+      question: 'Vos serrures sont-elles certifi├®es ?',
+      answer: 'Toutes nos serrures sont certifi├®es A2P et r├®pondent aux normes de s├®curit├® les plus strictes. Nous travaillons avec les meilleures marques du march├®.',
     },
     {
       question: 'Proposez-vous une garantie ?',
-      answer: 'Oui, tous nos travaux sont garantis. La durée de garantie varie selon le type d\'intervention (de 6 mois à 5 ans pour les installations).',
+      answer: 'Oui, tous nos travaux sont garantis. La dur├®e de garantie varie selon le type d\'intervention (de 6 mois ├á 5 ans pour les installations).',
     },
   ];
 
@@ -90,7 +91,7 @@ const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Logique d'envoi du formulaire
-    console.log('Formulaire envoyé:', formData);
+    console.log('Formulaire envoy├®:', formData);
     setIsSubmitted(true);
     
     // Reset form after 3 seconds
@@ -117,7 +118,7 @@ const Contact: React.FC = () => {
           <div 
             className="absolute inset-0 opacity-12"
             style={{
-              backgroundImage: 'url("/WhatsApp_Image_2025-10-17_à_15.12.18_29f18722-removebg-preview.png")',
+              backgroundImage: 'url("/WhatsApp_Image_2025-10-17_├á_15.12.18_29f18722-removebg-preview.png")',
               backgroundSize: '800px 600px',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -137,7 +138,7 @@ const Contact: React.FC = () => {
               Contactez-nous
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-              Une question ? Un devis ? Une urgence ? Notre équipe est à votre écoute 24h/24
+              Une question ? Un devis ? Une urgence ? Notre ├®quipe est ├á votre ├®coute 24h/24
             </p>
           </motion.div>
         </div>
@@ -177,6 +178,8 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
+      <ContactTeamSpotlight />
+
       {/* Contact Form & Map */}
       <section className="py-20">
         <div className="container mx-auto px-4">
@@ -202,8 +205,8 @@ const Contact: React.FC = () => {
                     <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Send className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Message envoyé !</h3>
-                    <p className="text-gray-600">Nous vous recontacterons dans les plus brefs délais.</p>
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Message envoy├® !</h3>
+                    <p className="text-gray-600">Nous vous recontacterons dans les plus brefs d├®lais.</p>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -220,7 +223,7 @@ const Contact: React.FC = () => {
                         />
                       </div>
                       <div>
-                        <label className="block text-gray-700 font-semibold mb-2">Téléphone *</label>
+                        <label className="block text-gray-700 font-semibold mb-2">T├®l├®phone *</label>
                         <input
                           type="tel"
                           name="phone"
@@ -253,25 +256,25 @@ const Contact: React.FC = () => {
                           onChange={handleInputChange}
                           className="w-full px-4 py-3 rounded-xl backdrop-blur-sm bg-white/20 border border-white/30 focus:border-orange-500 focus:outline-none transition-all"
                         >
-                          <option value="">Sélectionnez un service</option>
+                          <option value="">S├®lectionnez un service</option>
                           {serviceTypes.map((service) => (
                             <option key={service} value={service}>{service}</option>
                           ))}
                         </select>
                       </div>
                       <div>
-                        <label className="block text-gray-700 font-semibold mb-2">Créneau préféré</label>
+                        <label className="block text-gray-700 font-semibold mb-2">Cr├®neau pr├®f├®r├®</label>
                         <select
                           name="preferredTime"
                           value={formData.preferredTime}
                           onChange={handleInputChange}
                           className="w-full px-4 py-3 rounded-xl backdrop-blur-sm bg-white/20 border border-white/30 focus:border-orange-500 focus:outline-none transition-all"
                         >
-                          <option value="">Sélectionnez un créneau</option>
+                          <option value="">S├®lectionnez un cr├®neau</option>
                           <option value="morning">Matin (8h-12h)</option>
-                          <option value="afternoon">Après-midi (12h-18h)</option>
-                          <option value="evening">Soirée (18h-22h)</option>
-                          <option value="urgent">Urgence immédiate</option>
+                          <option value="afternoon">Apr├¿s-midi (12h-18h)</option>
+                          <option value="evening">Soir├®e (18h-22h)</option>
+                          <option value="urgent">Urgence imm├®diate</option>
                         </select>
                       </div>
                     </div>
@@ -295,7 +298,7 @@ const Contact: React.FC = () => {
                         value={formData.message}
                         onChange={handleInputChange}
                         rows={5}
-                        placeholder="Décrivez votre demande en détail..."
+                        placeholder="D├®crivez votre demande en d├®tail..."
                         className="w-full px-4 py-3 rounded-xl backdrop-blur-sm bg-white/20 border border-white/30 focus:border-orange-500 focus:outline-none transition-all resize-none"
                         required
                       ></textarea>
@@ -379,10 +382,10 @@ const Contact: React.FC = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-800 mb-6">
-              Questions <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">fréquentes</span>
+              Questions <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">fr├®quentes</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Retrouvez les réponses aux questions les plus courantes
+              Retrouvez les r├®ponses aux questions les plus courantes
             </p>
           </motion.div>
 
