@@ -6,6 +6,7 @@ const EasterEgg: React.FC = () => {
   const [isTriggered, setIsTriggered] = useState(false);
   const [keySequence, setKeySequence] = useState<string[]>([]);
   const [showReward, setShowReward] = useState(false);
+  const [cornerClicks, setCornerClicks] = useState(0);
 
   // Séquence secrète : "SERRURE"
   const secretSequence = ['s', 'e', 'r', 'r', 'u', 'r', 'e'];
@@ -13,35 +14,68 @@ const EasterEgg: React.FC = () => {
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       const key = event.key.toLowerCase();
-      
+
       setKeySequence(prev => {
         const newSequence = [...prev, key].slice(-secretSequence.length);
-        
+
         // Vérifier si la séquence correspond
         if (newSequence.length === secretSequence.length) {
           const matches = newSequence.every((k, i) => k === secretSequence[i]);
           if (matches && !isTriggered) {
-            setIsTriggered(true);
-            setShowReward(true);
-            
-            // Créer des particules dorées
-            createGoldenParticles();
-            
-            // Jouer un son de réussite
-            playSuccessSound();
-            
-            // Masquer après 5 secondes
-            setTimeout(() => setShowReward(false), 5000);
+            triggerEasterEgg();
           }
         }
-        
+
         return newSequence;
       });
     };
 
+    const handleClick = (event: MouseEvent) => {
+      const x = event.clientX;
+      const y = event.clientY;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+
+      // Détecter les clics dans les coins (50px de marge)
+      const isCorner = (x < 50 && y < 50) || // Coin supérieur gauche
+                      (x > w - 50 && y < 50) || // Coin supérieur droit
+                      (x < 50 && y > h - 50) || // Coin inférieur gauche
+                      (x > w - 50 && y > h - 50); // Coin inférieur droit
+
+      if (isCorner && !isTriggered) {
+        setCornerClicks(prev => {
+          const newCount = prev + 1;
+          if (newCount >= 3) {
+            triggerEasterEgg();
+            return 0;
+          }
+          return newCount;
+        });
+      }
+    };
+
     document.addEventListener('keydown', handleKeyPress);
-    return () => document.removeEventListener('keydown', handleKeyPress);
+    document.addEventListener('click', handleClick);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+      document.removeEventListener('click', handleClick);
+    };
   }, [isTriggered]);
+
+  const triggerEasterEgg = () => {
+    setIsTriggered(true);
+    setShowReward(true);
+
+    // Créer des particules dorées
+    createGoldenParticles();
+
+    // Jouer un son de réussite
+    playSuccessSound();
+
+    // Masquer après 5 secondes
+    setTimeout(() => setShowReward(false), 5000);
+  };
 
   const createGoldenParticles = () => {
     const particles = document.createElement('div');

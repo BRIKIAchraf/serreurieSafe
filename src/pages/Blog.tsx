@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, User, ArrowRight, Search, Tag, Clock, Eye } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
+import AnimatedSVGIcon from '../components/AnimatedSVGIcon';
 
 const Blog: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -211,8 +212,11 @@ const Blog: React.FC = () => {
                   transition={{ delay: index * 0.1, duration: 0.8 }}
                 >
                   <Link to={`/blog/${post.slug}`}>
-                    <GlassCard className="overflow-hidden h-full group">
-                      <div className="relative h-64">
+                    <GlassCard className="overflow-hidden h-full group relative">
+                      <div className="absolute top-8 right-8 w-20 h-20 text-blue-400 opacity-20 z-0">
+                        <AnimatedSVGIcon type="shield" />
+                      </div>
+                      <div className="relative h-64 z-10">
                         <img
                           src={post.image}
                           alt={post.title}
@@ -304,7 +308,10 @@ const Blog: React.FC = () => {
             </motion.div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {regularPosts.map((post, index) => (
+              {regularPosts.map((post, index) => {
+                const iconTypes: Array<'lock' | 'key' | 'shield' | 'gear' | 'security'> = ['lock', 'key', 'shield', 'gear', 'security'];
+                const iconType = iconTypes[index % iconTypes.length];
+                return (
                 <motion.div
                   key={post.id}
                   initial={{ opacity: 0, y: 50 }}
@@ -312,8 +319,11 @@ const Blog: React.FC = () => {
                   transition={{ delay: index * 0.1, duration: 0.8 }}
                 >
                   <Link to={`/blog/${post.slug}`}>
-                    <GlassCard className="overflow-hidden h-full group">
-                      <div className="relative h-48">
+                    <GlassCard className="overflow-hidden h-full group relative">
+                      <div className="absolute top-4 right-4 w-16 h-16 text-orange-400 opacity-20 z-0">
+                        <AnimatedSVGIcon type={iconType} />
+                      </div>
+                      <div className="relative h-48 z-10">
                         <img
                           src={post.image}
                           alt={post.title}
@@ -360,7 +370,8 @@ const Blog: React.FC = () => {
                     </GlassCard>
                   </Link>
                 </motion.div>
-              ))}
+              );
+              })}
             </div>
           )}
         </div>
