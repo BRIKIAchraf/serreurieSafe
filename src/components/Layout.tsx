@@ -1,15 +1,19 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
-import ThreeBackground from './ThreeBackground';
-import MorphingSVG from './MorphingSVG';
-import CustomCursor from './CustomCursor';
-import QuoteGenerator from './QuoteGenerator';
-import Chatbot from './Chatbot';
-import LockConfigurator from './LockConfigurator';
-import EasterEgg from './EasterEgg';
-import { SoundProvider } from './SoundManager';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Header from "./Header";
+import Footer from "./Footer";
+import ThreeBackground from "./ThreeBackground";
+import MorphingSVG from "./MorphingSVG";
+import CustomCursor from "./CustomCursor";
+import QuoteGenerator from "./QuoteGenerator";
+import Chatbot from "./Chatbot";
+import LockConfigurator from "./LockConfigurator";
+import EasterEgg from "./EasterEgg";
+import NavigationAssistant from "./NavigationAssistant";
+import WhatsAppButton from "./WhatsAppButton";
+import VirtualBusinessCard from "./VirtualBusinessCard";
+import Lock3DViewer from "./Lock3DViewer";
+import { SoundProvider } from "./SoundManager";
 
 const Layout: React.FC = () => {
   return (
@@ -29,6 +33,10 @@ const Layout: React.FC = () => {
         <Chatbot />
         <LockConfigurator />
         <EasterEgg />
+        <NavigationAssistant />
+        <WhatsAppButton />
+        <VirtualBusinessCard />
+        <Lock3DViewer />
       </div>
     </SoundProvider>
   );

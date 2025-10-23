@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Clock, ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import ThemeToggle from './ThemeToggle';
-import LanguageToggle from './LanguageToggle';
-import IntelligentSearch from './IntelligentSearch';
-import MagneticButton from './MagneticButton';
-import { useSounds } from './SoundManager';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, Phone, Clock, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import ThemeToggle from "./ThemeToggle";
+import LanguageToggle from "./LanguageToggle";
+import IntelligentSearch from "./IntelligentSearch";
+import MagneticButton from "./MagneticButton";
+import { useSounds } from "./SoundManager";
+import { HelpCircle } from "lucide-react";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,60 +18,77 @@ const Header: React.FC = () => {
   const { t } = useTranslation();
   const { playClickSound } = useSounds();
 
+  const handleShowGuide = () => {
+    const event = new CustomEvent("showUserGuide");
+    window.dispatchEvent(event);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { 
-      path: '/', 
-      label: t('nav.home'),
-      hasDropdown: false
+    {
+      path: "/",
+      label: "Accueil",
+      hasDropdown: false,
     },
-    { 
-      path: '/services', 
-      label: t('nav.services'),
+    {
+      path: "/services",
+      label: "Services",
       hasDropdown: true,
       dropdownItems: [
-        { path: '/services', label: t('services.title') },
-        { path: '/services#ouverture', label: t('services.door_opening') },
-        { path: '/services#installation', label: t('services.lock_installation') },
-        { path: '/services#blindage', label: t('services.door_reinforcement') },
-        { path: '/services#depannage', label: t('services.emergency') },
-      ]
+        { path: "/services", label: "Tous nos Services" },
+        {
+          path: "/services/serrurerie-depannage",
+          label: "Serrurerie & Dépannage",
+        },
+        { path: "/services/porte-blindee", label: "Porte Blindée" },
+        { path: "/services/rideaux-metalliques", label: "Rideaux Métalliques" },
+        { path: "/services/videosurveillance", label: "Vidéosurveillance" },
+        { path: "/services/ouverture-vehicules", label: "Ouverture Véhicules" },
+        { path: "/services/vitrerie", label: "Vitrerie" },
+      ],
     },
-    { 
-      path: '/emergency', 
-      label: t('nav.emergency'),
-      hasDropdown: false
+    {
+      path: "/emergency",
+      label: "Urgence 24h/24",
+      hasDropdown: false,
     },
-    { 
-      path: '/about', 
-      label: t('nav.about'),
-      hasDropdown: false
+    {
+      path: "/about",
+      label: "À propos",
+      hasDropdown: false,
     },
-    { 
-      path: '/gallery', 
-      label: t('nav.gallery'),
-      hasDropdown: false
+    {
+      path: "/gallery",
+      label: "Réalisations",
+      hasDropdown: false,
     },
-    { 
-      path: '/blog', 
-      label: t('nav.blog'),
-      hasDropdown: false
+    {
+      path: "/blog",
+      label: "Actualités",
+      hasDropdown: false,
+    },
+    {
+      path: "/client-area",
+      label: "Espace Client",
+      hasDropdown: false,
     },
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100' 
-        : 'bg-transparent'
-    }`}>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100"
+          : "bg-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -83,27 +101,27 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          <nav className="hidden lg:flex items-center space-x-1 flex-wrap">
             {navItems.map((item) => (
               <div
                 key={item.path}
                 className="relative"
-                onMouseEnter={() => item.hasDropdown && setActiveDropdown(item.label)}
+                onMouseEnter={() =>
+                  item.hasDropdown && setActiveDropdown(item.label)
+                }
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <Link
                   to={item.path}
                   className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                     location.pathname === item.path
-                      ? 'text-orange-600 bg-orange-50'
-                      : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                      ? "text-orange-600 bg-orange-50"
+                      : "text-gray-700 hover:text-orange-600 hover:bg-gray-50"
                   }`}
                   onClick={playClickSound}
                 >
                   {item.label}
-                  {item.hasDropdown && (
-                    <ChevronDown className="ml-1 w-4 h-4" />
-                  )}
+                  {item.hasDropdown && <ChevronDown className="ml-1 w-4 h-4" />}
                 </Link>
 
                 {/* Dropdown Menu */}
@@ -130,27 +148,35 @@ const Header: React.FC = () => {
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <div className="flex items-center space-x-2 text-sm text-gray-600">
+          <div className="hidden lg:flex items-center space-x-2 xl:space-x-4 flex-wrap">
+            <div className="hidden xl:flex items-center space-x-2 text-sm text-gray-600">
               <Clock className="w-4 h-4 text-orange-500" />
-              <span>{t('common.available_24_7')}</span>
+              <span>Disponible 24h/24</span>
             </div>
             <IntelligentSearch />
             <ThemeToggle />
             <LanguageToggle />
+            <button
+              onClick={handleShowGuide}
+              className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+              title="Guide de navigation"
+            >
+              <HelpCircle className="w-5 h-5" />
+            </button>
             <Link
               to="/contact"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors"
+              className="px-3 xl:px-4 py-2 text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors"
               onClick={playClickSound}
             >
-              {t('common.contact')}
+              Contact
             </Link>
             <MagneticButton
               href="tel:+33123456789"
-              className="flex items-center space-x-2 bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-lg font-medium transition-all duration-200 hover:shadow-lg"
+              className="flex items-center space-x-2 bg-orange-600 hover:bg-orange-700 text-white px-4 xl:px-6 py-2 rounded-lg font-medium transition-all duration-200 hover:shadow-lg text-sm xl:text-base"
             >
               <Phone className="w-4 h-4" />
-              <span>{t('hero.cta.call')}</span>
+              <span className="hidden xl:inline">01 23 45 67 89</span>
+              <span className="xl:hidden">Appeler</span>
             </MagneticButton>
           </div>
 
@@ -159,7 +185,11 @@ const Header: React.FC = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
       </div>
@@ -169,7 +199,7 @@ const Header: React.FC = () => {
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-white border-t border-gray-100"
           >
@@ -182,8 +212,8 @@ const Header: React.FC = () => {
                     onClick={() => setIsMenuOpen(false)}
                     className={`px-4 py-3 text-base font-medium rounded-lg transition-colors ${
                       location.pathname === item.path
-                        ? 'text-orange-600 bg-orange-50'
-                        : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'
+                        ? "text-orange-600 bg-orange-50"
+                        : "text-gray-700 hover:text-orange-600 hover:bg-gray-50"
                     }`}
                   >
                     {item.label}
