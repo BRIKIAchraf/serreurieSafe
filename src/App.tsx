@@ -53,7 +53,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
+              <Route index element={<ResponsiveHome />} />
               <Route path="about" element={<About />} />
               <Route path="services" element={<Services />} />
               <Route path="services/:serviceId" element={<ServiceDetail />} />
