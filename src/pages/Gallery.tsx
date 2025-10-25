@@ -1,101 +1,78 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ZoomIn } from 'lucide-react';
-import GlassCard from '../components/GlassCard';
-import LocksmithProjectMosaic from '../components/LocksmithProjectMosaic';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, ZoomIn } from "lucide-react";
+import GlassCard from "../components/GlassCard";
+import LocksmithProjectMosaic from "../components/LocksmithProjectMosaic";
 
 const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const galleryImages = [
     {
-      src: 'https://images.pexels.com/photos/277559/pexels-photo-277559.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      title: 'Installation serrure haute sécurité',
-      category: 'Installation',
+      src: "https://images.pexels.com/photos/277559/pexels-photo-277559.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      title: "Installation serrure haute sécurité",
+      category: "Installation",
     },
     {
-      src: 'https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      title: 'Blindage de porte d\'entrée',
-      category: 'Blindage',
+      src: "https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      title: "Blindage de porte d'entrée",
+      category: "Blindage",
     },
     {
-      src: 'https://images.pexels.com/photos/5691659/pexels-photo-5691659.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      title: 'Réparation serrure multipoints',
-      category: 'Réparation',
+      src: "https://images.pexels.com/photos/5691659/pexels-photo-5691659.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      title: "Réparation serrure multipoints",
+      category: "Réparation",
     },
     {
-      src: 'https://images.pexels.com/photos/6195125/pexels-photo-6195125.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      title: 'Ouverture de porte sans dégâts',
-      category: 'Urgence',
+      src: "https://images.pexels.com/photos/6195125/pexels-photo-6195125.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      title: "Ouverture de porte sans dégâts",
+      category: "Urgence",
     },
     {
-      src: 'https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      title: 'Installation système de sécurité',
-      category: 'Sécurité',
+      src: "https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      title: "Installation système de sécurité",
+      category: "Sécurité",
     },
     {
-      src: 'https://images.pexels.com/photos/277559/pexels-photo-277559.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      title: 'Changement de cylindre',
-      category: 'Installation',
+      src: "https://images.pexels.com/photos/277559/pexels-photo-277559.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      title: "Changement de cylindre",
+      category: "Installation",
     },
     {
-      src: 'https://images.pexels.com/photos/5691659/pexels-photo-5691659.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      title: 'Blindage porte appartement',
-      category: 'Blindage',
+      src: "https://images.pexels.com/photos/5691659/pexels-photo-5691659.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      title: "Blindage porte appartement",
+      category: "Blindage",
     },
     {
-      src: 'https://images.pexels.com/photos/6195125/pexels-photo-6195125.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      title: 'Dépannage serrure cassée',
-      category: 'Réparation',
+      src: "https://images.pexels.com/photos/6195125/pexels-photo-6195125.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      title: "Dépannage serrure cassée",
+      category: "Réparation",
     },
     {
-      src: 'https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      title: 'Installation verrous de sécurité',
-      category: 'Sécurité',
+      src: "https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      title: "Installation verrous de sécurité",
+      category: "Sécurité",
     },
   ];
 
-  const categories = ['Tous', 'Installation', 'Blindage', 'Réparation', 'Urgence', 'Sécurité'];
-  const [activeCategory, setActiveCategory] = useState('Tous');
+  const categories = [
+    "Tous",
+    "Installation",
+    "Blindage",
+    "Réparation",
+    "Urgence",
+    "Sécurité",
+  ];
+  const [activeCategory, setActiveCategory] = useState("Tous");
 
-  const filteredImages = activeCategory === 'Tous' 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === activeCategory);
+  const filteredImages =
+    activeCategory === "Tous"
+      ? galleryImages
+      : galleryImages.filter((img) => img.category === activeCategory);
 
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        {/* Background with Logo Overlay */}
-        <div className="absolute inset-0">
-          <div 
-            className="absolute inset-0 opacity-7"
-            style={{
-              backgroundImage: 'url("/WhatsApp_Image_2025-10-17_à_15.12.18_29f18722-removebg-preview.png")',
-              backgroundSize: '750px 562px',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-            }}
-          ></div>
-          <div className="absolute inset-0 bg-gradient-to-br from-white/92 to-orange-50/75"></div>
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-800 mb-6">
-              Notre <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">Galerie</span>
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Découvrez nos réalisations en serrurerie et sécurité à travers nos interventions
-            </p>
-          </motion.div>
-        </div>
-      </section>
 
       <LocksmithProjectMosaic />
 
@@ -114,8 +91,8 @@ const Gallery: React.FC = () => {
                 onClick={() => setActiveCategory(category)}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                   activeCategory === category
-                    ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg'
-                    : 'backdrop-blur-md bg-white/20 border border-white/30 text-gray-700 hover:bg-white/30'
+                    ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg"
+                    : "backdrop-blur-md bg-white/20 border border-white/30 text-gray-700 hover:bg-white/30"
                 }`}
               >
                 {category}
@@ -170,7 +147,8 @@ const Gallery: React.FC = () => {
                         {image.title}
                       </h3>
                       <p className="text-gray-600 text-sm">
-                        Intervention professionnelle réalisée par notre équipe d'experts
+                        Intervention professionnelle réalisée par notre équipe
+                        d'experts
                       </p>
                     </div>
                   </GlassCard>
@@ -232,11 +210,16 @@ const Gallery: React.FC = () => {
           >
             <GlassCard className="p-12 text-center max-w-4xl mx-auto">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">
-                Besoin d'une intervention <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">similaire</span> ?
+                Besoin d'une intervention{" "}
+                <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
+                  similaire
+                </span>{" "}
+                ?
               </h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Nos experts sont à votre disposition pour tous vos besoins en serrurerie et sécurité. 
-                Contactez-nous pour un devis gratuit et personnalisé.
+                Nos experts sont à votre disposition pour tous vos besoins en
+                serrurerie et sécurité. Contactez-nous pour un devis gratuit et
+                personnalisé.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a

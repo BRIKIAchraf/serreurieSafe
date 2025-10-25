@@ -10,14 +10,10 @@ import {
   Globe,
   Clock,
   Star,
-  Award,
-  Shield,
   QrCode,
   Copy,
   Check,
   User,
-  Building,
-  Calendar,
   MessageCircle,
 } from "lucide-react";
 import { useSounds } from "./SoundManager";
@@ -38,12 +34,12 @@ interface BusinessCardData {
 
 const VirtualBusinessCard: React.FC = () => {
   const { t } = useTranslation();
-  const { playUnlockSound, playKeySound } = useSounds();
+  const { playUnlockSound } = useSounds();
   const [isOpen, setIsOpen] = useState(false);
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [selectedTemplate, setSelectedTemplate] = useState<
-    "modern" | "classic" | "minimal"
-  >("modern");
+    "warm" | "dark" | "light"
+  >("warm");
 
   const businessCardData: BusinessCardData = {
     name: "Pierre Martin",
@@ -61,25 +57,25 @@ const VirtualBusinessCard: React.FC = () => {
 
   const templates = [
     {
-      id: "modern",
-      name: "Moderne",
-      gradient: "from-blue-600 to-purple-600",
+      id: "warm",
+      name: "Rouge / Orange (Serrure Safe)",
+      bgColor: "bg-gradient-to-br from-[#E83E00] to-[#F45C23]",
       textColor: "text-white",
-      bgColor: "bg-gradient-to-br from-blue-600 to-purple-600",
+      accent: "bg-[#F45C23]",
     },
     {
-      id: "classic",
-      name: "Classique",
-      gradient: "from-gray-800 to-gray-900",
+      id: "dark",
+      name: "Anthracite",
+      bgColor: "bg-gradient-to-br from-[#2B2B2B] to-[#1A1A1A]",
       textColor: "text-white",
-      bgColor: "bg-gradient-to-br from-gray-800 to-gray-900",
+      accent: "bg-[#E83E00]",
     },
     {
-      id: "minimal",
-      name: "Minimal",
-      gradient: "from-white to-gray-50",
+      id: "light",
+      name: "Clair / Minimal",
+      bgColor: "bg-gradient-to-br from-[#FFFFFF] to-[#F9F9F9]",
       textColor: "text-gray-900",
-      bgColor: "bg-gradient-to-br from-white to-gray-50",
+      accent: "bg-[#E83E00]",
     },
   ];
 
@@ -134,9 +130,8 @@ END:VCARD`;
     }
   };
 
-  const getCurrentTemplate = () => {
-    return templates.find((t) => t.id === selectedTemplate) || templates[0];
-  };
+  const getCurrentTemplate = () =>
+    templates.find((t) => t.id === selectedTemplate) || templates[0];
 
   return (
     <>
@@ -147,63 +142,63 @@ END:VCARD`;
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 left-6 z-50 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+        className="fixed bottom-6 left-6 z-50 bg-gradient-to-r from-[#E83E00] to-[#F45C23] hover:from-[#F45C23] hover:to-[#E83E00] text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
         onMouseEnter={playUnlockSound}
       >
         <User className="w-6 h-6" />
       </motion.button>
 
-      {/* Business Card Modal */}
+      {/* Modal */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-2 sm:p-4 z-50"
             onClick={() => setIsOpen(false)}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+              className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[95vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-t-2xl">
+              <div className="bg-gradient-to-r from-[#E83E00] to-[#F45C23] text-white p-4 sm:p-6 rounded-t-2xl">
                 <div className="flex justify-between items-center">
                   <div>
-                    <h2 className="text-2xl font-bold">
-                      Carte de visite virtuelle
+                    <h2 className="text-xl sm:text-2xl font-bold">
+                      Carte de visite Serrure Safe
                     </h2>
-                    <p className="text-blue-100">
-                      Téléchargez et partagez facilement
+                    <p className="text-orange-100 text-sm sm:text-base">
+                      Le réflexe sécurité 🔐
                     </p>
                   </div>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="text-white hover:text-gray-200 transition-colors"
+                    className="text-white text-2xl hover:text-gray-200 transition-colors"
                   >
                     ×
                   </button>
                 </div>
               </div>
 
-              <div className="p-6">
+              <div className="p-4 sm:p-6 space-y-6">
                 {/* Template Selector */}
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                    Choisissez un modèle :
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3">
+                    Choisissez un style :
                   </h3>
-                  <div className="flex space-x-4">
+                  <div className="flex flex-wrap gap-3">
                     {templates.map((template) => (
                       <button
                         key={template.id}
                         onClick={() => setSelectedTemplate(template.id as any)}
-                        className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                        className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                           selectedTemplate === template.id
-                            ? "bg-blue-600 text-white"
+                            ? "bg-[#E83E00] text-white"
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                         }`}
                       >
@@ -213,272 +208,204 @@ END:VCARD`;
                   </div>
                 </div>
 
-                {/* Business Card Preview */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                   {/* Card Preview */}
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      Aperçu de la carte :
-                    </h3>
-
-                    <motion.div
-                      key={selectedTemplate}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className={`relative rounded-xl shadow-lg overflow-hidden ${
-                        getCurrentTemplate().bgColor
-                      }`}
-                    >
-                      <div className="p-6">
-                        {/* Header */}
-                        <div className="flex items-center justify-between mb-6">
-                          <div>
-                            <h4
-                              className={`text-2xl font-bold ${
-                                getCurrentTemplate().textColor
-                              }`}
-                            >
-                              {businessCardData.name}
-                            </h4>
-                            <p
-                              className={`text-lg ${
-                                getCurrentTemplate().textColor
-                              } opacity-90`}
-                            >
-                              {businessCardData.title}
-                            </p>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            {[...Array(businessCardData.rating)].map((_, i) => (
-                              <Star
-                                key={i}
-                                className="w-4 h-4 text-yellow-400 fill-current"
-                              />
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Company */}
-                        <div className="mb-4">
-                          <p
-                            className={`text-lg font-semibold ${
+                  <motion.div
+                    key={selectedTemplate}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`relative rounded-xl shadow-lg overflow-hidden ${
+                      getCurrentTemplate().bgColor
+                    }`}
+                  >
+                    <div className="p-4 sm:p-6">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 sm:mb-6 space-y-2 sm:space-y-0">
+                        <div>
+                          <h4
+                            className={`text-xl sm:text-2xl font-bold ${
                               getCurrentTemplate().textColor
                             }`}
                           >
-                            {businessCardData.company}
-                          </p>
-                        </div>
-
-                        {/* Contact Info */}
-                        <div className="space-y-3 mb-6">
-                          <div className="flex items-center space-x-3">
-                            <Phone
-                              className={`w-4 h-4 ${
-                                getCurrentTemplate().textColor
-                              } opacity-80`}
-                            />
-                            <span className={getCurrentTemplate().textColor}>
-                              {businessCardData.phone}
-                            </span>
-                          </div>
-                          <div className="flex items-center space-x-3">
-                            <Mail
-                              className={`w-4 h-4 ${
-                                getCurrentTemplate().textColor
-                              } opacity-80`}
-                            />
-                            <span className={getCurrentTemplate().textColor}>
-                              {businessCardData.email}
-                            </span>
-                          </div>
-                          <div className="flex items-center space-x-3">
-                            <MapPin
-                              className={`w-4 h-4 ${
-                                getCurrentTemplate().textColor
-                              } opacity-80`}
-                            />
-                            <span className={getCurrentTemplate().textColor}>
-                              {businessCardData.address}
-                            </span>
-                          </div>
-                          <div className="flex items-center space-x-3">
-                            <Globe
-                              className={`w-4 h-4 ${
-                                getCurrentTemplate().textColor
-                              } opacity-80`}
-                            />
-                            <span className={getCurrentTemplate().textColor}>
-                              {businessCardData.website}
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Services */}
-                        <div className="mb-4">
+                            {businessCardData.name}
+                          </h4>
                           <p
-                            className={`text-sm font-semibold ${
-                              getCurrentTemplate().textColor
-                            } mb-2`}
-                          >
-                            Services :
-                          </p>
-                          <div className="flex flex-wrap gap-2">
-                            {businessCardData.services.map((service, index) => (
-                              <span
-                                key={index}
-                                className={`px-2 py-1 rounded-full text-xs ${
-                                  getCurrentTemplate().textColor ===
-                                  "text-white"
-                                    ? "bg-white bg-opacity-20 text-white"
-                                    : "bg-gray-200 text-gray-800"
-                                }`}
-                              >
-                                {service}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Availability */}
-                        <div className="flex items-center space-x-2">
-                          <Clock
-                            className={`w-4 h-4 ${
-                              getCurrentTemplate().textColor
-                            } opacity-80`}
-                          />
-                          <span
-                            className={`text-sm ${
+                            className={`text-sm sm:text-lg ${
                               getCurrentTemplate().textColor
                             } opacity-90`}
                           >
-                            {businessCardData.availability}
+                            {businessCardData.title}
+                          </p>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          {[...Array(businessCardData.rating)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-4 h-4 text-yellow-400 fill-current"
+                            />
+                          ))}
+                        </div>
+                      </div>
+
+                      <p
+                        className={`text-sm sm:text-lg font-semibold mb-4 ${
+                          getCurrentTemplate().textColor
+                        }`}
+                      >
+                        {businessCardData.company}
+                      </p>
+
+                      <div className="space-y-2 sm:space-y-3 mb-6">
+                        <div className="flex items-center space-x-3">
+                          <Phone
+                            className={`w-4 h-4 ${
+                              getCurrentTemplate().textColor
+                            }`}
+                          />
+                          <span
+                            className={`text-sm sm:text-base ${
+                              getCurrentTemplate().textColor
+                            }`}
+                          >
+                            {businessCardData.phone}
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <Mail
+                            className={`w-4 h-4 ${
+                              getCurrentTemplate().textColor
+                            }`}
+                          />
+                          <span
+                            className={`text-sm sm:text-base ${
+                              getCurrentTemplate().textColor
+                            }`}
+                          >
+                            {businessCardData.email}
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <MapPin
+                            className={`w-4 h-4 ${
+                              getCurrentTemplate().textColor
+                            }`}
+                          />
+                          <span
+                            className={`text-sm sm:text-base ${
+                              getCurrentTemplate().textColor
+                            }`}
+                          >
+                            {businessCardData.address}
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <Globe
+                            className={`w-4 h-4 ${
+                              getCurrentTemplate().textColor
+                            }`}
+                          />
+                          <span
+                            className={`text-sm sm:text-base ${
+                              getCurrentTemplate().textColor
+                            }`}
+                          >
+                            {businessCardData.website}
                           </span>
                         </div>
                       </div>
 
-                      {/* QR Code Area */}
-                      <div className="absolute top-4 right-4">
-                        <div className="w-16 h-16 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
-                          <QrCode className="w-8 h-8 text-white" />
-                        </div>
+                      <p
+                        className={`text-sm font-semibold mb-2 ${
+                          getCurrentTemplate().textColor
+                        }`}
+                      >
+                        Services :
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {businessCardData.services.map((service, i) => (
+                          <span
+                            key={i}
+                            className={`px-2 py-1 rounded-full text-xs ${
+                              getCurrentTemplate().textColor === "text-white"
+                                ? "bg-white bg-opacity-20 text-white"
+                                : "bg-gray-200 text-gray-800"
+                            }`}
+                          >
+                            {service}
+                          </span>
+                        ))}
                       </div>
-                    </motion.div>
-                  </div>
+
+                      <div className="flex items-center space-x-2 mt-4">
+                        <Clock
+                          className={`w-4 h-4 ${
+                            getCurrentTemplate().textColor
+                          }`}
+                        />
+                        <span
+                          className={`text-xs sm:text-sm ${
+                            getCurrentTemplate().textColor
+                          }`}
+                        >
+                          {businessCardData.availability}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* QR Code */}
+                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
+                        <QrCode className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                      </div>
+                    </div>
+                  </motion.div>
 
                   {/* Actions */}
-                  <div className="space-y-6">
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      Actions disponibles :
-                    </h3>
-
-                    {/* Download vCard */}
+                  <div className="space-y-5 sm:space-y-6">
                     <div className="bg-gray-50 rounded-lg p-4">
                       <h4 className="font-semibold text-gray-900 mb-2">
-                        Télécharger vCard
+                        Télécharger la vCard
                       </h4>
-                      <p className="text-sm text-gray-600 mb-4">
-                        Téléchargez la carte de visite au format vCard pour
-                        l'ajouter à vos contacts
+                      <p className="text-sm text-gray-600 mb-3">
+                        Ajoutez la carte à vos contacts.
                       </p>
                       <button
                         onClick={generateVCard}
-                        className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                        className="flex items-center justify-center space-x-2 w-full bg-[#E83E00] hover:bg-[#F45C23] text-white px-4 py-2 rounded-lg font-medium transition-colors"
                       >
                         <Download className="w-4 h-4" />
-                        <span>Télécharger vCard</span>
+                        <span>Télécharger</span>
                       </button>
                     </div>
 
-                    {/* Share */}
                     <div className="bg-gray-50 rounded-lg p-4">
                       <h4 className="font-semibold text-gray-900 mb-2">
-                        Partager
+                        Partager la carte
                       </h4>
-                      <p className="text-sm text-gray-600 mb-4">
-                        Partagez cette carte de visite avec d'autres personnes
-                      </p>
                       <button
                         onClick={shareCard}
-                        className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                        className="flex items-center justify-center space-x-2 w-full bg-[#F45C23] hover:bg-[#E83E00] text-white px-4 py-2 rounded-lg font-medium transition-colors"
                       >
                         <Share2 className="w-4 h-4" />
                         <span>Partager</span>
                       </button>
                     </div>
 
-                    {/* Copy Contact Info */}
                     <div className="bg-gray-50 rounded-lg p-4">
                       <h4 className="font-semibold text-gray-900 mb-2">
-                        Copier les informations
+                        Contact direct
                       </h4>
-                      <div className="space-y-3">
-                        {[
-                          {
-                            label: "Téléphone",
-                            value: businessCardData.phone,
-                            field: "phone",
-                          },
-                          {
-                            label: "Email",
-                            value: businessCardData.email,
-                            field: "email",
-                          },
-                          {
-                            label: "Site web",
-                            value: businessCardData.website,
-                            field: "website",
-                          },
-                        ].map((item) => (
-                          <div
-                            key={item.field}
-                            className="flex items-center justify-between"
-                          >
-                            <div>
-                              <p className="text-sm font-medium text-gray-900">
-                                {item.label}
-                              </p>
-                              <p className="text-sm text-gray-600">
-                                {item.value}
-                              </p>
-                            </div>
-                            <button
-                              onClick={() =>
-                                copyToClipboard(item.value, item.field)
-                              }
-                              className="flex items-center space-x-1 text-blue-600 hover:text-blue-700 transition-colors"
-                            >
-                              {copiedField === item.field ? (
-                                <Check className="w-4 h-4 text-green-600" />
-                              ) : (
-                                <Copy className="w-4 h-4" />
-                              )}
-                              <span className="text-sm">
-                                {copiedField === item.field
-                                  ? "Copié !"
-                                  : "Copier"}
-                              </span>
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Contact Actions */}
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        Contacter directement
-                      </h4>
-                      <div className="flex space-x-3">
+                      <div className="flex flex-col sm:flex-row gap-3">
                         <a
                           href={`tel:${businessCardData.phone}`}
-                          className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                          className="flex items-center justify-center space-x-2 bg-[#E83E00] hover:bg-[#F45C23] text-white px-4 py-2 rounded-lg font-medium transition-colors"
                         >
                           <Phone className="w-4 h-4" />
                           <span>Appeler</span>
                         </a>
                         <a
                           href={`mailto:${businessCardData.email}`}
-                          className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                          className="flex items-center justify-center space-x-2 bg-[#F45C23] hover:bg-[#E83E00] text-white px-4 py-2 rounded-lg font-medium transition-colors"
                         >
                           <Mail className="w-4 h-4" />
                           <span>Email</span>
@@ -488,7 +415,7 @@ END:VCARD`;
                             /[^0-9]/g,
                             ""
                           )}`}
-                          className="flex items-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                          className="flex items-center justify-center space-x-2 bg-[#25D366] hover:bg-[#20b857] text-white px-4 py-2 rounded-lg font-medium transition-colors"
                         >
                           <MessageCircle className="w-4 h-4" />
                           <span>WhatsApp</span>

@@ -220,7 +220,7 @@ const Services: React.FC = () => {
       </section>
 
       <SectionDivider variant="locksmith" color="#2563eb" intensity={0.9} />
-
+      <LocksmithPhotoShowcase />
       {/* Services Grid */}
       <section className="py-20 bg-white relative">
         <AnimatedCanvas type="dots" color="#e5e7eb" intensity={0.2} />
@@ -376,9 +376,12 @@ const Services: React.FC = () => {
         </div>
       </section>
 
-      <SectionDivider variant="blueprint" color="#111827" intensity={0.7} flip />
-
-      <LocksmithPhotoShowcase />
+      <SectionDivider
+        variant="blueprint"
+        color="#111827"
+        intensity={0.7}
+        flip
+      />
 
       {/* Emergency CTA */}
       <section className="py-20 bg-gradient-to-r from-gray-800 to-gray-900 relative">

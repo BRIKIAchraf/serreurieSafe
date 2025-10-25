@@ -1,175 +1,195 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Zap, Lock, Key } from "lucide-react";
+import { Shield, Zap, Lock, Key, Video, Car, Hammer } from "lucide-react";
 
-interface ExpandingOption {
+interface Service {
   title: string;
   description: string;
   image: string;
+  price: string;
+  details: string[];
   icon: React.ElementType;
-  highlights: string[];
-  metric: string;
 }
 
-const options: ExpandingOption[] = [
+const services: Service[] = [
   {
-    title: "Ouverture experte sans dommage",
+    title: "Serrurerie & Dépannage",
     description:
-      "Nos techniciens utilisent des kits d'impression, clés de frappe et caméras endoscopiques pour préserver votre porte et votre serrure.",
+      "Besoin d'un dépannage en urgence pour une serrure bloquée ou d'un remplacement de cylindre ? Notre équipe de serruriers qualifiés intervient 24h/24 avec soin et rapidité, sans dommage pour votre porte.",
     image:
-      "https://images.unsplash.com/photo-1580894897392-6e3c6c86ec38?auto=format&fit=crop&w=1200&q=80",
-    icon: Zap,
-    highlights: [
-      "Intervention moyenne : 22 minutes",
-      "Compatible portes blindées A2P",
-      "Assistance 24h/24 et 7j/7",
+      "https://images.unsplash.com/photo-1591279739602-1e05b23cb18d?auto=format&fit=crop&w=1200&q=80",
+    price: "À partir de 89€",
+    details: [
+      "Ouverture de porte claquée, verrouillée ou bloquée",
+      "Réparation et remplacement de serrures toutes marques",
+      "Installation de serrures multipoints",
+      "Mise en sécurité après effraction",
     ],
-    metric: "1200+ ouvertures réussies",
-  },
-  {
-    title: "Blindage & renforcement premium",
-    description:
-      "Plaques manganèse, barres de pivot, serrures multipoints certifiées : nous transformons vos accès en véritables remparts.",
-    image:
-      "https://images.unsplash.com/photo-1604072366199-bab2aba65891?auto=format&fit=crop&w=1200&q=80",
-    icon: Shield,
-    highlights: [
-      "Blindage sur mesure d'origine française",
-      "Travail propre sans poussière",
-      "Garantie décennale incluse",
-    ],
-    metric: "98% clients rassurés",
-  },
-  {
-    title: "Contrôle d'accès connecté",
-    description:
-      "Badges, claviers, cylindres électroniques et suivi d'activité : sécurisez votre immeuble ou showroom à distance.",
-    image:
-      "https://images.unsplash.com/photo-1580894906501-b4a04f77bedf?auto=format&fit=crop&w=1200&q=80",
     icon: Lock,
-    highlights: [
-      "Audit et plan de câblage inclus",
-      "Application mobile dédiée",
-      "Support pro pendant 12 mois",
-    ],
-    metric: "37% coûts d'accès en moins",
   },
   {
-    title: "Reproduction et programmation clés",
+    title: "Dépannage de Porte Blindée",
     description:
-      "Duplication de clés protégées, badges RFID, télécommandes ou clés auto à puce avec garantie de fonctionnement.",
+      "Votre porte blindée est un gage de sécurité, mais elle peut nécessiter un dépannage en urgence. Nous intervenons sans endommager la structure.",
     image:
-      "https://images.unsplash.com/photo-1580894906472-6f2c78679a7d?auto=format&fit=crop&w=1200&q=80",
-    icon: Key,
-    highlights: [
-      "Laboratoire mobile dernière génération",
-      "Respect des chartes fabricant",
-      "Cryptage et traçabilité",
+      "https://images.unsplash.com/photo-1597005095835-7b4b9d7edc1e?auto=format&fit=crop&w=1200&q=80",
+    price: "À partir de 120€",
+    details: [
+      "Déblocage de serrures bloquées ou endommagées",
+      "Remplacement de serrures haute sécurité",
+      "Mise en sécurité renforcée après effraction",
+      "Ajustement et maintenance de portes blindées",
     ],
-    metric: "4 500 programmations/an",
+    icon: Shield,
+  },
+  {
+    title: "Rideaux Métalliques",
+    description:
+      "Installation, entretien et dépannage de rideaux métalliques pour commerces et entrepôts. Sécurité et fiabilité garanties.",
+    image:
+      "https://images.unsplash.com/photo-1574634534891-6a4b3c3b5a9b?auto=format&fit=crop&w=1200&q=80",
+    price: "Devis personnalisé",
+    details: [
+      "Installation sur mesure adaptée à vos besoins",
+      "Réparation rapide en cas de blocage ou panne moteur",
+      "Maintenance préventive pour éviter les pannes",
+      "Motorisation de rideaux métalliques",
+    ],
+    icon: Hammer,
+  },
+  {
+    title: "Vidéosurveillance",
+    description:
+      "Protégez vos locaux avec nos systèmes de vidéosurveillance connectés. Installation et maintenance professionnelles.",
+    image:
+      "https://images.unsplash.com/photo-1626178793923-44ef67f4f826?auto=format&fit=crop&w=1200&q=80",
+    price: "Devis gratuit",
+    details: [
+      "Caméras intérieures et extérieures",
+      "Systèmes connectés avec visualisation à distance",
+      "Maintenance et support technique",
+      "Conseils en positionnement stratégique",
+    ],
+    icon: Video,
+  },
+  {
+    title: "Ouverture de Véhicules",
+    description:
+      "Clés perdues, oubliées ou serrure bloquée ? Nous ouvrons tous types de véhicules sans causer de dégâts.",
+    image:
+      "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80",
+    price: "À partir de 90€",
+    details: [
+      "Ouverture rapide et sans dégât",
+      "Intervention sur voitures, motos et utilitaires",
+      "Compatible avec toutes marques et modèles",
+      "Disponible 24h/24 et 7j/7",
+    ],
+    icon: Car,
+  },
+  {
+    title: "Vitrerie",
+    description:
+      "Installation, réparation et remplacement de vitres pour particuliers et professionnels.",
+    image:
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80",
+    price: "Devis sur mesure",
+    details: [
+      "Remplacement de vitres cassées",
+      "Installation de vitrines commerciales",
+      "Pose de parois vitrées et fenêtres isolantes",
+      "Intervention rapide après sinistre",
+    ],
+    icon: Zap,
   },
 ];
 
-const LocksmithExpandingOptions: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const ServicesShowcase: React.FC = () => {
+  const [active, setActive] = useState<number | null>(0);
 
   return (
-    <section className="relative overflow-hidden bg-slate-950 py-24 text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#334155,transparent)] opacity-70" />
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl space-y-4">
-          <span className="inline-flex items-center rounded-full bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-300">
-            Solutions photo-immersives
-          </span>
-          <h2 className="text-3xl font-bold sm:text-4xl">
-            Les options Serrurier Safe en images et en temps réel
+    <section className="relative py-24">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
+            Nos{" "}
+            <span className="bg-gradient-to-r from-[#D72600] to-[#FF6B00] bg-clip-text text-transparent">
+              Services
+            </span>
           </h2>
-          <p className="text-base text-slate-300 sm:text-lg">
-            Survolez ou touchez chaque scénario pour dévoiler nos méthodes, nos
-            outils et les résultats obtenus. Chaque visuel est issu d'une
-            intervention réelle, garantissant transparence et confiance.
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg">
+            Des interventions rapides, efficaces et garanties, réalisées par des
+            experts qualifiés en serrurerie, sécurité et vitrage.
           </p>
         </div>
 
-        <div className="flex flex-col gap-4 md:flex-row">
-          {options.map((option, index) => {
-            const Icon = option.icon;
-            const isActive = activeIndex === index;
+        {/* Services grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            const isActive = active === index;
 
             return (
-              <motion.button
-                key={option.title}
-                onMouseEnter={() => setActiveIndex(index)}
-                onFocus={() => setActiveIndex(index)}
-                onClick={() => setActiveIndex(index)}
-                className={`group relative flex-1 overflow-hidden rounded-3xl text-left transition-all duration-500 focus:outline-none md:flex ${
-                  isActive ? "md:flex-[1.9]" : "md:flex-[1]"
-                }`}
-                aria-pressed={isActive}
+              <motion.div
+                key={index}
+                className="relative overflow-hidden rounded-2xl bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-lg border border-gray-200 dark:border-white/10 hover:shadow-2xl transition-all duration-500"
+                onMouseEnter={() => setActive(index)}
+                onMouseLeave={() => setActive(null)}
               >
-                <div className="absolute inset-0">
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden">
                   <motion.img
-                    src={option.image}
-                    alt={option.title}
-                    className="h-full w-full object-cover"
-                    animate={{
-                      scale: isActive ? 1.1 : 1,
-                    }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    loading="lazy"
+                    src={service.image}
+                    alt={service.title}
+                    className="h-full w-full object-cover transition-transform duration-700"
+                    animate={{ scale: isActive ? 1.1 : 1 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black/90 transition-opacity duration-500 group-hover:via-black/70" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
 
-                <div className="relative flex h-full w-full flex-col justify-end space-y-6 p-6 sm:p-8">
+                {/* Content */}
+                <div className="p-6 space-y-4">
                   <div className="flex items-center space-x-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 backdrop-blur">
-                      <Icon className="h-6 w-6 text-white" />
+                    <div className="p-2 rounded-xl bg-gradient-to-br from-[#D72600] to-[#FF6B00] text-white">
+                      <Icon className="w-5 h-5" />
                     </div>
-                    <p className="text-sm uppercase tracking-wide text-white/70">
-                      {option.metric}
-                    </p>
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                      {service.title}
+                    </h3>
                   </div>
 
-                  <div>
-                    <h3 className="text-2xl font-semibold">{option.title}</h3>
-                    <AnimatePresence mode="wait">
-                      {isActive && (
-                        <motion.p
-                          key="description"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 20 }}
-                          transition={{ duration: 0.3 }}
-                          className="mt-3 text-sm text-slate-200 sm:text-base"
-                        >
-                          {option.description}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    {service.description}
+                  </p>
 
-                  <AnimatePresence>
-                    {isActive && (
-                      <motion.ul
-                        key="highlights"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                        transition={{ duration: 0.35 }}
-                        className="space-y-2 text-sm text-slate-200/90"
-                      >
-                        {option.highlights.map((highlight) => (
-                          <li key={highlight} className="flex items-start gap-2">
-                            <span className="mt-1 h-2 w-2 rounded-full bg-blue-400" />
-                            <span>{highlight}</span>
-                          </li>
-                        ))}
-                      </motion.ul>
-                    )}
-                  </AnimatePresence>
+                  <p className="font-semibold text-[#FF6B00]">
+                    {service.price}
+                  </p>
+
+                  <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                    {service.details.map((d, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="mt-1 h-2 w-2 rounded-full bg-[#FF6B00]" />
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* CTA */}
+                  <div className="flex justify-between items-center mt-4">
+                    <a
+                      href="/devis"
+                      className="inline-block px-5 py-2 rounded-lg bg-gradient-to-r from-[#D72600] to-[#FF6B00] text-white text-sm font-semibold shadow hover:shadow-lg transition"
+                    >
+                      Demander un devis
+                    </a>
+                    <span className="text-xs font-medium px-3 py-1 rounded-full bg-[#D72600]/10 text-[#D72600]">
+                      Urgence
+                    </span>
+                  </div>
                 </div>
-              </motion.button>
+              </motion.div>
             );
           })}
         </div>
@@ -178,4 +198,4 @@ const LocksmithExpandingOptions: React.FC = () => {
   );
 };
 
-export default LocksmithExpandingOptions;
+export default ServicesShowcase;

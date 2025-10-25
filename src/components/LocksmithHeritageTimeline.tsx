@@ -1,117 +1,118 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-interface TimelineMilestone {
-  year: string;
+interface LocksmithPhoto {
+  src: string;
   title: string;
-  description: string;
-  image: string;
-  badge: string;
+  caption: string;
+  tag: string;
+  size?: "sm" | "lg";
 }
 
-const milestones: TimelineMilestone[] = [
+const photos: LocksmithPhoto[] = [
   {
-    year: "2009",
-    title: "Atelier Serrurier Safe",
-    description:
-      "Ouverture de notre premier atelier à Paris 11e avec une ambition claire : moderniser la serrurerie traditionnelle.",
-    image:
-      "https://images.unsplash.com/photo-1580894897449-e1b3030e97d5?auto=format&fit=crop&w=1200&q=80",
-    badge: "Fondation",
+    src: "https://images.unsplash.com/photo-1604079628040-94301bb21b07?auto=format&fit=crop&w=1400&q=80",
+    title: "Ouverture sans dommage",
+    caption:
+      "Techniques précises pour portes blindées et serrures haute sécurité.",
+    tag: "Dépannage express",
+    size: "lg",
   },
   {
-    year: "2014",
-    title: "Brigade Urgence 24/7",
-    description:
-      "Mise en place d'une flotte mobile équipée d'outillage de pointe pour garantir une arrivée sous 30 minutes.",
-    image:
-      "https://images.unsplash.com/photo-1579389083078-4e7018379f7c?auto=format&fit=crop&w=1200&q=80",
-    badge: "Intervention",
+    src: "https://images.unsplash.com/photo-1597004891233-28a403a90ef6?auto=format&fit=crop&w=1400&q=80",
+    title: "Atelier de reproduction",
+    caption: "Clés, badges magnétiques et télécommandes programmées sur place.",
+    tag: "Atelier mobile",
   },
   {
-    year: "2018",
-    title: "Lab Serrures Connectées",
-    description:
-      "Création d'un laboratoire domotique pour tester cylindre connecté, contrôle d'accès et intégrations smart home.",
-    image:
-      "https://images.unsplash.com/photo-1580894906472-6f2c78679a7d?auto=format&fit=crop&w=1200&q=80",
-    badge: "Innovation",
+    src: "https://images.unsplash.com/photo-1621905251918-962f836bf6df?auto=format&fit=crop&w=1400&q=80",
+    title: "Renforcement de porte",
+    caption:
+      "Blindage, barres de pivot et plaques anti-perçage certifiées A2P.",
+    tag: "Blindage sécurisé",
   },
   {
-    year: "2023",
-    title: "Studio Sécurité Serrure Safe",
-    description:
-      "Equipe dédiée aux projets architecturaux : blindages design, vitrages sécurisés et serrures biométriques.",
-    image:
-      "https://images.unsplash.com/photo-1604079626693-3be927fe6df0?auto=format&fit=crop&w=1200&q=80",
-    badge: "Architecture",
+    src: "https://images.unsplash.com/photo-1621905251933-30cf4d92c4a9?auto=format&fit=crop&w=1400&q=80",
+    title: "Contrôle d’accès intelligent",
+    caption:
+      "Systèmes biométriques, claviers digitaux et intégration domotique.",
+    tag: "Sécurité connectée",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1600585154518-990dced4db0d?auto=format&fit=crop&w=1400&q=80",
+    title: "Audit sécurité sur mesure",
+    caption:
+      "Diagnostic complet et recommandations personnalisées pour entreprises et copropriétés.",
+    tag: "Conseil expert",
   },
 ];
 
-const LocksmithHeritageTimeline: React.FC = () => {
+const LocksmithPhotoShowcase: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-slate-950 py-24 text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1e293b,transparent)]" />
-      <div className="absolute inset-y-0 left-1/2 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-
+    <section className="relative overflow-hidden py-24 text-gray-900">
       <div className="relative mx-auto flex max-w-6xl flex-col gap-16 px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <span className="inline-flex items-center rounded-full bg-orange-500/10 px-4 py-2 text-sm font-semibold text-orange-300">
-            Héritage Serrure Safe
+        {/* ===== Header ===== */}
+        <div className="max-w-2xl space-y-6">
+          <span className="inline-flex items-center rounded-full bg-gradient-to-r from-[#E83E00]/10 to-[#F45C23]/10 px-4 py-2 text-sm font-semibold text-[#E83E00]">
+            Univers Serrurier Safe
           </span>
-          <h2 className="mt-4 text-3xl font-bold sm:text-4xl lg:text-5xl">
-            Plus d'une décennie de réalisations photographiées
+          <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-[#E83E00] to-[#F45C23]">
+            Chaque intervention documentée en images authentiques
           </h2>
-          <p className="mt-4 text-base text-slate-300 sm:text-lg">
-            Chaque jalon est illustré par une intervention authentique : atelier
-            originel, équipes mobiles, innovations connectées et projets
-            architecturaux.
+          <p className="text-base text-gray-700 sm:text-lg">
+            Découvrez nos reportages photo réalisés sur le terrain : ouverture
+            fine, blindage sur mesure, contrôle d’accès et expertise technique.
+            Ces images témoignent de notre savoir-faire et de la précision de
+            nos interventions.
           </p>
+          <div className="flex flex-wrap gap-3 text-sm text-gray-700">
+            <span className="rounded-full border border-[#F45C23]/30 px-4 py-1">
+              Reportage photo terrain 24h/24
+            </span>
+            <span className="rounded-full border border-[#F45C23]/30 px-4 py-1">
+              Mise en scène de cas réels
+            </span>
+            <span className="rounded-full border border-[#F45C23]/30 px-4 py-1">
+              Adapté à chaque service
+            </span>
+          </div>
         </div>
 
-        <div className="relative grid gap-12">
-          {milestones.map((milestone, index) => (
+        {/* ===== Photo grid ===== */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {photos.map((photo, index) => (
             <motion.div
-              key={milestone.year}
-              initial={{ opacity: 0, y: 60 }}
+              key={photo.src}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`relative flex flex-col gap-6 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur lg:flex-row ${
-                index % 2 === 0 ? "lg:text-right lg:pr-10" : "lg:text-left lg:pl-10"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              whileHover={{ scale: 1.02 }}
+              className={`group relative overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-md hover:shadow-xl transition-all duration-500 ${
+                photo.size === "lg" ? "md:col-span-2" : ""
               }`}
             >
-              <div
-                className={`absolute left-1/2 top-10 hidden h-6 w-6 -translate-x-1/2 rounded-full border-4 border-slate-950 bg-gradient-to-br from-orange-500 to-red-500 shadow-xl lg:block ${
-                  index % 2 === 0 ? "-translate-x-[calc(50%-18rem)]" : "-translate-x-[calc(50%+18rem)]"
-                }`}
-              />
-
-              <div className="relative lg:w-1/2">
+              <div className="relative h-72 w-full sm:h-80 overflow-hidden">
                 <motion.img
-                  src={milestone.image}
-                  alt={milestone.title}
-                  className="h-64 w-full rounded-2xl object-cover shadow-xl sm:h-72 lg:h-full"
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.35 }}
+                  src={photo.src}
+                  alt={photo.title}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
                 />
-                <span className="absolute left-4 top-4 rounded-full bg-black/50 px-3 py-1 text-xs font-semibold uppercase tracking-wider">
-                  {milestone.badge}
-                </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                <div className="absolute left-6 right-6 bottom-6 space-y-2">
+                  <span className="inline-block rounded-full bg-gradient-to-r from-[#E83E00] to-[#F45C23] px-3 py-1 text-xs font-semibold text-white shadow-md">
+                    {photo.tag}
+                  </span>
+                  <h3 className="text-xl font-semibold text-white">
+                    {photo.title}
+                  </h3>
+                  <p className="text-sm text-gray-200">{photo.caption}</p>
+                </div>
               </div>
 
-              <div className="flex flex-col justify-center space-y-4 lg:w-1/2">
-                <span className="text-sm font-semibold text-orange-300">
-                  {milestone.year}
-                </span>
-                <h3 className="text-2xl font-semibold text-white sm:text-3xl">
-                  {milestone.title}
-                </h3>
-                <p className="text-sm text-slate-200 sm:text-base">
-                  {milestone.description}
-                </p>
-              </div>
+              {/* Hover outline */}
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#F45C23]/60 transition-all duration-300 rounded-3xl pointer-events-none" />
             </motion.div>
           ))}
         </div>
@@ -120,4 +121,4 @@ const LocksmithHeritageTimeline: React.FC = () => {
   );
 };
 
-export default LocksmithHeritageTimeline;
+export default LocksmithPhotoShowcase;

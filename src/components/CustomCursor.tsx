@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 
 const CustomCursor: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isTouchInput, setIsTouchInput] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    };
+    setMounted(true);
+  }, []);
+
+  // 🔹 Détecter si c’est un écran tactile
+  useEffect(() => {
+    if (typeof window === "undefined") return;
 
     const coarsePointerQuery = window.matchMedia("(pointer: coarse)");
     const updateTouchState = (event: MediaQueryList | MediaQueryListEvent) => {
@@ -32,22 +37,19 @@ const CustomCursor: React.FC = () => {
     };
   }, []);
 
+  // 🔹 Suivi du curseur
   useEffect(() => {
-    if (typeof window === "undefined" || isTouchInput) {
-      return;
-    }
+    if (isTouchInput) return;
 
-    const updateMousePosition = (event: PointerEvent) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
+    const updateMousePosition = (e: PointerEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    const updateHoverState = (event: PointerEvent) => {
-      const baseTarget =
-        event.type === "pointerout"
-          ? ((event.relatedTarget as Element | null) ?? null)
-          : ((event.target as Element | null) ?? null);
-
-      const target = baseTarget;
+    const updateHoverState = (e: PointerEvent) => {
+      const target =
+        e.type === "pointerout"
+          ? (e.relatedTarget as Element | null)
+          : (e.target as Element | null);
       if (!target) {
         setIsHovering(false);
         return;
@@ -72,19 +74,18 @@ const CustomCursor: React.FC = () => {
     };
   }, [isTouchInput]);
 
-  if (isTouchInput) {
-    return null;
-  }
+  if (isTouchInput || !mounted) return null;
 
-  return (
+  // ✅ Curseur rendu via Portal — toujours au-dessus de tout le DOM
+  return createPortal(
     <>
-      {/* Main cursor */}
+      {/* Curseur principal */}
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[9999] h-6 w-6 mix-blend-difference"
+        className="pointer-events-none fixed top-0 left-0 z-[2147483647] h-6 w-6 mix-blend-difference"
         animate={{
           x: mousePosition.x - 12,
           y: mousePosition.y - 12,
-          scale: isHovering ? 1.5 : 1,
+          scale: isHovering ? 1.4 : 1,
         }}
         transition={{
           type: "spring",
@@ -95,9 +96,9 @@ const CustomCursor: React.FC = () => {
         <div className="h-full w-full rounded-full bg-orange-500 opacity-80" />
       </motion.div>
 
-      {/* Trailing cursor */}
+      {/* Curseur secondaire */}
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[9998] h-2 w-2"
+        className="pointer-events-none fixed top-0 left-0 z-[2147483646] h-2 w-2"
         animate={{
           x: mousePosition.x - 4,
           y: mousePosition.y - 4,
@@ -110,7 +111,8 @@ const CustomCursor: React.FC = () => {
       >
         <div className="h-full w-full rounded-full bg-red-500 opacity-60" />
       </motion.div>
-    </>
+    </>,
+    document.body // 👈 ici la magie : monte le curseur en dehors du root
   );
 };
 

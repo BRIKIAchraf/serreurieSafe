@@ -12,6 +12,7 @@ import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import ClientArea from "./pages/ClientArea";
+import ResponsiveHome from "./pages/ResponsiveHome";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
