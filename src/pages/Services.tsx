@@ -11,6 +11,7 @@ import {
   Phone,
   ArrowRight,
   Zap,
+  Euro,
 } from "lucide-react";
 import AnimatedCanvas from "../components/AnimatedCanvas";
 import LocksmithServiceGallery from "../components/LocksmithServiceGallery";
@@ -31,6 +32,7 @@ const Services: React.FC = () => {
         "Mise en sécurité immédiate",
         "Service d’urgence 24h/24",
       ],
+      price: "À partir de 79€",
     },
     {
       id: "porte-blindee",
@@ -46,6 +48,7 @@ const Services: React.FC = () => {
         "Isolation phonique et thermique",
         "Garantie 10 ans",
       ],
+      price: "Dès 1299€",
     },
     {
       id: "rideaux-metalliques",
@@ -61,6 +64,7 @@ const Services: React.FC = () => {
         "Réparation toutes marques",
         "Maintenance préventive",
       ],
+      price: "Dès 499€",
     },
     {
       id: "videosurveillance",
@@ -76,6 +80,7 @@ const Services: React.FC = () => {
         "Installation discrète",
         "Support technique 24/7",
       ],
+      price: "À partir de 299€",
     },
     {
       id: "vehicules",
@@ -91,37 +96,65 @@ const Services: React.FC = () => {
         "Toutes marques et modèles",
         "Disponible 24h/24",
       ],
+      price: "Dès 89€",
     },
   ];
 
   return (
-    <div className="pt-20 bg-gradient-to-b from-white via-orange-50/20 to-white">
-      {/* HERO */}
-      <section className="relative h-[85vh] flex flex-col justify-center items-center text-center overflow-hidden">
-        <AnimatedCanvas type="particles" color="#f97316" intensity={0.2} />
+    <div className="pt-0 bg-gradient-to-b from-white via-orange-50/20 to-white">
+      {/* 🎯 HERO IMMERSIF */}
+      <section className="relative h-[95vh] flex flex-col justify-center items-center text-center overflow-hidden">
+        {/* Image immersive */}
+        <img
+          src="https://images.unsplash.com/photo-1621905251918-385a0b9a1d5a?auto=format&fit=crop&w=1600&q=80"
+          alt="Serrurier en intervention"
+          className="absolute inset-0 w-full h-full object-cover brightness-[0.55]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent" />
+        <AnimatedCanvas type="particles" color="#ffffff" intensity={0.15} />
+
+        {/* Contenu */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          className="relative z-10 px-6 max-w-5xl"
+          transition={{ duration: 1 }}
+          className="relative z-10 text-white px-6 max-w-4xl"
         >
-          <div className="inline-flex items-center space-x-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-semibold mb-8">
-            <Zap className="w-4 h-4" />
-            <span>Experts Serruriers à Paris</span>
+          <div className="inline-flex items-center space-x-2 bg-white/20 px-4 py-2 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm">
+            <Zap className="w-4 h-4 text-orange-300" />
+            <span>Intervention Serrurerie 24h/24 à Paris</span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent leading-tight">
-            Serrurerie & Sécurité 24h/24
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight bg-gradient-to-r from-orange-400 to-yellow-300 bg-clip-text text-transparent drop-shadow-[0_3px_4px_rgba(0,0,0,0.5)]">
+            Sécurisez votre quotidien avec <br /> Serrure Safe Paris
           </h1>
 
-          <p className="text-lg sm:text-xl text-gray-700 mb-10 max-w-3xl mx-auto">
-            Des solutions fiables, rapides et esthétiques pour protéger votre
-            domicile ou commerce à Paris et en Île-de-France.
+          <p className="text-lg sm:text-xl text-gray-200 mb-8">
+            Dépannage rapide, portes blindées, rideaux métalliques et systèmes
+            connectés. Intervention garantie en moins de 30 minutes.
           </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 transition-transform shadow-lg"
+            >
+              <Phone className="w-5 h-5" />
+              <span>Appelez-nous</span>
+            </Link>
+
+            <Link
+              to="/emergency"
+              className="inline-flex items-center gap-2 border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:text-gray-900 transition-all duration-200"
+            >
+              <span>Urgence immédiate</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
         </motion.div>
       </section>
 
-      {/* SERVICES */}
+      {/* 🔧 SERVICES avec tarif */}
       <section className="relative py-20 space-y-20">
         {services.map((s, i) => (
           <motion.section
@@ -129,17 +162,17 @@ const Services: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative flex flex-col md:flex-row items-center justify-between overflow-hidden rounded-3xl shadow-md bg-gradient-to-br from-white via-white/80 to-orange-50 border border-orange-100 mx-4 sm:mx-10"
+            className="relative flex flex-col md:flex-row items-center justify-between overflow-hidden rounded-3xl shadow-md bg-gradient-to-br from-white via-white/85 to-orange-50 border border-orange-100 mx-4 sm:mx-10"
           >
-            {/* Background image intégrée */}
+            {/* Image */}
             <div className="absolute inset-0 overflow-hidden rounded-3xl">
               <img
                 src={s.image}
                 alt={s.title}
                 loading="lazy"
-                className="w-full h-full object-cover brightness-[0.9] saturate-[1.05] scale-105 transition-transform duration-[3000ms] hover:scale-110 opacity-70"
+                className="w-full h-full object-cover brightness-[0.9] scale-105 opacity-70 transition-transform duration-[2500ms] hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/75 to-white/60" />
+              <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white/50" />
             </div>
 
             {/* Contenu */}
@@ -149,9 +182,15 @@ const Services: React.FC = () => {
               }`}
             >
               <s.icon className="w-10 h-10 text-orange-500 mb-4 mx-auto md:mx-0" />
-              <h2 className="text-3xl sm:text-4xl font-bold mb-3 text-gray-900">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-2 text-gray-900">
                 {s.title}
               </h2>
+
+              <div className="flex items-center justify-center md:justify-start gap-2 text-orange-600 font-semibold text-lg mb-3">
+                <Euro className="w-5 h-5" />
+                <span>{s.price}</span>
+              </div>
+
               <p className="text-gray-700 mb-5 text-base sm:text-lg leading-relaxed">
                 {s.description}
               </p>
@@ -180,7 +219,6 @@ const Services: React.FC = () => {
         ))}
       </section>
 
-      {/* Galerie ou CTA */}
       <LocksmithServiceGallery />
     </div>
   );

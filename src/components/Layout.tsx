@@ -10,7 +10,6 @@ import CustomCursor from "./CustomCursor";
 import UserJourneyGuide from "./UserJourneyGuide";
 import QuoteGenerator from "./QuoteGenerator";
 import NavigationGuide from "./NavigationGuide";
-import EasterEgg from "./EasterEgg";
 import WhatsAppButton from "./WhatsAppButton";
 import VirtualBusinessCard from "./VirtualBusinessCard";
 import Lock3DViewer from "./Lock3DViewer";
@@ -24,7 +23,8 @@ const Layout: React.FC = () => {
   );
   const touchStartX = useRef<number | null>(null);
   const [showGuide, setShowGuide] = useState(false);
-  // 🔹 Swipe mobile
+
+  // 🔹 Gestion du swipe mobile
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
       touchStartX.current = e.touches[0].clientX;
@@ -48,7 +48,7 @@ const Layout: React.FC = () => {
     };
   }, []);
 
-  // 🔹 Afficher popup
+  // 🔹 Gestion du popup
   const openPopup = (component: React.ReactNode) => setPopupContent(component);
   const closePopup = () => setPopupContent(null);
 
@@ -59,9 +59,12 @@ const Layout: React.FC = () => {
         <div className="relative z-10">
           <ResponsiveHeader />
           <CustomCursor />
-          <main className="pb-24 px-4 md:px-20">
+
+          {/* 💡 Plein écran sans cadre ni padding */}
+          <main className="pb-24">
             <Outlet />
           </main>
+
           <Footer />
         </div>
 
@@ -74,8 +77,6 @@ const Layout: React.FC = () => {
           autoPlay={true}
           autoPlayDelay={3000}
         />
-
-        <EasterEgg />
 
         {/* ===== POPUP flottant ===== */}
         {popupContent && (
@@ -110,8 +111,6 @@ const Layout: React.FC = () => {
               rounded-2xl p-3 shadow-2xl flex flex-col gap-3 items-center
               transition-all duration-500 relative"
           >
-            {/* 🔸 Titre flottant */}
-
             {/* Flèche toggle */}
             <button
               onClick={() => setLeftOpen(!leftOpen)}
