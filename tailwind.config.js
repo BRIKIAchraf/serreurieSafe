@@ -4,6 +4,15 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      keyframes: {
+        zoomSlow: {
+          "0%": { transform: "scale(1.05)" },
+          "100%": { transform: "scale(1.1)" },
+        },
+      },
+      animation: {
+        zoomSlow: "zoomSlow 20s ease-in-out infinite alternate",
+      },
       colors: {
         primary: {
           50: '#fdf8f3',
