@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import InterventionProcess from "../components/InterventionProcess";
 
-import ScrollReveal from "../components/ScrollReveal";
 import ContactModal from "../components/ContactModal";
 import InteractiveMap from "../components/InteractiveMap";
 import ClientReviews from "../components/ClientReviews";
@@ -62,40 +61,6 @@ const ResponsiveHome: React.FC = () => {
   }, [timeOnPage, scrollProgress]);
 
   // SERVICES
-  const services = [
-    {
-      title: "Ouverture de porte",
-      description: "Intervention rapide sans dégâts",
-      icon: "🔓",
-      image:
-        "https://images.pexels.com/photos/277559/pexels-photo-277559.jpeg?auto=compress&cs=tinysrgb&w=600",
-      features: ["Sans casse", "Tous types", "24h/24"],
-    },
-    {
-      title: "Installation serrure",
-      description: "Serrures haute sécurité A2P",
-      icon: "🔐",
-      image:
-        "https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=600",
-      features: ["Certifié A2P", "Haute sécurité", "Garantie 5 ans"],
-    },
-    {
-      title: "Blindage de porte",
-      description: "Renforcement sécurité",
-      icon: "🛡️",
-      image:
-        "https://images.pexels.com/photos/5691659/pexels-photo-5691659.jpeg?auto=compress&cs=tinysrgb&w=600",
-      features: ["Sur mesure", "Normes sécurité", "Résistant"],
-    },
-    {
-      title: "Dépannage urgent",
-      description: "Service 24h/24 et 7j/7",
-      icon: "🚨",
-      image:
-        "https://images.pexels.com/photos/6195125/pexels-photo-6195125.jpeg?auto=compress&cs=tinysrgb&w=600",
-      features: ["< 30min", "Devis gratuit", "Équipe mobile"],
-    },
-  ];
 
   const stats = [
     { number: "24h/24", label: "Disponibilité", icon: Clock },
@@ -219,44 +184,6 @@ const ResponsiveHome: React.FC = () => {
 
       {/* 🔧 SERVICES + OPTIONS */}
       <LocksmithExpandingOptions />
-
-      <ScrollReveal>
-        <section className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-center text-primary-900 mb-10">
-              Nos Services
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {services.map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-gradient-to-br from-white to-primary-50 rounded-2xl p-8 shadow-lg hover:shadow-xl border border-primary-100 hover:border-secondary-300 transition-all"
-                >
-                  <div className="text-5xl mb-6">{service.icon}</div>
-                  <h3 className="text-xl font-bold text-primary-900 mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-primary-700 mb-5">{service.description}</p>
-                  <ul className="space-y-2">
-                    {service.features.map((f, i) => (
-                      <li
-                        key={i}
-                        className="flex items-center gap-2 text-sm text-primary-700"
-                      >
-                        <CheckCircle className="w-4 h-4 text-green-600" /> {f}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </ScrollReveal>
 
       {/* 🌍 MAP + CLIENT REVIEWS */}
       <InteractiveMap />

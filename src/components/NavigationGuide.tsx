@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Phone,
@@ -17,6 +17,8 @@ interface NavigationGuideProps {
   onClose: () => void;
   currentStep?: number;
   onNextStep?: () => void;
+  autoPlay?: boolean; // ✅ Mode automatique activé/désactivé
+  autoPlayDelay?: number; // ✅ Délai entre les étapes (en ms)
 }
 
 const NavigationGuide: React.FC<NavigationGuideProps> = ({
@@ -24,6 +26,8 @@ const NavigationGuide: React.FC<NavigationGuideProps> = ({
   onClose,
   currentStep = 0,
   onNextStep,
+  autoPlay = false,
+  autoPlayDelay = 6000, // 6 secondes par défaut
 }) => {
   const [step, setStep] = useState(currentStep);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -34,7 +38,7 @@ const NavigationGuide: React.FC<NavigationGuideProps> = ({
       title: "Bienvenue sur Serrure Safe",
       subtitle: "Votre expert en sécurité à Paris",
       content:
-        "Découvrez nos services professionnels de serrurerie et dépannage 24h/24",
+        "Découvrez nos services professionnels de serrurerie et dépannage 24h/24.",
       icon: Shield,
       color: "bg-blue-500",
       action: "Découvrir nos services",
@@ -45,7 +49,7 @@ const NavigationGuide: React.FC<NavigationGuideProps> = ({
       title: "Services d'urgence",
       subtitle: "Intervention rapide garantie",
       content:
-        "Porte claquée, serrure bloquée ? Nous intervenons en moins de 30 minutes",
+        "Porte claquée, serrure bloquée ? Nous intervenons en moins de 30 minutes.",
       icon: Clock,
       color: "bg-red-500",
       action: "Appeler maintenant",
@@ -66,7 +70,7 @@ const NavigationGuide: React.FC<NavigationGuideProps> = ({
       id: 3,
       title: "Contactez-nous",
       subtitle: "Devis gratuit et conseil",
-      content: "Obtenez un devis personnalisé pour vos besoins de sécurité",
+      content: "Obtenez un devis personnalisé pour vos besoins de sécurité.",
       icon: MessageCircle,
       color: "bg-green-500",
       action: "Demander un devis",
@@ -75,6 +79,23 @@ const NavigationGuide: React.FC<NavigationGuideProps> = ({
   ];
 
   const currentGuide = guideSteps[step];
+  const progressPercentage = ((step + 1) / guideSteps.length) * 100;
+
+  // ✅ Gestion du passage automatique entre les étapes
+  useEffect(() => {
+    if (!autoPlay) return; // si autoplay désactivé, on ne fait rien
+
+    const timer = setTimeout(() => {
+      if (step < guideSteps.length - 1) {
+        setStep((prev) => prev + 1);
+        onNextStep?.();
+      } else {
+        onClose(); // fermeture automatique à la fin
+      }
+    }, autoPlayDelay);
+
+    return () => clearTimeout(timer);
+  }, [step, autoPlay, autoPlayDelay, guideSteps.length, onNextStep, onClose]);
 
   const handleNext = () => {
     if (step < guideSteps.length - 1) {
@@ -92,8 +113,6 @@ const NavigationGuide: React.FC<NavigationGuideProps> = ({
       window.location.href = currentGuide.actionPath;
     }
   };
-
-  const progressPercentage = ((step + 1) / guideSteps.length) * 100;
 
   if (!isVisible) return null;
 
@@ -135,7 +154,7 @@ const NavigationGuide: React.FC<NavigationGuideProps> = ({
               </button>
             </div>
 
-            {/* Progress Bar */}
+            {/* Barre de progression */}
             <div className="w-full bg-white/20 rounded-full h-2">
               <motion.div
                 className="bg-white rounded-full h-2"
@@ -152,7 +171,7 @@ const NavigationGuide: React.FC<NavigationGuideProps> = ({
             </div>
           </div>
 
-          {/* Content */}
+          {/* Contenu */}
           <div className="p-6">
             <div className="text-center mb-6">
               <div
@@ -165,7 +184,7 @@ const NavigationGuide: React.FC<NavigationGuideProps> = ({
               </p>
             </div>
 
-            {/* Action Button */}
+            {/* Bouton principal */}
             <div className="space-y-4">
               {currentGuide.actionType === "call" ? (
                 <MagneticButton
@@ -185,31 +204,33 @@ const NavigationGuide: React.FC<NavigationGuideProps> = ({
                 </button>
               )}
 
-              {/* Navigation */}
-              <div className="flex space-x-3">
-                {step > 0 && (
-                  <button
-                    onClick={() => setStep(step - 1)}
-                    className="flex-1 bg-gray-100 text-gray-700 px-4 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors"
-                  >
-                    Précédent
-                  </button>
-                )}
-                <button
-                  onClick={handleNext}
-                  className="flex-1 bg-blue-600 text-white px-4 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
-                >
-                  <span>
-                    {step === guideSteps.length - 1 ? "Terminer" : "Suivant"}
-                  </span>
-                  {step < guideSteps.length - 1 && (
-                    <ArrowRight className="w-4 h-4" />
+              {/* Navigation manuelle */}
+              {!autoPlay && (
+                <div className="flex space-x-3">
+                  {step > 0 && (
+                    <button
+                      onClick={() => setStep(step - 1)}
+                      className="flex-1 bg-gray-100 text-gray-700 px-4 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+                    >
+                      Précédent
+                    </button>
                   )}
-                </button>
-              </div>
+                  <button
+                    onClick={handleNext}
+                    className="flex-1 bg-blue-600 text-white px-4 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
+                  >
+                    <span>
+                      {step === guideSteps.length - 1 ? "Terminer" : "Suivant"}
+                    </span>
+                    {step < guideSteps.length - 1 && (
+                      <ArrowRight className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
+              )}
             </div>
 
-            {/* Quick Actions */}
+            {/* Actions rapides */}
             <div className="mt-6 pt-6 border-t border-gray-200">
               <button
                 onClick={() => setIsExpanded(!isExpanded)}

@@ -47,10 +47,10 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="relative overflow-hidden text-white">
-      {/* 🔹 Dégradé de transition depuis la couleur du site */}
-      <div className="absolute -top-20 left-0 right-0 h-20 bg-gradient-to-b from-gray-50 via-gray-200 to-black/90 pointer-events-none" />
+      {/* 🔹 Dégradé de transition */}
+      <div className="absolute -top-10 left-0 right-0 h-8 bg-gradient-to-b from-gray-50 via-gray-200 to-black/90 pointer-events-none" />
 
-      {/* 🔹 Image de fond serrurerie */}
+      {/* 🔹 Image de fond */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -58,13 +58,13 @@ const Footer: React.FC = () => {
             "url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1600&q=80')",
         }}
       />
-      {/* 🔹 Overlay sombre dégradé */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/50" />
+      {/* 🔹 Overlay sombre */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/60" />
 
-      {/* 🔹 Lumière flottante subtile */}
+      {/* 🔹 Lumière subtile */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute w-[400px] h-[400px] bg-orange-500/10 rounded-full blur-3xl"
+          className="absolute w-[300px] h-[300px] bg-orange-500/10 rounded-full blur-3xl"
           animate={{
             x: ["0%", "40%", "-20%"],
             y: ["0%", "-30%", "40%"],
@@ -74,43 +74,42 @@ const Footer: React.FC = () => {
       </div>
 
       {/* --- Contenu principal --- */}
-      <div className="relative max-w-7xl mx-auto px-6 py-24">
+      <div className="relative max-w-7xl mx-auto px-6 py-4">
         {/* LOGO + INTRO */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-6"
         >
           <img
             src="/WhatsApp_Image_2025-10-17_à_15.12.18_29f18722-removebg-preview.png"
             alt="Serrure Safe"
-            className="h-14 mx-auto mb-6"
+            className="h-72 mx-auto object-contain drop-shadow-lg mb-0"
           />
-          <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-500 mb-2">
+          <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-500 mb-0">
             Serrure Safe — Votre sécurité, notre priorité
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto text-base">
+          <p className="text-gray-300 max-w-2xl mx-auto text-sm leading-snug">
             Intervention rapide 24h/24 à Paris & Île-de-France. Experts en
             dépannage, installation et blindage certifiés A2P.
           </p>
         </motion.div>
 
         {/* GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-          {/* Contact + Certif */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          {/* CONTACT */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-4"
           >
-            {/* CONTACT INFO */}
-            <div className="space-y-4 text-gray-200">
+            <div className="space-y-2 text-gray-200 text-sm">
               <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-orange-400" />
+                <Phone className="w-4 h-4 text-orange-400" />
                 <a
                   href="tel:+33123456789"
                   className="hover:text-orange-400 font-medium"
@@ -119,7 +118,7 @@ const Footer: React.FC = () => {
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-orange-400" />
+                <Mail className="w-4 h-4 text-orange-400" />
                 <a
                   href="mailto:contact@serruresafe.fr"
                   className="hover:text-orange-400"
@@ -128,23 +127,22 @@ const Footer: React.FC = () => {
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-orange-400" />
+                <MapPin className="w-4 h-4 text-orange-400" />
                 <span>Paris & Île-de-France</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Clock className="w-5 h-5 text-orange-400" />
+                <Clock className="w-4 h-4 text-orange-400" />
                 <span>Disponible 24h/24 – 7j/7</span>
               </div>
             </div>
 
-            {/* CERTIFICATIONS */}
-            <div className="flex flex-wrap gap-6 text-sm text-orange-400">
+            <div className="flex flex-wrap gap-3 text-sm text-orange-400">
               <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5" />
+                <Shield className="w-4 h-4" />
                 <span>Certifié A2P</span>
               </div>
               <div className="flex items-center gap-2">
-                <Award className="w-5 h-5" />
+                <Award className="w-4 h-4" />
                 <span>15 ans d’expérience</span>
               </div>
             </div>
@@ -156,19 +154,19 @@ const Footer: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-gray-300"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-gray-300 text-sm"
           >
             {footerSections.map((section, index) => (
               <div key={index}>
-                <h3 className="text-white font-semibold text-lg mb-4">
+                <h3 className="text-white font-semibold text-base mb-2">
                   {section.title}
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-1.5">
                   {section.links.map((link, i) => (
                     <li key={i}>
                       <Link
                         to={link.href}
-                        className="hover:text-orange-400 text-sm transition"
+                        className="hover:text-orange-400 transition"
                       >
                         {link.label}
                       </Link>
@@ -182,47 +180,47 @@ const Footer: React.FC = () => {
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-orange-600 to-red-600 p-6 rounded-2xl flex flex-col lg:flex-row items-center justify-between gap-6 text-center lg:text-left shadow-lg"
+          className="bg-gradient-to-r from-orange-600 to-red-600 p-4 rounded-xl flex flex-col lg:flex-row items-center justify-between gap-4 text-center lg:text-left shadow-md"
         >
           <div>
-            <h3 className="text-xl font-bold text-white mb-1">
+            <h3 className="text-base font-bold text-white mb-0.5">
               Urgence serrurerie ?
             </h3>
-            <p className="text-orange-100 text-sm">
+            <p className="text-orange-100 text-xs">
               Intervention rapide — Devis gratuit par téléphone
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-2.5">
             <a
               href="tel:+33123456789"
-              className="flex items-center justify-center bg-white text-orange-600 font-semibold px-5 py-3 rounded-lg hover:bg-gray-100 transition"
+              className="flex items-center justify-center bg-white text-orange-600 font-semibold px-4 py-2 rounded-lg hover:bg-gray-100 transition text-sm"
             >
-              <Phone className="w-5 h-5 mr-2" /> 01 23 45 67 89
+              <Phone className="w-4 h-4 mr-2" /> 01 23 45 67 89
             </a>
             <Link
               to="/emergency"
-              className="flex items-center justify-center border-2 border-white text-white px-5 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition"
+              className="flex items-center justify-center border border-white text-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition text-sm"
             >
-              Demande urgente <ExternalLink className="ml-2 w-4 h-4" />
+              Demande urgente <ExternalLink className="ml-2 w-3.5 h-3.5" />
             </Link>
           </div>
         </motion.div>
 
-        {/* BOTTOM BAR */}
+        {/* BAS DE PAGE */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mt-12 border-t border-white/20 pt-6 flex flex-col lg:flex-row justify-between items-center text-gray-400 text-sm space-y-3 lg:space-y-0"
+          className="mt-6 border-t border-white/20 pt-3 flex flex-col lg:flex-row justify-between items-center text-gray-400 text-xs space-y-2 lg:space-y-0"
         >
           <p>© {currentYear} Serrure Safe — Tous droits réservés.</p>
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex flex-wrap justify-center gap-3">
             <a href="#" className="hover:text-orange-400 transition">
               Mentions légales
             </a>
