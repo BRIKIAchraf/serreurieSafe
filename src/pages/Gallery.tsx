@@ -15,42 +15,42 @@ const Gallery: React.FC = () => {
 
   const galleryImages = [
     {
-      src: "https://images.pexels.com/photos/277559/pexels-photo-277559.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      src: "11607-securite-2.jpg",
       title: "Installation serrure haute sécurité",
       category: "Installation",
     },
     {
-      src: "https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      src: "Securite-Serrurerie-Portes-Blindage.jpg",
       title: "Blindage de porte d'entrée",
       category: "Blindage",
     },
     {
-      src: "https://images.pexels.com/photos/5691659/pexels-photo-5691659.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      src: "serrure-3-points-applique.jpg",
       title: "Réparation serrure multipoints",
       category: "Réparation",
     },
     {
-      src: "https://images.pexels.com/photos/6195125/pexels-photo-6195125.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      src: "IMG-20251021-WA0006.jpg",
       title: "Ouverture de porte sans dégâts",
       category: "Urgence",
     },
     {
-      src: "https://images.pexels.com/photos/277559/pexels-photo-277559.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      src: "videosurveillance-maison-1024x683.webp",
       title: "Installation système de sécurité",
       category: "Sécurité",
     },
     {
-      src: "https://images.pexels.com/photos/5691659/pexels-photo-5691659.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      src: "CYLINDRE+FICHET-1920w.webp",
       title: "Changement de cylindre",
       category: "Installation",
     },
     {
-      src: "https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      src: "porteblindeappartementmarseilleJPGJPG_59f8ee10c71a5.jpeg",
       title: "Blindage porte appartement",
       category: "Blindage",
     },
     {
-      src: "https://images.pexels.com/photos/6195125/pexels-photo-6195125.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      src: "Changement_serrure_Marseille_Aubagne_1.jpeg",
       title: "Dépannage serrure cassée",
       category: "Réparation",
     },

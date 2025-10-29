@@ -11,14 +11,14 @@ import {
   Award,
   Users,
 } from "lucide-react";
-import InterventionProcess from "../components/InterventionProcess";
 
+import ImmersiveServices from "../components/ImmersiveServices";
+import InterventionProcess from "../components/InterventionProcess";
 import ContactModal from "../components/ContactModal";
 import InteractiveMap from "../components/InteractiveMap";
 import ClientReviews from "../components/ClientReviews";
 import InteractivePolls from "../components/InteractivePolls";
-import InteractiveCatalog from "../components/InteractiveCatalog";
-import LocksmithExpandingOptions from "../components/LocksmithExpandingOptions";
+
 import FloatingCTA from "../components/FloatingCTA";
 import SmartCTA from "../components/SmartCTA";
 import NavigationGuide from "../components/NavigationGuide";
@@ -26,14 +26,12 @@ import NavigationGuide from "../components/NavigationGuide";
 const ResponsiveHome: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showGuide, setShowGuide] = useState(false);
-
   const [timeOnPage, setTimeOnPage] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [userBehavior, setUserBehavior] = useState<
     "new" | "returning" | "engaged"
   >("new");
 
-  // Track user engagement
   useEffect(() => {
     const visited = localStorage.getItem("visited");
     if (visited) setUserBehavior("returning");
@@ -47,7 +45,6 @@ const ResponsiveHome: React.FC = () => {
       setScrollProgress(scrollTop / docHeight);
     };
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       clearInterval(timer);
       window.removeEventListener("scroll", handleScroll);
@@ -60,8 +57,6 @@ const ResponsiveHome: React.FC = () => {
     }
   }, [timeOnPage, scrollProgress]);
 
-  // SERVICES
-
   const stats = [
     { number: "24h/24", label: "Disponibilité", icon: Clock },
     { number: "15+", label: "Ans d'expérience", icon: Award },
@@ -69,202 +64,263 @@ const ResponsiveHome: React.FC = () => {
     { number: "100%", label: "Satisfaction", icon: Star },
   ];
 
-  const features = [
-    "Intervention en moins de 30 minutes",
-    "Devis gratuit et transparent",
-    "Artisan certifié A2P",
-    "Garantie sur tous nos travaux",
-    "Paiement sécurisé",
-    "Service client réactif",
-  ];
+  // animation puzzle
+  const cellVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+      rotate: Math.random() * 10 - 5,
+      y: 20,
+      filter: "blur(4px)",
+    },
+    visible: (i: number) => ({
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        delay: i * 0.06,
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+      },
+    }),
+  };
 
   return (
-    <div className="pt-16 sm:pt-20">
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/10 via-secondary-900/5 to-accent-900/10" />
-        <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* LEFT */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8 text-center lg:text-left"
-            >
-              <div className="inline-flex items-center space-x-2 bg-secondary-100 text-secondary-800 px-4 py-2 rounded-full text-sm font-semibold">
-                <Clock className="w-4 h-4" />
-                <span>Service 24h/24</span>
-              </div>
+    <div className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100">
+      {/* 🏠 HERO */}
+      <section className="relative flex flex-col lg:flex-row items-center justify-center min-h-[80vh] py-10 px-6 sm:px-10 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_#FF6B00_0%,_transparent_70%)] opacity-10" />
+        <div className="relative z-10 max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-6 text-center lg:text-left"
+          >
+            <div className="inline-flex items-center space-x-2 bg-[#FF6B00]/10 text-[#FF6B00] px-4 py-1.5 rounded-full text-sm font-semibold">
+              <Clock className="w-4 h-4" />
+              <span>Service 24h/24</span>
+            </div>
 
-              <h1 className="text-5xl lg:text-6xl font-bold text-primary-900 leading-tight">
-                Serrurier Expert{" "}
-                <span className="block bg-gradient-to-r from-secondary-600 to-accent-600 bg-clip-text text-transparent">
-                  à Paris
-                </span>
-              </h1>
+            <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight text-gray-900 dark:text-white">
+              Serrurier Expert{" "}
+              <span className="block bg-gradient-to-r from-[#FF6B00] to-[#FF3C00] bg-clip-text text-transparent">
+                à Paris
+              </span>
+            </h1>
 
-              <p className="text-lg sm:text-xl text-primary-700 leading-relaxed max-w-2xl">
-                Intervention rapide 24h/24 pour tous vos besoins de serrurerie.
-                Expert certifié A2P avec plus de 15 ans d'expérience.
-              </p>
+            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+              Intervention rapide 24h/24 pour tous vos besoins de serrurerie.
+              Expert certifié A2P avec plus de 15 ans d'expérience.
+            </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <a
-                  href="tel:+33123456789"
-                  className="inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-secondary-500 to-accent-500 hover:from-secondary-600 hover:to-accent-600 text-white px-8 py-3 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all"
+            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+              <a
+                href="tel:+33123456789"
+                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#FF6B00] to-[#FF3C00] text-white px-6 py-2.5 rounded-lg font-bold text-lg shadow hover:shadow-lg transition-all"
+              >
+                <Phone className="w-5 h-5" />
+                <span>01 23 45 67 89</span>
+              </a>
+              <Link
+                to="/services"
+                className="inline-flex items-center justify-center gap-2 border-2 border-[#FF6B00] text-[#FF6B00] hover:bg-[#FF6B00] hover:text-white px-6 py-2.5 rounded-lg font-bold text-lg transition-all"
+              >
+                <span>Nos Services</span>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: 0.2 + index * 0.1,
+                    duration: 0.6,
+                  }}
+                  className="text-center p-3 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm rounded-xl shadow-sm"
                 >
-                  <Phone className="w-5 h-5" />
-                  <span>01 23 45 67 89</span>
-                </a>
-                <Link
-                  to="/services"
-                  className="inline-flex items-center justify-center space-x-2 border-2 border-primary-300 hover:border-secondary-500 text-primary-700 hover:text-secondary-600 px-8 py-3 rounded-lg font-bold text-lg transition-all"
-                >
-                  <span>Nos Services</span>
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </div>
+                  <stat.icon className="w-5 h-5 text-[#FF6B00] mx-auto mb-1" />
+                  <div className="text-xl font-bold">{stat.number}</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-              {/* STATS */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8">
-                {stats.map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: 0.2 + index * 0.1,
-                      duration: 0.6,
-                    }}
-                    className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl shadow-sm"
-                  >
-                    <stat.icon className="w-6 h-6 text-secondary-600 mx-auto mb-2" />
-                    <div className="text-2xl font-bold text-primary-900">
-                      {stat.number}
-                    </div>
-                    <div className="text-sm text-primary-600">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* RIGHT IMAGE */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src="https://images.pexels.com/photos/277559/pexels-photo-277559.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Serrurier professionnel"
-                  className="w-full h-96 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-900/40 to-transparent" />
-                <div className="absolute top-6 left-6 bg-white/90 rounded-xl p-4 shadow-lg">
-                  <div className="flex items-center space-x-3">
-                    <Shield className="w-8 h-8 text-secondary-600" />
-                    <div>
-                      <div className="font-bold text-primary-900">
-                        Certifié A2P
-                      </div>
-                      <div className="text-sm text-primary-600">
-                        Sécurité garantie
-                      </div>
+          {/* IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative"
+          >
+            <div className="rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src="https://images.pexels.com/photos/277559/pexels-photo-277559.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="Serrurier professionnel"
+                className="w-full h-80 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="absolute top-4 left-4 bg-white/90 rounded-lg p-3 shadow">
+                <div className="flex items-center space-x-2">
+                  <Shield className="w-6 h-6 text-[#FF6B00]" />
+                  <div>
+                    <div className="font-bold text-gray-900">Certifié A2P</div>
+                    <div className="text-xs text-gray-600">
+                      Sécurité garantie
                     </div>
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <ImmersiveServices />
+
+      {/* SECTIONS CONDENSÉES */}
+      <div className="space-y-12">
+        <InteractiveMap />
+        <ClientReviews />
+        <InteractivePolls />
+      </div>
+
+      {/* 🌟 POURQUOI NOUS CHOISIR */}
+      <section className="relative py-16 bg-gradient-to-b from-white via-orange-50/30 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl sm:text-4xl font-extrabold text-center mb-8"
+          >
+            Pourquoi <span className="text-[#FF6B00]">nous choisir</span> ?
+          </motion.h2>
+
+          {/* tableau puzzle */}
+          <div className="overflow-x-auto rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/70 shadow-md backdrop-blur-md">
+            <table className="min-w-full text-left text-gray-800 dark:text-gray-200">
+              <thead className="text-sm uppercase tracking-wide bg-gray-100 dark:bg-gray-800/60">
+                <tr>
+                  <th className="px-5 py-3 font-semibold">Critère</th>
+                  <th className="px-5 py-3 font-semibold text-[#FF6B00]">
+                    Nous
+                  </th>
+                  <th className="px-5 py-3 font-semibold">Standard marché</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+                {[
+                  {
+                    crit: "Délai d’intervention",
+                    us: "≤ 30 minutes",
+                    others: "1–2 heures",
+                  },
+                  {
+                    crit: "Disponibilité",
+                    us: "24h/24 — 7j/7",
+                    others: "Horaires limités",
+                  },
+                  {
+                    crit: "Qualification",
+                    us: "Certifiés A2P",
+                    others: "Variable",
+                  },
+                  {
+                    crit: "Devis",
+                    us: "Clairs et transparents",
+                    others: "Souvent flous",
+                  },
+                  {
+                    crit: "Matériel",
+                    us: "Haute sécurité",
+                    others: "Entrée de gamme",
+                  },
+                  {
+                    crit: "Garantie",
+                    us: "Incluse sur travaux",
+                    others: "Selon prestataire",
+                  },
+                ].map((row, rowIndex) => (
+                  <motion.tr
+                    key={rowIndex}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                  >
+                    {[row.crit, row.us, row.others].map((cell, cellIndex) => (
+                      <motion.td
+                        key={cellIndex}
+                        variants={cellVariants}
+                        custom={rowIndex * 3 + cellIndex}
+                        className={`px-5 py-3 ${
+                          cellIndex === 1
+                            ? "text-[#FF6B00] font-semibold"
+                            : cellIndex === 2
+                            ? "text-gray-500 dark:text-gray-400"
+                            : "font-medium"
+                        }`}
+                      >
+                        {cell}
+                      </motion.td>
+                    ))}
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
 
-      {/* 🔧 SERVICES + OPTIONS */}
-      <LocksmithExpandingOptions />
+      {/* PROCESSUS */}
+      <InterventionProcess />
 
-      {/* 🌍 MAP + CLIENT REVIEWS */}
-      <InteractiveMap />
-      <ClientReviews />
-
-      {/* 📊 POLLS + CATALOG */}
-      <InteractivePolls />
-      <InteractiveCatalog />
-
-      {/* ⭐ WHY CHOOSE US */}
-      <section className="py-24 bg-gradient-to-br from-primary-50 to-secondary-50">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h2 className="text-4xl font-bold text-primary-900">
-              Pourquoi nous choisir ?
-            </h2>
-            <p className="text-lg text-primary-700">
-              Plus de 15 ans d'expérience au service de votre sécurité.
-            </p>
-
-            {features.map((f, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="flex items-center gap-3 bg-white/70 backdrop-blur-sm p-3 rounded-xl"
-              >
-                <CheckCircle className="text-secondary-600" />
-                <span className="text-primary-800">{f}</span>
-              </motion.div>
-            ))}
-
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="mt-6 inline-flex items-center space-x-2 bg-gradient-to-r from-secondary-500 to-accent-500 hover:from-secondary-600 hover:to-accent-600 text-white px-8 py-3 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all"
-            >
-              <span>Demander un devis</span>
-              <ArrowRight />
-            </button>
-          </div>
-
-          <div className="relative">
-            <img
-              src="https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=800"
-              alt="Équipe Serrure Safe"
-              className="rounded-2xl shadow-2xl object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* 📞 FINAL CTA */}
-      <section className="py-24 bg-gradient-to-r from-primary-800 to-primary-900 relative text-white text-center">
-        <div className="absolute inset-0 opacity-10 bg-[url('/WhatsApp_Image_2025-10-17_à_15.12.18_29f18722-removebg-preview.png')] bg-cover bg-center" />
-        <div className="relative z-10 max-w-4xl mx-auto px-4">
-          <h2 className="text-5xl font-bold mb-6">
-            Besoin d'une intervention urgente ?
+      {/* 📞 CTA FINAL COMPACT */}
+      <section className="relative flex flex-col items-center justify-center py-12 px-6 text-center bg-gradient-to-r from-[#FF6B00] to-[#FF3C00] overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="relative z-10 max-w-2xl mx-auto bg-white/10 backdrop-blur-xl p-6 rounded-xl shadow-lg"
+        >
+          <h2 className="text-2xl sm:text-3xl font-extrabold mb-2 text-white">
+            Besoin d’une intervention urgente ?
           </h2>
-          <p className="text-xl mb-10 opacity-90">
+          <p className="text-sm sm:text-base mb-5 text-white/90">
             Disponible 24h/24 et 7j/7 — intervention rapide garantie.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+
+          <div className="flex flex-col sm:flex-row justify-center gap-3">
             <a
               href="tel:+33123456789"
-              className="inline-flex items-center bg-white text-primary-900 font-bold px-8 py-4 rounded-lg hover:bg-primary-50 transition-all"
+              className="inline-flex items-center justify-center gap-2 bg-white text-[#FF6B00] font-bold px-5 py-2.5 rounded-lg hover:scale-[1.05] transition-all shadow"
             >
-              <Phone className="mr-2" /> 01 23 45 67 89
+              <Phone className="mr-2 w-5 h-5" /> 01 23 45 67 89
             </a>
+
             <Link
               to="/emergency"
-              className="inline-flex items-center border-2 border-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-primary-900 transition-all"
+              className="inline-flex items-center justify-center gap-2 border-2 border-white px-5 py-2.5 rounded-lg font-bold text-white hover:bg-white hover:text-[#FF6B00] transition-all shadow"
             >
               <span>Urgence</span>
-              <ArrowRight className="ml-2" />
+              <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* 🔔 MODAL + CTA + GUIDE */}
+      {/* MODALS + CTA FLOATING */}
       <ContactModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -276,9 +332,6 @@ const ResponsiveHome: React.FC = () => {
         timeOnPage={timeOnPage}
         scrollProgress={scrollProgress}
       />
-      {/* 🔧 PROCESSUS D’INTERVENTION */}
-      <InterventionProcess />
-
       <NavigationGuide
         isVisible={showGuide}
         onClose={() => setShowGuide(false)}

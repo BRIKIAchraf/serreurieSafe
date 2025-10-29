@@ -1,76 +1,74 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Phone, MapPin, Wrench, ShieldCheck, Smile } from "lucide-react";
+import { Wrench, Clock, MapPin, CheckCircle } from "lucide-react";
 
 const steps = [
   {
     id: 1,
-    title: "Contact & Devis",
-    text: "Appelez-nous ou demandez un devis, un expert vous répond immédiatement.",
-    icon: Phone,
+    icon: Wrench,
+    title: "Analyse du problème",
+    description:
+      "Nos serruriers évaluent rapidement la situation et déterminent la meilleure solution adaptée à votre besoin.",
     image:
-      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80",
+      "https://images.pexels.com/photos/4792491/pexels-photo-4792491.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
   },
   {
     id: 2,
-    title: "Déplacement rapide",
-    text: "Nos techniciens arrivent en moins de 30 minutes, prêts à intervenir.",
-    icon: MapPin,
+    icon: Clock,
+    title: "Intervention rapide",
+    description:
+      "Nous intervenons sur place en moins de 30 minutes, 24h/24 et 7j/7, pour toute urgence en serrurerie.",
     image:
-      "https://images.unsplash.com/photo-1597004891233-28a403a90ef6?auto=format&fit=crop&w=800&q=80",
+      "https://images.pexels.com/photos/5999838/pexels-photo-5999838.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
   },
   {
     id: 3,
-    title: "Diagnostic & Action",
-    text: "Devis clair et intervention immédiate sans dommage.",
-    icon: Wrench,
+    icon: MapPin,
+    title: "Déplacement sur site",
+    description:
+      "Nos techniciens se déplacent dans toute la région parisienne, avec un suivi en temps réel de leur arrivée.",
     image:
-      "https://images.unsplash.com/photo-1621905251918-962f836bf6df?auto=format&fit=crop&w=800&q=80",
+      "https://images.pexels.com/photos/79873/pexels-photo-79873.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
   },
   {
     id: 4,
-    title: "Sécurisation & Garantie",
-    text: "Travail soigné, matériel certifié et garantie incluse.",
-    icon: ShieldCheck,
+    icon: CheckCircle,
+    title: "Résolution & garantie",
+    description:
+      "Travail soigné, garantie A2P et satisfaction client. Votre sécurité, notre priorité.",
     image:
-      "https://images.unsplash.com/photo-1621905251933-30cf4d92c4a9?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 5,
-    title: "Satisfaction client",
-    text: "Chaque client reçoit un suivi personnalisé et un service premium.",
-    icon: Smile,
-    image:
-      "https://images.unsplash.com/photo-1598327105562-5f95f87a5c3f?auto=format&fit=crop&w=800&q=80",
+      "https://images.pexels.com/photos/4792492/pexels-photo-4792492.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
   },
 ];
 
 const InterventionProcess: React.FC = () => {
   return (
-    <section className="relative py-20 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#D72600] to-[#FF6B00]">
-            Processus d’Intervention
+    <section className="relative py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* === TITRE === */}
+        <div className="text-center mb-20">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
+            Processus d’intervention
           </h2>
-          <p className="text-gray-600 mt-3 max-w-xl mx-auto">
-            Simple, rapide et transparent — de votre appel à votre satisfaction.
+          <p className="text-gray-600 dark:text-gray-400 mt-4  text-lg max-w-2xl mx-auto">
+            Découvrez comment notre équipe intervient étape par étape, de
+            l’analyse initiale à la résolution complète de votre problème.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Ligne centrale */}
-        <div className="relative">
-          {/* Ligne verticale (centrée) */}
-          <div className="absolute hidden md:block left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#D72600] via-[#FF6B00] to-transparent transform -translate-x-1/2" />
+        {/* === CONTAINER TIMELINE === */}
+        <div className="relative flex flex-col items-center">
+          {/* === LIGNE CENTRALE === */}
+          <motion.div
+            initial={{ height: 0 }}
+            whileInView={{ height: "calc(100% - 6rem)" }} // 👈 ne dépasse plus les cartes
+            transition={{ duration: 1.5 }}
+            viewport={{ once: true }}
+            className="absolute top-[3rem] left-1/2 transform -translate-x-1/2 w-[3px] bg-gradient-to-b from-[#FF6B00] to-[#FF3C00] rounded-full"
+          />
 
-          <div className="space-y-16 md:space-y-24">
+          {/* === ÉTAPES === */}
+          <div className="w-full flex flex-col space-y-28 relative z-10">
             {steps.map((step, index) => {
               const Icon = step.icon;
               const isLeft = index % 2 === 0;
@@ -78,57 +76,48 @@ const InterventionProcess: React.FC = () => {
               return (
                 <motion.div
                   key={step.id}
-                  initial={{ opacity: 0, x: isLeft ? -60 : 60 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  className={`relative flex flex-col md:flex-row items-center ${
-                    isLeft ? "md:flex-row-reverse" : ""
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: index * 0.15 }}
+                  viewport={{ once: true }}
+                  className={`flex flex-col sm:flex-row items-center justify-between w-full relative ${
+                    isLeft ? "sm:flex-row" : "sm:flex-row-reverse"
                   }`}
                 >
-                  {/* Point lumineux (centre sur desktop, gauche sur mobile) */}
+                  {/* === Carte avec image de fond === */}
                   <div
-                    className={`absolute ${
+                    className={`w-full sm:w-[45%] relative rounded-2xl overflow-hidden shadow-2xl ${
                       isLeft
-                        ? "md:left-[calc(50%-10px)]"
-                        : "md:left-[calc(50%-10px)]"
-                    } left-5 top-2 w-5 h-5 rounded-full bg-gradient-to-br from-[#D72600] to-[#FF6B00] shadow-[0_0_15px_rgba(255,107,0,0.6)] z-10`}
-                  />
-
-                  {/* Carte */}
-                  <div
-                    className={`w-full md:w-1/2 ${
-                      isLeft ? "md:pr-10" : "md:pl-10"
+                        ? "sm:text-right text-center"
+                        : "sm:text-left text-center"
                     }`}
                   >
-                    <div className="bg-white/80 dark:bg-white/10 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-white/10 transition-all duration-500 hover:shadow-[0_0_20px_rgba(255,107,0,0.3)]">
-                      <div className="relative h-52 sm:h-56">
-                        <img
-                          src={step.image}
-                          alt={step.title}
-                          className="object-cover h-full w-full"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                      </div>
-                      <div className="p-6">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="p-2 rounded-lg bg-gradient-to-br from-[#D72600] to-[#FF6B00] text-white">
-                            <Icon className="w-5 h-5" />
-                          </div>
-                          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                            {step.title}
-                          </h3>
-                        </div>
-                        <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                          {step.text}
-                        </p>
-                      </div>
+                    <img
+                      src={step.image}
+                      alt={step.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    {/* Overlay dégradé sombre */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/60 to-transparent dark:from-gray-950/90 dark:via-gray-800/60 dark:to-transparent" />
+                    {/* Texte */}
+                    <div className="relative p-6 sm:p-8 text-white">
+                      <h3 className="text-2xl font-bold mb-2">{step.title}</h3>
+                      <p className="text-gray-200 text-lg leading-relaxed">
+                        {step.description}
+                      </p>
                     </div>
                   </div>
 
-                  {/* Espace miroir (desktop seulement) */}
-                  <div className="hidden md:block md:w-1/2" />
+                  {/* === Icône centrale === */}
+                  <div
+                    className="absolute left-1/2 transform -translate-x-1/2 
+                    bg-white dark:bg-gray-900 border-4 border-[#FF6B00]
+                    w-16 h-16 rounded-full flex items-center justify-center shadow-xl z-20
+                    sm:top-1/2 sm:-translate-y-1/2 
+                    top-[-5rem]" // 👈 icône un peu plus haut sur mobile
+                  >
+                    <Icon className="w-8 h-8 text-[#FF6B00]" />
+                  </div>
                 </motion.div>
               );
             })}

@@ -23,7 +23,7 @@ const Services: React.FC = () => {
       title: "Serrurerie & Dépannage",
       icon: Key,
       image:
-        "https://images.pexels.com/photos/8090790/pexels-photo-8090790.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "Debloquer_une_serrure_sans_l_endommager__Techniques_efficaces-1536x867.webp",
       description:
         "Ouverture rapide, remplacement et sécurisation de serrures toutes marques. Intervention professionnelle en moins de 30 minutes, 24h/24 à Paris et alentours.",
       points: [
