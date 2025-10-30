@@ -14,10 +14,10 @@ import {
   MessageCircle,
   X,
 } from "lucide-react";
-import { useSounds } from "./SoundManager"; // ✅ Import du gestionnaire de sons
+import { useSounds } from "./SoundManager";
 
 const VirtualBusinessCard: React.FC = () => {
-  const { playUnlockSound } = useSounds(); // ✅ Hook pour le son
+  const { playUnlockSound } = useSounds();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<
     "warm" | "dark" | "light"
@@ -61,9 +61,8 @@ const VirtualBusinessCard: React.FC = () => {
   const getCurrentTemplate = () =>
     templates.find((t) => t.id === selectedTemplate) || templates[0];
 
-  // ✅ Fonction de partage universelle
   const shareCard = async () => {
-    playUnlockSound(); // 🔊 son au partage
+    playUnlockSound();
     const shareData = {
       title: `${businessCardData.name} - ${businessCardData.company}`,
       text: `Contactez ${businessCardData.name} pour vos besoins de serrurerie 🔐`,
@@ -86,9 +85,8 @@ const VirtualBusinessCard: React.FC = () => {
     }
   };
 
-  // ✅ Télécharger la carte de contact
   const generateVCard = () => {
-    playUnlockSound(); // 🔊 son au téléchargement
+    playUnlockSound();
     const vcard = `BEGIN:VCARD
 VERSION:3.0
 FN:${businessCardData.name}
@@ -119,7 +117,7 @@ END:VCARD`;
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => {
-          playUnlockSound(); // 🔊 au clic
+          playUnlockSound();
           setIsOpen(true);
         }}
         className="fixed bottom-6 left-6 z-50 bg-gradient-to-r from-[#E83E00] to-[#F45C23] text-white p-4 rounded-full shadow-xl hover:shadow-2xl transition-all"
@@ -134,7 +132,7 @@ END:VCARD`;
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-[9999]"
+            className="fixed inset-0 bg-black/60 flex items-center justify-center p-2 sm:p-4 z-[9999]"
             onClick={() => setIsOpen(false)}
           >
             <motion.div
@@ -142,40 +140,40 @@ END:VCARD`;
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden"
+              className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden flex flex-col max-h-[90vh]"
             >
               {/* HEADER */}
-              <div className="bg-gradient-to-r from-[#E83E00] to-[#F45C23] p-4 flex justify-between items-center text-white">
-                <h2 className="text-xl font-semibold">
+              <div className="bg-gradient-to-r from-[#E83E00] to-[#F45C23] p-3 sm:p-4 flex justify-between items-center text-white">
+                <h2 className="text-base sm:text-xl font-semibold">
                   Carte de visite — Serrure Safe
                 </h2>
                 <button
                   onClick={() => {
-                    playUnlockSound(); // 🔊 fermeture
+                    playUnlockSound();
                     setIsOpen(false);
                   }}
-                  className="text-2xl font-bold hover:text-gray-200"
+                  className="text-xl sm:text-2xl font-bold hover:text-gray-200"
                 >
                   <X />
                 </button>
               </div>
 
               {/* CONTENU */}
-              <div className="p-6 space-y-6">
+              <div className="p-4 sm:p-6 space-y-6 overflow-y-auto">
                 {/* Sélecteur de style */}
                 <div>
-                  <h3 className="font-semibold mb-2 text-gray-800">
+                  <h3 className="font-semibold mb-2 text-gray-800 text-sm sm:text-base">
                     Choisissez un style :
                   </h3>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-2 sm:gap-3">
                     {templates.map((t) => (
                       <button
                         key={t.id}
                         onClick={() => {
                           setSelectedTemplate(t.id as any);
-                          playUnlockSound(); // 🔊 changement de thème
+                          playUnlockSound();
                         }}
-                        className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                        className={`px-2 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
                           selectedTemplate === t.id
                             ? "bg-[#E83E00] text-white"
                             : "bg-gray-100 hover:bg-gray-200 text-gray-700"
@@ -194,31 +192,31 @@ END:VCARD`;
                     key={selectedTemplate}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`relative p-6 rounded-2xl ${
+                    className={`relative p-4 sm:p-6 rounded-2xl ${
                       getCurrentTemplate().bg
                     } ${getCurrentTemplate().text} shadow-xl backdrop-blur-md`}
                   >
                     {/* Profil */}
-                    <div className="flex items-center mb-4 gap-4">
-                      <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
-                        <User className="w-8 h-8 text-white" />
+                    <div className="flex items-center mb-4 gap-3 sm:gap-4">
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white/20 rounded-full flex items-center justify-center">
+                        <User className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold">
+                        <h3 className="text-xl sm:text-2xl font-bold">
                           {businessCardData.name}
                         </h3>
-                        <p className="text-sm opacity-90">
+                        <p className="text-xs sm:text-sm opacity-90">
                           {businessCardData.title}
                         </p>
                       </div>
                     </div>
 
-                    <h4 className="text-lg font-semibold mb-3">
+                    <h4 className="text-base sm:text-lg font-semibold mb-3">
                       {businessCardData.company}
                     </h4>
 
                     {/* Coordonnées */}
-                    <div className="space-y-2 text-sm sm:text-base">
+                    <div className="space-y-1 sm:space-y-2 text-xs sm:text-base">
                       <p className="flex items-center gap-2">
                         <Phone className="w-4 h-4" /> {businessCardData.phone}
                       </p>
@@ -229,8 +227,8 @@ END:VCARD`;
                         <MapPin className="w-4 h-4" />{" "}
                         {businessCardData.address}
                       </p>
-                      <p className="flex items-center gap-2">
-                        <Globe className="w-4 h-4" />{" "}
+                      <p className="flex items-center gap-2 break-all">
+                        <Globe className="w-4 h-4" />
                         <a
                           href={businessCardData.website}
                           className="underline hover:opacity-80"
@@ -248,12 +246,14 @@ END:VCARD`;
 
                     {/* Services */}
                     <div className="mt-4">
-                      <h5 className="font-semibold mb-1 text-sm">Services :</h5>
+                      <h5 className="font-semibold mb-1 text-xs sm:text-sm">
+                        Services :
+                      </h5>
                       <div className="flex flex-wrap gap-2">
                         {businessCardData.services.map((srv, i) => (
                           <span
                             key={i}
-                            className="px-2 py-1 rounded-full text-xs bg-white/20 backdrop-blur-sm"
+                            className="px-2 py-1 rounded-full text-[10px] sm:text-xs bg-white/20 backdrop-blur-sm"
                           >
                             {srv}
                           </span>
@@ -261,17 +261,15 @@ END:VCARD`;
                       </div>
                     </div>
 
-                    {/* QR code */}
-                    <div className="absolute bottom-4 right-4 bg-white/20 rounded-lg p-3 backdrop-blur-md">
-                      <QrCode className="w-10 h-10 text-white" />
+                    {/* QR code + Étoiles */}
+                    <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-white/20 rounded-lg p-2 sm:p-3 backdrop-blur-md">
+                      <QrCode className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                     </div>
-
-                    {/* Étoiles */}
-                    <div className="absolute top-4 right-4 flex space-x-1">
+                    <div className="absolute top-3 right-3 flex space-x-1">
                       {[...Array(businessCardData.rating)].map((_, i) => (
                         <Star
                           key={i}
-                          className="w-4 h-4 text-yellow-400 fill-current"
+                          className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current"
                         />
                       ))}
                     </div>
@@ -281,15 +279,15 @@ END:VCARD`;
                   <div className="space-y-4">
                     {/* Télécharger */}
                     <div className="bg-gray-50 p-4 rounded-lg">
-                      <h4 className="font-semibold text-gray-900 mb-1">
+                      <h4 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">
                         Télécharger la vCard
                       </h4>
-                      <p className="text-sm text-gray-600 mb-2">
+                      <p className="text-xs sm:text-sm text-gray-600 mb-2">
                         Ajoutez la carte à vos contacts.
                       </p>
                       <button
                         onClick={generateVCard}
-                        className="w-full bg-[#E83E00] hover:bg-[#F45C23] text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition"
+                        className="w-full bg-[#E83E00] hover:bg-[#F45C23] text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition text-sm sm:text-base"
                       >
                         <Download className="w-4 h-4" /> Télécharger
                       </button>
@@ -297,15 +295,15 @@ END:VCARD`;
 
                     {/* Partager */}
                     <div className="bg-gray-50 p-4 rounded-lg">
-                      <h4 className="font-semibold text-gray-900 mb-1">
+                      <h4 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">
                         Partager la carte
                       </h4>
-                      <p className="text-sm text-gray-600 mb-2">
+                      <p className="text-xs sm:text-sm text-gray-600 mb-2">
                         Envoyez la carte à un contact.
                       </p>
                       <button
                         onClick={shareCard}
-                        className="w-full bg-[#F45C23] hover:bg-[#E83E00] text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition"
+                        className="w-full bg-[#F45C23] hover:bg-[#E83E00] text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition text-sm sm:text-base"
                       >
                         <Share2 className="w-4 h-4" /> Partager
                       </button>
@@ -313,21 +311,21 @@ END:VCARD`;
 
                     {/* Contact direct */}
                     <div className="bg-gray-50 p-4 rounded-lg">
-                      <h4 className="font-semibold text-gray-900 mb-2">
+                      <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">
                         Contact direct
                       </h4>
                       <div className="flex flex-col sm:flex-row gap-3">
                         <a
                           href={`tel:${businessCardData.phone}`}
                           onClick={playUnlockSound}
-                          className="flex items-center justify-center gap-2 bg-[#E83E00] hover:bg-[#F45C23] text-white px-4 py-2 rounded-lg transition"
+                          className="flex items-center justify-center gap-2 bg-[#E83E00] hover:bg-[#F45C23] text-white px-4 py-2 rounded-lg transition text-sm sm:text-base"
                         >
                           <Phone className="w-4 h-4" /> Appeler
                         </a>
                         <a
                           href={`mailto:${businessCardData.email}`}
                           onClick={playUnlockSound}
-                          className="flex items-center justify-center gap-2 bg-[#F45C23] hover:bg-[#E83E00] text-white px-4 py-2 rounded-lg transition"
+                          className="flex items-center justify-center gap-2 bg-[#F45C23] hover:bg-[#E83E00] text-white px-4 py-2 rounded-lg transition text-sm sm:text-base"
                         >
                           <Mail className="w-4 h-4" /> Email
                         </a>
@@ -339,7 +337,7 @@ END:VCARD`;
                           onClick={playUnlockSound}
                           target="_blank"
                           rel="noreferrer"
-                          className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1EBE5A] text-white px-4 py-2 rounded-lg transition"
+                          className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1EBE5A] text-white px-4 py-2 rounded-lg transition text-sm sm:text-base"
                         >
                           <MessageCircle className="w-4 h-4" /> WhatsApp
                         </a>
