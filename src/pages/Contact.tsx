@@ -41,7 +41,7 @@ const Contact: React.FC = () => {
       subtitle: "Disponible 24h/24 - 7j/7",
       action: "tel:+330185097365",
       image:
-        "https://images.unsplash.com/photo-1629904853694-61a58bdbdb8e?auto=format&fit=crop&w=900&q=80",
+        "eps10-orange-phone-call-or-telephone-abstract-icon-isolated-on-white-background-contact-us-or-hotline-symbol-in-a-simple-flat-trendy-modern-style-for-your-website-design-logo-and-mobile-app-vector.jpg",
     },
     {
       icon: Mail,
@@ -49,8 +49,7 @@ const Contact: React.FC = () => {
       details: "contact@serruresafe.fr",
       subtitle: "Réponse rapide garantie",
       action: "mailto:contact@serruresafe.fr",
-      image:
-        "https://images.unsplash.com/photo-1581094477868-6c81b9aa3d84?auto=format&fit=crop&w=900&q=80",
+      image: "OIP (2).jpeg",
     },
     {
       icon: MapPin,
@@ -67,8 +66,7 @@ const Contact: React.FC = () => {
       details: "24h/24 - 7j/7",
       subtitle: "Service d'urgence permanent",
       action: null,
-      image:
-        "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=80",
+      image: "OIP (4).jpeg",
     },
   ];
 

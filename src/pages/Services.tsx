@@ -38,8 +38,7 @@ const Services: React.FC = () => {
       id: "porte-blindee",
       title: "Portes Blindées & Sécurité",
       icon: Shield,
-      image:
-        "https://images.pexels.com/photos/4792511/pexels-photo-4792511.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      image: "Securite-Serrurerie-Portes-Blindage.jpg",
       description:
         "Installation de portes blindées esthétiques et performantes. Nos produits certifiés A2P assurent protection, isolation et design moderne.",
       points: [
@@ -54,8 +53,7 @@ const Services: React.FC = () => {
       id: "rideaux-metalliques",
       title: "Rideaux Métalliques & Volets",
       icon: Building,
-      image:
-        "https://images.pexels.com/photos/5691659/pexels-photo-5691659.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      image: "VOLET_R.jpg",
       description:
         "Sécurisez votre commerce ou garage avec un rideau métallique motorisé. Dépannage et maintenance express, 7j/7.",
       points: [
@@ -70,8 +68,7 @@ const Services: React.FC = () => {
       id: "videosurveillance",
       title: "Vidéosurveillance & Alarmes",
       icon: Camera,
-      image:
-        "https://images.pexels.com/photos/6195125/pexels-photo-6195125.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      image: "video_surveillance-1-768x0-c-default.jpg",
       description:
         "Installez un système connecté et intelligent. Visualisez vos caméras en temps réel, recevez des alertes et protégez vos biens à distance.",
       points: [
@@ -86,8 +83,7 @@ const Services: React.FC = () => {
       id: "vehicules",
       title: "Ouverture de Véhicules",
       icon: Car,
-      image:
-        "https://images.pexels.com/photos/3807277/pexels-photo-3807277.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      image: "5.png",
       description:
         "Clés oubliées, perdues ou bloquées ? Nous ouvrons votre voiture sans dégât, sur place, à toute heure.",
       points: [
@@ -106,7 +102,7 @@ const Services: React.FC = () => {
       <section className="relative h-[95vh] flex flex-col justify-center items-center text-center overflow-hidden">
         {/* Image immersive */}
         <img
-          src="https://images.unsplash.com/photo-1621905251918-385a0b9a1d5a?auto=format&fit=crop&w=1600&q=80"
+          src="optimisez-vos-portes-coulissantes-avec-une-serrure-a-crochet-efficace-1024x683.jpg"
           alt="Serrurier en intervention"
           className="absolute inset-0 w-full h-full object-cover brightness-[0.55]"
         />

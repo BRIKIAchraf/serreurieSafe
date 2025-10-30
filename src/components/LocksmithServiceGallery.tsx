@@ -15,8 +15,7 @@ const galleryItems: GalleryItem[] = [
     subtitle: "Résidentiel premium",
     description:
       "Prises de vue avant/après de blindages sur mesure, finitions laquées et intégration domotique.",
-    image:
-      "https://images.unsplash.com/photo-1580894808081-8df73c0c228b?auto=format&fit=crop&w=1200&q=80",
+    image: "IMG-20251021-WA0003.jpg",
     stats: "Pose en 6h | Garantie 10 ans",
   },
   {
@@ -24,8 +23,7 @@ const galleryItems: GalleryItem[] = [
     subtitle: "Commerces & boutiques",
     description:
       "Dépannage motorisé de nuit, remplacement des lames et sécurisation par boîtier connecté.",
-    image:
-      "https://images.unsplash.com/photo-1580894869731-6a8e836edec2?auto=format&fit=crop&w=1200&q=80",
+    image: "OIP (7).jpeg",
     stats: "Réouverture en 90 min",
   },
   {
@@ -34,7 +32,7 @@ const galleryItems: GalleryItem[] = [
     description:
       "Installation badges NFC, claviers biométriques et tableau de supervision en temps réel.",
     image:
-      "https://images.unsplash.com/photo-1604079626693-3be927fe6df0?auto=format&fit=crop&w=1200&q=80",
+      "serrure-connectee-la-revolution-securitaire-a-domicile-1721214951-1536x878.jpg",
     stats: "Jusqu'à 250 utilisateurs",
   },
 ];

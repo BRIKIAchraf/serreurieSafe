@@ -27,8 +27,7 @@ const Blog: React.FC = () => {
       date: "2024-01-15",
       readTime: "5 min",
       category: "Réglementation",
-      image:
-        "https://images.pexels.com/photos/277559/pexels-photo-277559.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
+      image: "OIP (5).jpeg",
     },
     {
       id: 2,
@@ -40,8 +39,7 @@ const Blog: React.FC = () => {
       date: "2024-01-10",
       readTime: "6 min",
       category: "Technologie",
-      image:
-        "https://images.pexels.com/photos/5691659/pexels-photo-5691659.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
+      image: "shutterstock_1026440218-1920x1280.jpg",
     },
     {
       id: 3,
@@ -53,8 +51,7 @@ const Blog: React.FC = () => {
       date: "2024-01-05",
       readTime: "7 min",
       category: "Sécurité",
-      image:
-        "https://images.pexels.com/photos/6195125/pexels-photo-6195125.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
+      image: "Cambrioleur.jpg",
     },
     {
       id: 4,
@@ -66,8 +63,7 @@ const Blog: React.FC = () => {
       date: "2024-01-03",
       readTime: "4 min",
       category: "Conseils",
-      image:
-        "https://images.pexels.com/photos/4792509/pexels-photo-4792509.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
+      image: "serrure-a-cylindre.png",
     },
   ];
 

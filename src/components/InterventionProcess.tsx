@@ -19,7 +19,7 @@ const steps = [
     description:
       "Nous intervenons sur place en moins de 30 minutes, 24h/24 et 7j/7, pour toute urgence en serrurerie.",
     image:
-      "https://images.pexels.com/photos/5999838/pexels-photo-5999838.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
+      "depannage-de-serrurerie-a-Paris-3-677e87c3ad759-sizes_cutum-1000-600.webp",
   },
   {
     id: 3,
@@ -27,8 +27,7 @@ const steps = [
     title: "Déplacement sur site",
     description:
       "Nos techniciens se déplacent dans toute la région parisienne, avec un suivi en temps réel de leur arrivée.",
-    image:
-      "https://images.pexels.com/photos/79873/pexels-photo-79873.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
+    image: "IMG-20251021-WA0002.jpg",
   },
   {
     id: 4,
@@ -36,8 +35,7 @@ const steps = [
     title: "Résolution & garantie",
     description:
       "Travail soigné, garantie A2P et satisfaction client. Votre sécurité, notre priorité.",
-    image:
-      "https://images.pexels.com/photos/4792492/pexels-photo-4792492.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
+    image: "Engagement-qualite-1.webp",
   },
 ];
 

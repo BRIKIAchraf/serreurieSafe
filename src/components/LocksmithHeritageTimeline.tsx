@@ -11,7 +11,7 @@ interface LocksmithPhoto {
 
 const photos: LocksmithPhoto[] = [
   {
-    src: "https://images.unsplash.com/photo-1604079628040-94301bb21b07?auto=format&fit=crop&w=1400&q=80",
+    src: "Changement_serrure_Marseille_Aubagne_1 (1).jpeg",
     title: "Ouverture sans dommage",
     caption:
       "Techniques précises pour portes blindées et serrures haute sécurité.",
@@ -19,27 +19,27 @@ const photos: LocksmithPhoto[] = [
     size: "lg",
   },
   {
-    src: "https://images.unsplash.com/photo-1597004891233-28a403a90ef6?auto=format&fit=crop&w=1400&q=80",
+    src: "cle-06.jpg",
     title: "Atelier de reproduction",
     caption: "Clés, badges magnétiques et télécommandes programmées sur place.",
     tag: "Atelier mobile",
   },
   {
-    src: "https://images.unsplash.com/photo-1621905251918-962f836bf6df?auto=format&fit=crop&w=1400&q=80",
+    src: "IMG-20251021-WA0008.jpg",
     title: "Renforcement de porte",
     caption:
       "Blindage, barres de pivot et plaques anti-perçage certifiées A2P.",
     tag: "Blindage sécurisé",
   },
   {
-    src: "https://images.unsplash.com/photo-1621905251933-30cf4d92c4a9?auto=format&fit=crop&w=1400&q=80",
+    src: "20221010-tomdoms_0563002.webp",
     title: "Contrôle d’accès intelligent",
     caption:
       "Systèmes biométriques, claviers digitaux et intégration domotique.",
     tag: "Sécurité connectée",
   },
   {
-    src: "https://images.unsplash.com/photo-1600585154518-990dced4db0d?auto=format&fit=crop&w=1400&q=80",
+    src: "Audit-securite-incendie-2000x1000.jpg",
     title: "Audit sécurité sur mesure",
     caption:
       "Diagnostic complet et recommandations personnalisées pour entreprises et copropriétés.",

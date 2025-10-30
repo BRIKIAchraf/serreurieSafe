@@ -38,16 +38,14 @@ const services = [
     desc: "Systèmes connectés avec visualisation à distance — sécurité et maintenance garantie.",
     price: "Devis gratuit",
     icon: Video,
-    image:
-      "https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?auto=format&fit=crop&w=1200&q=80",
+    image: "IMG_9932-scaled-1.jpg",
   },
   {
     title: "Ouverture de Véhicules",
     desc: "Ouverture sans dégât de tout type de véhicule, 24h/24 — voitures, motos, utilitaires.",
     price: "À partir de 90€",
     icon: Car,
-    image:
-      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80",
+    image: "ouvrir-porte-scaled.jpg",
   },
   {
     title: "Vitrerie",

@@ -47,27 +47,27 @@ const Emergency: React.FC = () => {
   const interventionZones = [
     {
       name: "Paris 1er",
-      image: "/images/zones/paris1.jpg",
+      image: "arrondissement-paris-1068x601.jpg",
     },
     {
       name: "Paris 8e",
-      image: "/images/zones/paris8.jpg",
+      image: "bb2fda69b8bb647d0e617a9531ce3e41.avif",
     },
     {
       name: "Boulogne-Billancourt",
-      image: "/images/zones/boulogne.jpg",
+      image: "OIP (10).jpeg",
     },
     {
       name: "Saint-Denis",
-      image: "/images/zones/saintdenis.jpg",
+      image: "basilica-saint-denis-photo.webp",
     },
     {
       name: "Versailles",
-      image: "/images/zones/versailles.jpg",
+      image: "OIP (9).jpeg",
     },
     {
       name: "Neuilly-sur-Seine",
-      image: "/images/zones/neuilly.jpg",
+      image: "neuilly-sur-seine.jpg",
     },
   ];
 
@@ -99,7 +99,8 @@ const Emergency: React.FC = () => {
           <div
             className="absolute inset-0 bg-cover bg-center scale-105 animate-[zoomSlow_20s_ease-in-out_infinite_alternate]"
             style={{
-              backgroundImage: "url('/images/serrurier-hero.jpg')",
+              backgroundImage:
+                "url('1737739270-serrures-connectees-le-guide-ultime-pour-faire-le-bon-choix-1024x585.jpg')",
             }}
           ></div>
 

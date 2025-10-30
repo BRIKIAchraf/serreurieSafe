@@ -141,7 +141,7 @@ const About: React.FC = () => {
       {/* 🔸 SECTION INTERACTIVE : CERTIFICATIONS + MISSION */}
       <section className="relative py-32 overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1581092334607-1e7b33ce989e?auto=format&fit=crop&w=1920&q=80"
+          src="Engagement-qualite-1.webp"
           alt="Sécurité"
           className="absolute inset-0 w-full h-full object-cover brightness-75"
         />

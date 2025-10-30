@@ -25,7 +25,7 @@ const steps: ResponseStep[] = [
     description:
       "Nos équipes géolocalisées utilisent l’itinéraire le plus rapide avec codes d’accès et parking anticipés.",
     image:
-      "https://images.unsplash.com/photo-1465446751832-9f11e687fe82?auto=format&fit=crop&w=1200&q=80",
+      "optimise-tes-trajets-urbains-avec-itineraire-google-maps-1734058089-1024x682.jpeg",
     icon: Route,
     badge: "En route",
   },
@@ -33,8 +33,7 @@ const steps: ResponseStep[] = [
     title: "Intervention sécurisée",
     description:
       "Ouverture sans casse ou sécurisation immédiate avec validation client et photos de fin de mission.",
-    image:
-      "https://images.unsplash.com/photo-1580894914517-c0c9550adb1b?auto=format&fit=crop&w=1200&q=80",
+    image: "OIP (6).jpeg",
     icon: ShieldCheck,
     badge: "Sur site",
   },

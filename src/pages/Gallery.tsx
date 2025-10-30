@@ -7,7 +7,6 @@ import {
 } from "framer-motion";
 import { X } from "lucide-react";
 import GlassCard from "../components/GlassCard";
-import LocksmithProjectMosaic from "../components/LocksmithProjectMosaic"; // ✅ ajouté ici
 
 const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -202,9 +201,7 @@ const Gallery: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* === MOSAIC EN HAUT === */}
-      <LocksmithProjectMosaic /> {/* ✅ ajouté en haut */}
-      {/* === HERO IMMERSIF === */}
+
       {/* === CTA === */}
       <section className="pt-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
