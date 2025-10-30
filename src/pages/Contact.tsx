@@ -37,7 +37,7 @@ const Contact: React.FC = () => {
     {
       icon: Phone,
       title: "Téléphone",
-      details: "01 85 09 73 65",
+      details: "01 85 09 73 65",
       subtitle: "Disponible 24h/24 - 7j/7",
       action: "tel:+330185097365",
       image:
@@ -123,23 +123,23 @@ const Contact: React.FC = () => {
 
   return (
     <div className="pt-20 bg-gradient-to-b from-gray-50 to-gray-100 text-gray-800">
-      {/* 🧱 HERO SECTION */}
-      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+      {/* 🧱 HERO SECTION corrigée */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-32 md:pt-40 pb-20">
         <img
           src="OIP (1).jpeg"
           alt="Technicien serrurier réaliste"
-          className="absolute inset-0 w-full h-full  object-center"
+          className="absolute inset-0 w-full h-full object-cover"
         />
 
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
-        <div className="relative z-10 container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white max-w-2xl"
+            className="text-white max-w-2xl text-center md:text-left"
           >
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
               Contactez votre serrurier <br />
               <span className="text-orange-400">Serrure Safe</span>
             </h1>
@@ -148,7 +148,7 @@ const Contact: React.FC = () => {
               Obtenez un devis gratuit en quelques clics.
             </p>
             <a
-              href="tel:+33123456789"
+              href="tel:+33185097365"
               className="inline-block bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 hover:shadow-lg transition-transform"
             >
               <Phone className="w-5 h-5 inline-block mr-2" />
@@ -162,16 +162,16 @@ const Contact: React.FC = () => {
             transition={{ duration: 1 }}
             className="bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-2xl text-white mt-10 md:mt-0 max-w-md shadow-2xl"
           >
-            <h3 className="text-2xl font-bold mb-4">
+            <h3 className="text-2xl font-bold mb-4 text-center md:text-left">
               Obtenez une réponse en moins de 15 min
             </h3>
-            <p className="text-gray-300 mb-6 text-sm">
+            <p className="text-gray-300 mb-6 text-sm text-center md:text-left">
               Remplissez le formulaire ou contactez-nous directement par
               téléphone ou WhatsApp.
             </p>
             <div className="flex flex-col space-y-3">
               <a
-                href="tel:+33123456789"
+                href="tel:+33185097365"
                 className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-lg flex items-center justify-center font-semibold"
               >
                 <Phone className="w-5 h-5 mr-2" /> Urgence serrurerie
@@ -223,7 +223,6 @@ const Contact: React.FC = () => {
 
       {/* 🧾 FORMULAIRE & MAP */}
       <section className="py-20 container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* FORMULAIRE */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -338,10 +337,10 @@ const Contact: React.FC = () => {
               Besoin d’une intervention immédiate ? Appelez-nous !
             </p>
             <a
-              href="tel:+33123456789"
+              href="tel:+33185097365"
               className="inline-block bg-white text-red-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition"
             >
-              01 85 09 73 65
+              01 85 09 73 65
             </a>
           </div>
         </motion.div>

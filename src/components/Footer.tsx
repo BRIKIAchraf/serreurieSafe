@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1600&q=80')",
+            "url('ba2cd3_943ee80cfb6d4c40a3f1a9e1ee42a712~mv2.jpg')",
         }}
       />
       {/* 🔹 Overlay sombre */}
@@ -111,10 +111,10 @@ const Footer: React.FC = () => {
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-orange-400" />
                 <a
-                  href="tel:+33123456789"
+                  href="tel:+331 85 09 73 65"
                   className="hover:text-orange-400 font-medium"
                 >
-                  01 23 45 67 89
+                  01 85 09 73 65
                 </a>
               </div>
               <div className="flex items-center space-x-3">
@@ -200,7 +200,7 @@ const Footer: React.FC = () => {
               href="tel:+33123456789"
               className="flex items-center justify-center bg-white text-orange-600 font-semibold px-4 py-2 rounded-lg hover:bg-gray-100 transition text-sm"
             >
-              <Phone className="w-4 h-4 mr-2" /> 01 23 45 67 89
+              <Phone className="w-4 h-4 mr-2" /> 01 85 09 73 65
             </a>
             <Link
               to="/emergency"

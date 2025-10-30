@@ -24,12 +24,12 @@ const VirtualBusinessCard: React.FC = () => {
   >("warm");
 
   const businessCardData = {
-    name: "Pierre Martin",
+    name: "Tayeb",
     title: "Technicien Certifié A2P",
     company: "Serrure Safe",
-    phone: "+33 6 12 34 56 78",
-    email: "pierre.martin@serruresafe.fr",
-    website: "https://www.serruresafe.fr",
+    phone: "+33 01 85 09 73 65",
+    email: "contact@serruresafe.fr",
+    website: "https://serruresafe.fr/",
     address: "123 Rue de la Paix, 75001 Paris",
     rating: 5,
     services: ["Ouverture de porte", "Installation serrures", "Urgence 24h/24"],

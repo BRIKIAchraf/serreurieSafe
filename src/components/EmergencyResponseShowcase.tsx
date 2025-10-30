@@ -15,8 +15,7 @@ const steps: ResponseStep[] = [
     title: "Alerte immédiate",
     description:
       "Diagnostic instantané et préparation du matériel adapté avant le départ, pour gagner un temps précieux.",
-    image:
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
+    image: "OIP (3).jpeg",
     icon: PhoneCall,
     badge: "< 2 min",
   },

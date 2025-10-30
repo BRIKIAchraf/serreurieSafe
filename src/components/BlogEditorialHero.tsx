@@ -12,14 +12,12 @@ const featuredStories = [
   {
     title: "Chronique terrain : blindage d'urgence à 2h du matin",
     category: "Urgence",
-    image:
-      "https://images.unsplash.com/photo-1580894906472-6f2c78679a7d?auto=format&fit=crop&w=1400&q=80",
+    image: "perceuse-verrou-porte.jpg",
   },
   {
     title: "Guide copropriété : sécuriser hall + cave sans tout remplacer",
     category: "Conseils",
-    image:
-      "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1400&q=80",
+    image: "porte-cave-768x768.png",
   },
 ];
 

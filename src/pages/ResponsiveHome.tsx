@@ -19,8 +19,6 @@ import InteractiveMap from "../components/InteractiveMap";
 import ClientReviews from "../components/ClientReviews";
 import InteractivePolls from "../components/InteractivePolls";
 
-import FloatingCTA from "../components/FloatingCTA";
-import SmartCTA from "../components/SmartCTA";
 import NavigationGuide from "../components/NavigationGuide";
 
 const ResponsiveHome: React.FC = () => {
@@ -119,11 +117,11 @@ const ResponsiveHome: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
               <a
-                href="tel:+33123456789"
+                href="tel:+331 85 09 73 65"
                 className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#FF6B00] to-[#FF3C00] text-white px-6 py-2.5 rounded-lg font-bold text-lg shadow hover:shadow-lg transition-all"
               >
                 <Phone className="w-5 h-5" />
-                <span>01 23 45 67 89</span>
+                <span>01 85 09 73 65</span>
               </a>
               <Link
                 to="/services"
@@ -303,10 +301,11 @@ const ResponsiveHome: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row justify-center gap-3">
             <a
-              href="tel:+33123456789"
+              href="tel:+331 85 09 73 65"
               className="inline-flex items-center justify-center gap-2 bg-white text-[#FF6B00] font-bold px-5 py-2.5 rounded-lg hover:scale-[1.05] transition-all shadow"
             >
-              <Phone className="mr-2 w-5 h-5" /> 01 23 45 67 89
+              <Phone className="mr-2 w-5 h-5" />
+              01 85 09 73 65
             </a>
 
             <Link
@@ -325,13 +324,7 @@ const ResponsiveHome: React.FC = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
-      <FloatingCTA variant="emergency" delay={4000} triggerScroll={300} />
-      <SmartCTA
-        userBehavior={userBehavior}
-        currentPage="/"
-        timeOnPage={timeOnPage}
-        scrollProgress={scrollProgress}
-      />
+
       <NavigationGuide
         isVisible={showGuide}
         onClose={() => setShowGuide(false)}

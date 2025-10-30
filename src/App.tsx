@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Loader from "./components/Loader";
-import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
@@ -11,7 +10,6 @@ import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
-import ClientArea from "./pages/ClientArea";
 import ResponsiveHome from "./pages/ResponsiveHome";
 
 function App() {
@@ -63,7 +61,6 @@ function App() {
               <Route path="contact" element={<Contact />} />
               <Route path="blog" element={<Blog />} />
               <Route path="blog/:slug" element={<BlogPost />} />
-              <Route path="client-area" element={<ClientArea />} />
             </Route>
           </Routes>
         </Router>

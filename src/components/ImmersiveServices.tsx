@@ -109,7 +109,7 @@ const ImmersiveServicesCompact: React.FC = () => {
                   <p className="text-[#FF6B00] font-semibold mb-4">{s.price}</p>
                   <div className="flex flex-wrap justify-center lg:justify-start gap-3">
                     <motion.a
-                      href="tel:+33123456789"
+                      href="tel:+331 85 09 73 65"
                       whileHover={{ scale: 1.05 }}
                       className="inline-flex items-center bg-[#FF6B00] text-white px-5 py-2 rounded-lg font-semibold shadow hover:shadow-lg"
                     >

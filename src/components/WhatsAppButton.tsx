@@ -95,7 +95,7 @@ const WhatsAppButton: React.FC = () => {
   };
 
   const openWhatsApp = () => {
-    const phoneNumber = "33123456789";
+    const phoneNumber = "331 85 09 73 65";
     const message = encodeURIComponent(
       "Bonjour, j'ai besoin d'une intervention de serrurerie."
     );

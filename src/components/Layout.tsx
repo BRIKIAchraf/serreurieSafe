@@ -129,13 +129,6 @@ const Layout: React.FC = () => {
             {/* === ICONES AVEC LABELS === */}
             {[
               {
-                icon: "💰",
-                color: "from-[#E83E00] to-[#F45C23]",
-                label: "Demande de devis",
-                onClick: () =>
-                  openPopup(<ContactModal isOpen={true} onClose={() => {}} />),
-              },
-              {
                 icon: "💬",
                 color: "from-green-600 to-green-500",
                 label: "Chat WhatsApp",

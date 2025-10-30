@@ -127,7 +127,7 @@ const Emergency: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+33123456789"
+                href="tel:+331 85 09 73 65"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-orange-500 to-red-500 text-white text-lg font-semibold shadow-lg hover:scale-105 transition-all"
               >
                 <Phone className="w-6 h-6 mr-2" /> Appeler maintenant

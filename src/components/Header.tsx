@@ -146,11 +146,11 @@ const Header: React.FC = () => {
               Contact
             </Link>
             <MagneticButton
-              href="tel:+33123456789"
+              href="tel:+331 85 09 73 65"
               className="flex items-center space-x-2 bg-orange-600 hover:bg-orange-700 text-white px-5 py-2 rounded-lg font-medium transition-all duration-200 hover:shadow-lg text-sm"
             >
               <Phone className="w-4 h-4" />
-              <span>01 23 45 67 89</span>
+              <span>01 85 09 73 65</span>
             </MagneticButton>
           </div>
 
@@ -221,7 +221,7 @@ const Header: React.FC = () => {
 
               <div className="mt-auto border-t border-gray-100 px-6 py-6">
                 <a
-                  href="tel:+33123456789"
+                  href="tel:+331 85 09 73 65"
                   className="flex items-center justify-center space-x-2 bg-orange-600 text-white px-6 py-3 rounded-lg font-medium w-full hover:bg-orange-700 transition-all duration-200"
                 >
                   <Phone className="w-4 h-4" />
