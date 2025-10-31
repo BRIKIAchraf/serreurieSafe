@@ -4,17 +4,15 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 import ResponsiveHeader from "./ResponsiveHeader";
 import Footer from "./Footer";
-import ContactModal from "./ContactModal";
 import { SoundProvider } from "./SoundManager";
 import CustomCursor from "./CustomCursor";
-import UserJourneyGuide from "./UserJourneyGuide";
 import QuoteGenerator from "./QuoteGenerator";
-import NavigationGuide from "./NavigationGuide";
 import WhatsAppButton from "./WhatsAppButton";
 import VirtualBusinessCard from "./VirtualBusinessCard";
 import Lock3DViewer from "./Lock3DViewer";
 import LockConfigurator from "./LockConfigurator";
 import Chatbot from "./Chatbot";
+import UserJourneyGuide from "./UserJourneyGuide"; // 🧭 Guide virtuel
 
 const Layout: React.FC = () => {
   const [leftOpen, setLeftOpen] = useState(true);
@@ -22,9 +20,8 @@ const Layout: React.FC = () => {
     null
   );
   const touchStartX = useRef<number | null>(null);
-  const [showGuide, setShowGuide] = useState(false);
 
-  // 🔹 Gestion du swipe mobile
+  // 🔹 Swipe mobile pour ouvrir/fermer le menu latéral
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
       touchStartX.current = e.touches[0].clientX;
@@ -48,7 +45,7 @@ const Layout: React.FC = () => {
     };
   }, []);
 
-  // 🔹 Gestion du popup
+  // 🔹 Gestion des popups
   const openPopup = (component: React.ReactNode) => setPopupContent(component);
   const closePopup = () => setPopupContent(null);
 
@@ -60,7 +57,6 @@ const Layout: React.FC = () => {
           <ResponsiveHeader />
           <CustomCursor />
 
-          {/* 💡 Plein écran sans cadre ni padding */}
           <main className="pb-24">
             <Outlet />
           </main>
@@ -69,16 +65,13 @@ const Layout: React.FC = () => {
         </div>
 
         {/* ===== Modules additionnels ===== */}
-        <UserJourneyGuide delay={4000} />
-        <QuoteGenerator />
-        <NavigationGuide
-          isVisible={showGuide}
-          onClose={() => setShowGuide(false)}
-          autoPlay={true}
-          autoPlayDelay={3000}
-        />
+        <div className="fixed bottom-24 right-6 z-50 flex flex-col items-end space-y-[5px]">
+          <QuoteGenerator /> {/* 💬 Devis express */}
+          {/* 🧭 Guide virtuel (bouton intégré dans le composant lui-même) */}
+          <UserJourneyGuide autoStart={false} />
+        </div>
 
-        {/* ===== POPUP flottant ===== */}
+        {/* ===== POPUP flottant (3D, carte, chatbot...) ===== */}
         {popupContent && (
           <div
             className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/40 backdrop-blur-sm animate-fadeIn"
@@ -160,7 +153,6 @@ const Layout: React.FC = () => {
               },
             ].map((item, i) => (
               <div key={i} className="relative group">
-                {/* Icône bouton */}
                 <button
                   onClick={item.onClick}
                   className={`bg-gradient-to-r ${item.color} text-white w-12 h-12 rounded-xl font-bold text-xl shadow-lg hover:scale-110 transition-all flex items-center justify-center`}
@@ -169,7 +161,6 @@ const Layout: React.FC = () => {
                   {item.icon}
                 </button>
 
-                {/* Infobulle (label animé) */}
                 {leftOpen && (
                   <span
                     className="absolute left-14 top-1/2 -translate-y-1/2 text-white bg-black/80 backdrop-blur-sm
