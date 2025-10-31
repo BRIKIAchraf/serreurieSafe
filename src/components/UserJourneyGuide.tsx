@@ -86,7 +86,7 @@ const journeySteps: JourneyStep[] = [
     icon: Phone,
     color: "bg-red-500",
     actionLabel: "Appeler le 01 23 45 67 89",
-    actionHref: "tel:+33123456789",
+    actionHref: "tel:+331 85 09 73 65",
     actionType: "call",
     position: { bottom: "18%", right: "14%" },
   },
@@ -154,8 +154,7 @@ const UserJourneyGuide: React.FC<UserJourneyGuideProps> = ({
       return;
     }
 
-    const completed =
-      window.localStorage.getItem(GUIDE_STORAGE_KEY) === "true";
+    const completed = window.localStorage.getItem(GUIDE_STORAGE_KEY) === "true";
     setHasCompleted(completed);
 
     if (autoStart && !completed) {
@@ -381,7 +380,9 @@ const UserJourneyGuide: React.FC<UserJourneyGuideProps> = ({
                   <MagneticButton
                     href={currentStepData.actionHref}
                     onClick={() =>
-                      handleStepAction(currentStepData, { skipNavigation: true })
+                      handleStepAction(currentStepData, {
+                        skipNavigation: true,
+                      })
                     }
                     className={`flex w-full items-center justify-center space-x-2 rounded-xl px-6 py-3 font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg ${currentStepData.color}`}
                   >
@@ -468,9 +469,7 @@ const UserJourneyGuide: React.FC<UserJourneyGuideProps> = ({
                         <div
                           key={index}
                           className={`h-3 w-3 rounded-full transition-colors ${
-                            index <= currentStep
-                              ? "bg-blue-500"
-                              : "bg-gray-300"
+                            index <= currentStep ? "bg-blue-500" : "bg-gray-300"
                           }`}
                         />
                       ))}

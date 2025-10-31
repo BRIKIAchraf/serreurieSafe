@@ -30,6 +30,23 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Désactiver le scroll quand le menu mobile est ouvert
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.height = "100vh";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.height = "";
+    }
+
+    // Cleanup au démontage
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.height = "";
+    };
+  }, [isMenuOpen]);
+
   const navItems = [
     { path: "/", label: "Accueil", hasDropdown: false },
     {
@@ -56,183 +73,228 @@ const Header: React.FC = () => {
     { path: "/client-area", label: "Espace Client", hasDropdown: false },
   ];
 
+  const handleMenuClose = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* === Logo === */}
-          <Link to="/" className="flex items-center space-x-3 z-50">
-            <img
-              src="/WhatsApp_Image_2025-10-17_à_15.12.18_29f18722-removebg-preview.png"
-              alt="Serrure Safe"
-              className="h-10 w-auto"
-            />
-          </Link>
-
-          {/* === Navigation Desktop === */}
-          <nav className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <div
-                key={item.path}
-                className="relative"
-                onMouseEnter={() =>
-                  item.hasDropdown && setActiveDropdown(item.label)
-                }
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <Link
-                  to={item.path}
-                  className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                    location.pathname === item.path
-                      ? "text-orange-600 bg-orange-50"
-                      : "text-gray-700 hover:text-orange-600 hover:bg-gray-50"
-                  }`}
-                  onClick={playClickSound}
-                >
-                  {item.label}
-                  {item.hasDropdown && <ChevronDown className="ml-1 w-4 h-4" />}
-                </Link>
-
-                {/* Dropdown */}
-                {item.hasDropdown && activeDropdown === item.label && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2"
-                  >
-                    {item.dropdownItems?.map((dropdownItem) => (
-                      <Link
-                        key={dropdownItem.path}
-                        to={dropdownItem.path}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:text-orange-600 hover:bg-orange-50 transition-colors"
-                      >
-                        {dropdownItem.label}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </div>
-            ))}
-          </nav>
-
-          {/* === CTA & Outils === */}
-          <div className="hidden lg:flex items-center space-x-3">
-            <div className="hidden xl:flex items-center space-x-2 text-sm text-gray-600">
-              <Clock className="w-4 h-4 text-orange-500" />
-              <span>Disponible 24h/24</span>
-            </div>
-            <IntelligentSearch />
-            <ThemeToggle />
-            <LanguageToggle />
-            <button
-              onClick={handleShowGuide}
-              className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-              title="Guide de navigation"
-            >
-              <HelpCircle className="w-5 h-5" />
-            </button>
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-100 dark:border-gray-800"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20 md:h-24">
+            {/* === Logo === */}
             <Link
-              to="/contact"
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors"
+              to="/"
+              className="flex items-center space-x-3 z-50 relative"
               onClick={playClickSound}
             >
-              Contact
+              <img
+                src="/WhatsApp_Image_2025-10-17_à_15.12.18_29f18722-removebg-preview.png"
+                alt="Serrure Safe"
+                className="h-14 w-auto sm:h-16 md:h-20 lg:h-24 transition-all duration-200 drop-shadow-lg"
+              />
             </Link>
-            <MagneticButton
-              href="tel:+331 85 09 73 65"
-              className="flex items-center space-x-2 bg-orange-600 hover:bg-orange-700 text-white px-5 py-2 rounded-lg font-medium transition-all duration-200 hover:shadow-lg text-sm"
-            >
-              <Phone className="w-4 h-4" />
-              <span>01 85 09 73 65</span>
-            </MagneticButton>
-          </div>
 
-          {/* === Bouton Menu Mobile === */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors z-50"
-          >
-            {isMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
+            {/* === Navigation Desktop === */}
+            <nav className="hidden lg:flex items-center space-x-1">
+              {navItems.map((item) => (
+                <div
+                  key={item.path}
+                  className="relative"
+                  onMouseEnter={() =>
+                    item.hasDropdown && setActiveDropdown(item.label)
+                  }
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <Link
+                    to={item.path}
+                    className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                      location.pathname === item.path
+                        ? "text-orange-600 bg-orange-50 dark:bg-orange-900/20"
+                        : "text-gray-700 dark:text-gray-300 hover:text-orange-600 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    }`}
+                    onClick={playClickSound}
+                  >
+                    {item.label}
+                    {item.hasDropdown && (
+                      <ChevronDown className="ml-1 w-4 h-4" />
+                    )}
+                  </Link>
+
+                  {/* === Dropdown === */}
+                  <AnimatePresence>
+                    {item.hasDropdown && activeDropdown === item.label && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-700 py-2 z-[100]"
+                      >
+                        {item.dropdownItems?.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.path}
+                            to={dropdownItem.path}
+                            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-colors"
+                            onClick={playClickSound}
+                          >
+                            {dropdownItem.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </nav>
+
+            {/* === CTA & Outils (Desktop) === */}
+            <div className="hidden lg:flex items-center space-x-3">
+              <div className="hidden xl:flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                <Clock className="w-4 h-4 text-orange-500" />
+                <span>Disponible 24h/24</span>
+              </div>
+              <IntelligentSearch />
+              <ThemeToggle />
+              <LanguageToggle />
+              <button
+                onClick={handleShowGuide}
+                className="p-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                title="Guide de navigation"
+              >
+                <HelpCircle className="w-5 h-5" />
+              </button>
+              <Link
+                to="/contact"
+                className="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-orange-600 transition-colors"
+                onClick={playClickSound}
+              >
+                Contact
+              </Link>
+              <MagneticButton
+                href="tel:+33185097365"
+                className="flex items-center space-x-2 bg-orange-600 hover:bg-orange-700 text-white px-5 py-2 rounded-lg font-medium transition-all duration-200 hover:shadow-lg text-sm"
+              >
+                <Phone className="w-4 h-4" />
+                <span>01 85 09 73 65</span>
+              </MagneticButton>
+            </div>
+
+            {/* === Bouton Menu Mobile === */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors z-[70] relative"
+              aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
+
+      {/* === Overlay === */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            key="overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] lg:hidden"
+            onClick={handleMenuClose}
+          />
+        )}
+      </AnimatePresence>
 
       {/* === Drawer Mobile Menu === */}
       <AnimatePresence>
         {isMenuOpen && (
-          <>
-            {/* Overlay flou et sombre */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
-              onClick={() => setIsMenuOpen(false)}
-            />
-
-            {/* Drawer latéral */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 80, damping: 18 }}
-              className="fixed top-0 right-0 w-3/4 sm:w-1/2 h-full bg-white shadow-2xl z-50 flex flex-col"
-            >
-              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-                <h2 className="text-lg font-semibold text-gray-800">
-                  Menu principal
+          <motion.div
+            key="mobileMenu"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 30,
+              mass: 0.8,
+            }}
+            className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm h-screen bg-white dark:bg-gray-900 shadow-2xl z-[60] flex flex-col lg:hidden overflow-hidden"
+          >
+            {/* Header du Drawer */}
+            <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 dark:border-gray-800 bg-gradient-to-r from-orange-50 to-white dark:from-gray-800 dark:to-gray-900">
+              <div className="flex items-center space-x-3">
+                <img
+                  src="/WhatsApp_Image_2025-10-17_à_15.12.18_29f18722-removebg-preview.png"
+                  alt="Serrure Safe"
+                  className="h-10 w-auto"
+                />
+                <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                  Menu
                 </h2>
-                <button
-                  onClick={() => setIsMenuOpen(false)}
-                  className="p-2 rounded-full hover:bg-gray-100 text-gray-700"
-                >
-                  <X className="w-6 h-6" />
-                </button>
               </div>
+              <button
+                onClick={handleMenuClose}
+                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 transition-colors"
+                aria-label="Fermer le menu"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
 
-              <nav className="flex flex-col px-6 py-4 space-y-3 overflow-y-auto">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`block text-base font-medium rounded-lg px-4 py-3 transition-colors ${
-                      location.pathname === item.path
-                        ? "text-orange-600 bg-orange-50"
-                        : "text-gray-700 hover:text-orange-600 hover:bg-gray-50"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
-
-              <div className="mt-auto border-t border-gray-100 px-6 py-6">
-                <a
-                  href="tel:+331 85 09 73 65"
-                  className="flex items-center justify-center space-x-2 bg-orange-600 text-white px-6 py-3 rounded-lg font-medium w-full hover:bg-orange-700 transition-all duration-200"
+            {/* Navigation Links */}
+            <nav className="flex-1 overflow-y-auto px-4 py-4 space-y-1">
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={handleMenuClose}
+                  className={`flex items-center justify-between text-base font-medium rounded-lg px-4 py-3 transition-all duration-200 ${
+                    location.pathname === item.path
+                      ? "text-orange-600 bg-orange-50 dark:bg-orange-900/20 shadow-sm"
+                      : "text-gray-700 dark:text-gray-300 hover:text-orange-600 hover:bg-gray-50 dark:hover:bg-gray-800"
+                  }`}
                 >
-                  <Phone className="w-4 h-4" />
-                  <span>Appeler maintenant</span>
-                </a>
+                  <span>{item.label}</span>
+                  {item.hasDropdown && (
+                    <ChevronDown className="w-4 h-4 opacity-50" />
+                  )}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Footer du Drawer avec CTA */}
+            <div className="border-t border-gray-100 dark:border-gray-800 p-6 space-y-3">
+              <a
+                href="tel:+33185097365"
+                className="flex items-center justify-center space-x-2 bg-gradient-to-r from-orange-600 to-orange-500 text-white px-6 py-3.5 rounded-lg font-semibold w-full hover:from-orange-700 hover:to-orange-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                onClick={handleMenuClose}
+              >
+                <Phone className="w-5 h-5" />
+                <span>Appeler maintenant</span>
+              </a>
+
+              <div className="flex items-center justify-center space-x-2 text-xs text-gray-500 dark:text-gray-400">
+                <Clock className="w-3.5 h-3.5 text-orange-500" />
+                <span>Service disponible 24h/24, 7j/7</span>
               </div>
-            </motion.div>
-          </>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 };
 

@@ -236,7 +236,7 @@ const Gallery: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
-                href="tel:+33123456789"
+                href="tel:+331 85 09 73 65"
                 className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-10 py-4 rounded-full font-semibold text-xl hover:scale-105 hover:shadow-xl transition-all"
               >
                 Appeler maintenant

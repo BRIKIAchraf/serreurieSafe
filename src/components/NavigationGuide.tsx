@@ -253,7 +253,8 @@ const NavigationGuide: React.FC<NavigationGuideProps> = ({
                     className="mt-4 space-y-2"
                   >
                     <MagneticButton
-                      href="tel:+33123456789"
+                      href="tel:+331 85 09 73 65
+"
                       className="w-full flex items-center space-x-3 p-3 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors"
                     >
                       <Phone className="w-4 h-4" />
