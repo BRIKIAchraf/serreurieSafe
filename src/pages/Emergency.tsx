@@ -113,7 +113,7 @@ const Emergency: React.FC = () => {
             className="relative z-10 text-white px-6 sm:px-8 max-w-4xl mx-auto"
           >
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent drop-shadow-lg leading-tight">
-              Serrurier d’Urgence 24h/24 à Paris
+              Serrurier d’Urgence 24h/24 il de france
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl mb-10 text-gray-200 font-light">
