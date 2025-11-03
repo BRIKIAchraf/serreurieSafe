@@ -84,7 +84,7 @@ const Emergency: React.FC = () => {
 
   return (
     <>
-      <title>Urgence Serrurerie 24h/24 à Paris - Dépannage rapide</title>
+      <title>Urgence Serrurerie 24h/24 à il de france - Dépannage rapide</title>
       <meta
         name="description"
         content="Serrurier Paris urgence 24h/24 - Intervention rapide en moins de 30 min. Ouverture de porte, serrure cassée, effraction. Devis clair et sans casse."
@@ -122,7 +122,7 @@ const Emergency: React.FC = () => {
               </span>{" "}
               — Porte bloquée, serrure cassée ou effraction ? Intervention en{" "}
               <span className="font-semibold text-orange-400">30 minutes</span>{" "}
-              partout à Paris et en banlieue.
+              partout à il de france et en banlieue.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

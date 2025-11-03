@@ -24,13 +24,13 @@ const VirtualBusinessCard: React.FC = () => {
   >("warm");
 
   const businessCardData = {
-    name: "Tayeb",
+    name: "Tayeb sad",
     title: "Technicien Certifié A2P",
     company: "Serrure Safe",
     phone: "+33 01 85 09 73 65",
     email: "contact@serruresafe.fr",
     website: "https://serruresafe.fr/",
-    address: "123 Rue de la Paix, 75001 Paris",
+    address: "7 allée de Dijon 91170 viry-Châtillon ",
     rating: 5,
     services: ["Ouverture de porte", "Installation serrures", "Urgence 24h/24"],
     availability: "Disponible 7j/7, 24h/24",

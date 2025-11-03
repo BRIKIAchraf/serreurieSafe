@@ -118,11 +118,11 @@ const Services: React.FC = () => {
         >
           <div className="inline-flex items-center space-x-2 bg-white/20 px-4 py-2 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm">
             <Zap className="w-4 h-4 text-orange-300" />
-            <span>Intervention Serrurerie 24h/24 à Paris</span>
+            <span>Intervention Serrurerie 24h/24 ,il de france</span>
           </div>
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight bg-gradient-to-r from-orange-400 to-yellow-300 bg-clip-text text-transparent drop-shadow-[0_3px_4px_rgba(0,0,0,0.5)]">
-            Sécurisez votre quotidien avec <br /> Serrure Safe Paris
+            Sécurisez votre quotidien avec <br /> Serrure Safe il de france
           </h1>
 
           <p className="text-lg sm:text-xl text-gray-200 mb-8">

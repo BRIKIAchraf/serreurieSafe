@@ -32,7 +32,7 @@ const ClientReviews: React.FC = () => {
       id: "1",
       name: "Marie Dubois",
       rating: 5,
-      date: "2025-01-15",
+      date: "2025-11-15",
       service: "Ouverture de porte",
       comment:
         "Service exceptionnel ! Intervention en 20 minutes, technicien très professionnel. Je recommande vivement.",
@@ -44,7 +44,7 @@ const ClientReviews: React.FC = () => {
       id: "2",
       name: "Jean Martin",
       rating: 5,
-      date: "2025-01-12",
+      date: "2025-9-12",
       service: "Installation serrure",
       comment:
         "Installation parfaite d'une serrure haute sécurité. Travail soigné et conseils précieux. Merci !",
@@ -56,7 +56,7 @@ const ClientReviews: React.FC = () => {
       id: "3",
       name: "Sophie Laurent",
       rating: 5,
-      date: "2025-01-10",
+      date: "2025-11-10",
       service: "Urgence nocturne",
       comment:
         "Bloquée dehors à 23h, ils sont arrivés en 15 minutes ! Service client au top, prix raisonnable.",
