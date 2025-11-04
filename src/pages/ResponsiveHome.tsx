@@ -106,7 +106,7 @@ const ResponsiveHome: React.FC = () => {
             <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight text-gray-900 dark:text-white">
               Serrurier Expert{" "}
               <span className="block bg-gradient-to-r from-[#FF6B00] to-[#FF3C00] bg-clip-text text-transparent">
-                à Paris
+                Ile-de-France
               </span>
             </h1>
 
@@ -123,6 +123,24 @@ const ResponsiveHome: React.FC = () => {
                 <Phone className="w-5 h-5" />
                 <span>01 85 09 73 65</span>
               </a>
+              {/* 🔹 Nouveau bouton WhatsApp */}
+              <a
+                href="https://wa.me/33783867650"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-2.5 rounded-lg font-bold text-lg shadow hover:shadow-lg transition-all"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M20.52 3.48A11.84 11.84 0 0 0 12 0a11.93 11.93 0 0 0-10.3 17.94L0 24l6.3-1.66A11.91 11.91 0 0 0 12 24a11.93 11.93 0 0 0 8.49-20.52ZM12 21.8a9.7 9.7 0 0 1-5.24-1.53l-.38-.23-3.73 1 1-3.64-.25-.38A9.73 9.73 0 1 1 12 21.8Zm5.47-7.35c-.3-.15-1.74-.86-2.01-.96s-.47-.15-.66.15-.76.96-.93 1.15-.34.22-.63.07a7.91 7.91 0 0 1-2.32-1.43 8.66 8.66 0 0 1-1.6-2c-.17-.3 0-.46.13-.61.13-.13.3-.34.44-.52s.19-.3.3-.5a.54.54 0 0 0 0-.5c-.08-.15-.66-1.6-.9-2.19s-.47-.5-.66-.51h-.56a1.07 1.07 0 0 0-.77.36 3.24 3.24 0 0 0-1 2.41 5.67 5.67 0 0 0 1.2 3.03 13.1 13.1 0 0 0 5.07 4.32c.7.3 1.26.47 1.69.6a4 4 0 0 0 1.84.12 3.05 3.05 0 0 0 2-1.43 2.47 2.47 0 0 0 .17-1.43c-.05-.1-.25-.17-.56-.32Z" />
+                </svg>
+                <span>WhatsApp</span>
+              </a>
+
               <Link
                 to="/services"
                 className="inline-flex items-center justify-center gap-2 border-2 border-[#FF6B00] text-[#FF6B00] hover:bg-[#FF6B00] hover:text-white px-6 py-2.5 rounded-lg font-bold text-lg transition-all"

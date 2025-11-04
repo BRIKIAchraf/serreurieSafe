@@ -13,6 +13,9 @@ import {
   Lock,
   Key,
   CheckCircle,
+  Facebook,
+  Instagram,
+  Music2,
 } from "lucide-react";
 
 const Footer: React.FC = () => {
@@ -60,8 +63,6 @@ const Footer: React.FC = () => {
         }}
       />
       <div className="absolute inset-0 bg-white/50 backdrop-blur-[1px]" />
-
-      {/* ✅ Overlay clair translucide */}
       <div className="absolute inset-0 bg-white/85 backdrop-blur-[2px]" />
 
       {/* --- Contenu principal --- */}
@@ -77,8 +78,36 @@ const Footer: React.FC = () => {
           <img
             src="/WhatsApp_Image_2025-10-17_à_15.12.18_29f18722-removebg-preview.png"
             alt="Serrure Safe"
-            className="h-60 mx-auto object-contain"
+            className="h-56 mx-auto object-contain"
           />
+
+          {/* 🔹 Icônes réseaux sociaux — visibles et colorées */}
+          <div className="flex justify-center gap-4 mt-4 mb-6">
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 flex items-center justify-center bg-[#FF5B2E] text-white rounded-full shadow-md hover:bg-[#FF784D] transition-transform transform hover:scale-110"
+            >
+              <Facebook className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 flex items-center justify-center bg-gradient-to-tr from-[#FF5B2E] to-[#FF8A65] text-white rounded-full shadow-md hover:scale-110 transition-transform"
+            >
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 flex items-center justify-center bg-black text-white rounded-full shadow-md hover:bg-[#FF5B2E] hover:text-white transition-transform hover:scale-110"
+            >
+              <Music2 className="w-5 h-5" />
+            </a>
+          </div>
 
           <div className="mt max-w-3xl mx-auto bg-white rounded-xl shadow-md p-5 border border-gray-100">
             <h2 className="text-[#FF5B2E] font-semibold text-lg mb-2">
@@ -248,7 +277,7 @@ const Footer: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mt- border-t border-gray-200 pt-2 flex flex-col lg:flex-row justify-between items-center text-gray-600 text-xs space-y-2 lg:space-y-0"
+          className="mt-4 border-t border-gray-200 pt-3 flex flex-col lg:flex-row justify-between items-center text-gray-600 text-xs space-y-2 lg:space-y-0"
         >
           <p>© {currentYear} Serrure Safe — Tous droits réservés.</p>
           <div className="flex flex-wrap justify-center gap-3">
