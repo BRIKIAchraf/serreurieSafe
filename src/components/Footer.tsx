@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
           {/* 🔹 Icônes réseaux sociaux — visibles et colorées */}
           <div className="flex justify-center gap-4 mt-4 mb-6">
             <a
-              href="#"
+              href="https://www.facebook.com/share/16W65pB35U/?mibextid=wwXIfr"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 flex items-center justify-center bg-[#FF5B2E] text-white rounded-full shadow-md hover:bg-[#FF784D] transition-transform transform hover:scale-110"
@@ -92,7 +92,7 @@ const Footer: React.FC = () => {
               <Facebook className="w-5 h-5" />
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/serruresaf?igsh=MXJudTl0bnZlcm14ZQ%3D%3D&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 flex items-center justify-center bg-gradient-to-tr from-[#FF5B2E] to-[#FF8A65] text-white rounded-full shadow-md hover:scale-110 transition-transform"
@@ -100,7 +100,7 @@ const Footer: React.FC = () => {
               <Instagram className="w-5 h-5" />
             </a>
             <a
-              href="#"
+              href="https://www.tiktok.com/@serrure.safe?_r=1&_t=ZN-917m0hbyuD0"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 flex items-center justify-center bg-black text-white rounded-full shadow-md hover:bg-[#FF5B2E] hover:text-white transition-transform hover:scale-110"
