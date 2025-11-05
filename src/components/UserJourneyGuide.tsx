@@ -201,7 +201,7 @@ const UserJourneyGuide: React.FC<UserJourneyGuideProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm flex items-center justify-center"
             onClick={handleSkip}
           >
             <button
@@ -217,7 +217,7 @@ const UserJourneyGuide: React.FC<UserJourneyGuideProps> = ({
               animate={{ scale: 1, opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="absolute left-1/2 top-1/2 z-50 w-[90%] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white/95 p-6 shadow-2xl backdrop-blur-md"
+              className="relative w-[90%] max-w-lg md:max-w-xl max-w-[95vw] inset-x-4 rounded-2xl bg-white/95 p-6 shadow-2xl backdrop-blur-md"
             >
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-bold text-gray-800">
