@@ -190,7 +190,7 @@ const Footer: React.FC = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-4 h-4 text-[#FF5B2E]" />
-                <span>Paris & Île-de-France</span>
+                <span>Île-de-France</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Clock className="w-4 h-4 text-[#FF5B2E]" />
