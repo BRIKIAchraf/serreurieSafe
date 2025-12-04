@@ -48,11 +48,11 @@ const About: React.FC = () => {
             À propos de <span className="text-orange-400">Serrure Safe</span>
           </h1>
           <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto">
-            Plus de 15 ans d’expérience dans la serrurerie et la sécurisation de
+            Plus de 5 ans d’expérience dans la serrurerie et la sécurisation de
             vos biens. Votre confiance est notre priorité.
           </p>
           <a
-            href="/contact"
+            href="tel:+33185097365"
             className="inline-block bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 hover:shadow-lg transition-transform"
           >
             Nous contacter

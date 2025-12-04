@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   Wrench,
-  Lock,
   Shield,
   Video,
   Car,
@@ -109,14 +108,14 @@ const ImmersiveServicesCompact: React.FC = () => {
                   <p className="text-[#FF6B00] font-semibold mb-4">{s.price}</p>
                   <div className="flex flex-wrap justify-center lg:justify-start gap-3">
                     <motion.a
-                      href="tel:+331 85 09 73 65"
+                      href="tel:+330185097365"
                       whileHover={{ scale: 1.05 }}
                       className="inline-flex items-center bg-[#FF6B00] text-white px-5 py-2 rounded-lg font-semibold shadow hover:shadow-lg"
                     >
                       Devis
                     </motion.a>
                     <motion.a
-                      href="tel:+33123456789"
+                      href="tel:+330185097365"
                       whileHover={{ scale: 1.05 }}
                       className="inline-flex items-center border border-[#FF6B00] text-[#FF6B00] px-5 py-2 rounded-lg font-semibold hover:bg-[#FF6B00] hover:text-white transition-all"
                     >

@@ -7,7 +7,6 @@ import {
   Phone,
   Star,
   ArrowRight,
-  CheckCircle,
   Award,
   Users,
 } from "lucide-react";
@@ -26,7 +25,7 @@ const ResponsiveHome: React.FC = () => {
   const [showGuide, setShowGuide] = useState(false);
   const [timeOnPage, setTimeOnPage] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [userBehavior, setUserBehavior] = useState<
+  const [, setUserBehavior] = useState<
     "new" | "returning" | "engaged"
   >("new");
 
@@ -61,30 +60,6 @@ const ResponsiveHome: React.FC = () => {
     { number: "1000+", label: "Clients satisfaits", icon: Users },
     { number: "100%", label: "Satisfaction", icon: Star },
   ];
-
-  // animation puzzle
-  const cellVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.8,
-      rotate: Math.random() * 10 - 5,
-      y: 20,
-      filter: "blur(4px)",
-    },
-    visible: (i: number) => ({
-      opacity: 1,
-      scale: 1,
-      rotate: 0,
-      y: 0,
-      filter: "blur(0px)",
-      transition: {
-        delay: i * 0.06,
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
-    }),
-  };
 
   return (
     <div className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 text-gray-900 dark:text-gray-100">
@@ -278,15 +253,16 @@ const ResponsiveHome: React.FC = () => {
                     {[row.crit, row.us, row.others].map((cell, cellIndex) => (
                       <motion.td
                         key={cellIndex}
-                        variants={cellVariants}
-                        custom={rowIndex * 3 + cellIndex}
-                        className={`px-5 py-3 ${
-                          cellIndex === 1
-                            ? "text-[#FF6B00] font-semibold"
-                            : cellIndex === 2
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: (rowIndex * 3 + cellIndex) * 0.05 }}
+                        viewport={{ once: true }}
+                        className={`px-5 py-3 ${cellIndex === 1
+                          ? "text-[#FF6B00] font-semibold"
+                          : cellIndex === 2
                             ? "text-gray-500 dark:text-gray-400"
                             : "font-medium"
-                        }`}
+                          }`}
                       >
                         {cell}
                       </motion.td>

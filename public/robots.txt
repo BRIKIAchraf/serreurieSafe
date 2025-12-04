@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /landing/
+Disallow: /404
+Disallow: /legal
+
+Sitemap: https://serrurerie-safe.fr/sitemap.xml

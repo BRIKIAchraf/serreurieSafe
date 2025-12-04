@@ -118,7 +118,7 @@ const Services: React.FC = () => {
         >
           <div className="inline-flex items-center space-x-2 bg-white/20 px-4 py-2 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm">
             <Zap className="w-4 h-4 text-orange-300" />
-            <span>Intervention Serrurerie 24h/24 ,il de france</span>
+            <span>Intervention Serrurerie 24h/24 ,ile de france</span>
           </div>
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight bg-gradient-to-r from-orange-400 to-yellow-300 bg-clip-text text-transparent drop-shadow-[0_3px_4px_rgba(0,0,0,0.5)]">
@@ -173,9 +173,8 @@ const Services: React.FC = () => {
 
             {/* Contenu */}
             <div
-              className={`relative z-10 w-full md:w-1/2 px-6 sm:px-10 py-10 ${
-                i % 2 === 0 ? "md:ml-auto text-right" : "md:mr-auto text-left"
-              }`}
+              className={`relative z-10 w-full md:w-1/2 px-6 sm:px-10 py-10 ${i % 2 === 0 ? "md:ml-auto text-right" : "md:mr-auto text-left"
+                }`}
             >
               <s.icon className="w-10 h-10 text-orange-500 mb-4 mx-auto md:mx-0" />
               <h2 className="text-3xl sm:text-4xl font-bold mb-2 text-gray-900">

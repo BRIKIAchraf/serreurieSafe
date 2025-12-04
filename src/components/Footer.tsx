@@ -240,6 +240,7 @@ const Footer: React.FC = () => {
           </motion.div>
         </div>
 
+
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

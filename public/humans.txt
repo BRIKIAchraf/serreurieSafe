@@ -1,0 +1,11 @@
+/* TEAM */
+Developer: Serrurerie Safe Tech Team
+Contact: contact@serrurerie-safe.fr
+Twitter: @serrureriesafe
+Location: Paris, France
+
+/* SITE */
+Last update: 2025/12/04
+Standards: HTML5, CSS3, React, Vite
+Components: TailwindCSS, Lucide Icons
+Software: VS Code

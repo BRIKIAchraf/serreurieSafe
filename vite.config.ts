@@ -7,4 +7,15 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  // @ts-ignore
+  ssgOptions: {
+    script: 'async',
+    formatting: 'minify',
+    onFinished() {
+      console.log('SSG generation finished.');
+    },
+  },
+  server: {
+    port: 3001,
+  },
 });
