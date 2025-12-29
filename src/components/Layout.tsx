@@ -95,9 +95,8 @@ const Layout: React.FC = () => {
 
         {/* ===== SIDEBAR GAUCHE ===== */}
         <div
-          className={`fixed top-1/2 z-50 transition-all duration-500 transform ${
-            leftOpen ? "left-4 translate-x-0" : "-left-14 -translate-x-8"
-          } -translate-y-1/2`}
+          className={`fixed top-1/2 z-50 transition-all duration-500 transform ${leftOpen ? "left-4 translate-x-0" : "-left-14 -translate-x-8"
+            } -translate-y-1/2`}
         >
           <div
             className="bg-white/10 backdrop-blur-md border border-white/20
@@ -125,7 +124,7 @@ const Layout: React.FC = () => {
                 icon: "💬",
                 color: "from-green-600 to-green-500",
                 label: "Chat WhatsApp",
-                onClick: () => openPopup(<WhatsAppButton />),
+                onClick: () => openPopup(<WhatsAppButton standalone={true} />),
               },
               {
                 icon: "🧱",

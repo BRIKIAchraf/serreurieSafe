@@ -77,9 +77,23 @@ const Emergency: React.FC = () => {
     >
   ) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Demande d'urgence:", formData);
+    try {
+      // Simulation ou EmailJS réel
+      // await sendEmail('template_emergency', formData);
+      console.log("Demande d'urgence envoyée:", formData);
+      alert("Votre demande d'urgence a été envoyée avec succès. Un serrurier vous contactera dans les plus brefs délais.");
+      setFormData({
+        name: "",
+        phone: "",
+        address: "",
+        urgencyType: "",
+        description: "",
+      });
+    } catch (error) {
+      alert("Une erreur est survenue lors de l'envoi de votre demande. Veuillez nous appeler directement.");
+    }
   };
 
   return (
@@ -113,7 +127,7 @@ const Emergency: React.FC = () => {
             className="relative z-10 text-white px-6 sm:px-8 max-w-4xl mx-auto"
           >
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent drop-shadow-lg leading-tight">
-              Serrurier d’Urgence 24h/24 il de france
+              Serrurier d’Urgence 24h/24 Île-de-France
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl mb-10 text-gray-200 font-light">

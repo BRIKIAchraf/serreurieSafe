@@ -5,7 +5,6 @@ import {
   X,
   Phone,
   Clock,
-  CheckCircle,
   Send,
   Minimize2,
   Maximize2,
@@ -20,9 +19,13 @@ interface WhatsAppMessage {
   status?: "sent" | "delivered" | "read";
 }
 
-const WhatsAppButton: React.FC = () => {
+interface WhatsAppButtonProps {
+  standalone?: boolean;
+}
+
+const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ standalone = false }) => {
   const { playUnlockSound, playKeySound } = useSounds();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(standalone);
   const [isMinimized, setIsMinimized] = useState(false);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<WhatsAppMessage[]>([
@@ -35,8 +38,8 @@ const WhatsAppButton: React.FC = () => {
       status: "read",
     },
   ]);
-  const [isTyping, setIsTyping] = useState(false);
-  const [agentOnline, setAgentOnline] = useState(true);
+  const [isTyping] = useState(false);
+  const [agentOnline] = useState(true);
   const [unreadCount, setUnreadCount] = useState(0);
 
   const quickReplies = [
@@ -59,7 +62,7 @@ const WhatsAppButton: React.FC = () => {
     );
   };
 
-  // === Envoi de message simulé ===
+  // === Envoi de message réel vers WhatsApp ===
   const sendMessage = () => {
     if (!message.trim()) return;
     playKeySound();
@@ -73,31 +76,12 @@ const WhatsAppButton: React.FC = () => {
     };
 
     setMessages((prev) => [...prev, userMessage]);
+
+    // On ouvre WhatsApp avec le message
+    const encodedMsg = encodeURIComponent(message);
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMsg}`, "_blank");
+
     setMessage("");
-    setIsTyping(true);
-
-    setTimeout(() => {
-      const responses = [
-        "Merci pour votre message ! Un technicien Serrure Safe va vous répondre sous peu. 🔒",
-        "Je comprends. Pouvez-vous m’indiquer votre ville ou votre arrondissement ? 📍",
-        "Nos tarifs sont transparents et sur devis. Voulez-vous un devis express ? 🧾",
-        "D’accord ! Souhaitez-vous être rappelé dans les 5 prochaines minutes ? 📞",
-      ];
-      const randomResponse =
-        responses[Math.floor(Math.random() * responses.length)];
-
-      const agentMessage: WhatsAppMessage = {
-        id: (Date.now() + 1).toString(),
-        type: "agent",
-        content: randomResponse,
-        timestamp: new Date(),
-        status: "delivered",
-      };
-
-      setMessages((prev) => [...prev, agentMessage]);
-      setIsTyping(false);
-      playUnlockSound();
-    }, 1200); // plus rapide que 2s
   };
 
   const handleQuickReply = (reply: string) => {
@@ -129,39 +113,41 @@ const WhatsAppButton: React.FC = () => {
   return (
     <>
       {/* === Bouton flottant WhatsApp === */}
-      <motion.button
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 left-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-        onMouseEnter={playUnlockSound}
-      >
-        <div className="relative">
-          <MessageCircle className="w-6 h-6" />
-          {unreadCount > 0 && (
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold"
-            >
-              {unreadCount}
-            </motion.div>
-          )}
-        </div>
-      </motion.button>
+      {!standalone && (
+        <motion.button
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-6 left-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          onMouseEnter={playUnlockSound}
+        >
+          <div className="relative">
+            <MessageCircle className="w-6 h-6" />
+            {unreadCount > 0 && (
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold"
+              >
+                {unreadCount}
+              </motion.div>
+            )}
+          </div>
+        </motion.button>
+      )}
 
       {/* === Fenêtre de chat WhatsApp === */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className={`fixed bottom-6 left-6 z-50 ${
-              isMinimized ? "w-80 h-16" : "w-96 h-[500px]"
-            } bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden`}
+            initial={standalone ? { opacity: 0 } : { opacity: 0, x: -20 }}
+            animate={standalone ? { opacity: 1 } : { opacity: 1, x: 0 }}
+            exit={standalone ? { opacity: 0 } : { opacity: 0, x: -20 }}
+            className={`${standalone ? "relative" : "fixed bottom-6 left-6"
+              } z-50 ${isMinimized ? "w-80 h-16" : "w-full md:w-96 h-[500px]"
+              } bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden`}
           >
             {/* Header */}
             <div className="bg-green-500 text-white p-4 flex items-center justify-between">
@@ -173,9 +159,8 @@ const WhatsAppButton: React.FC = () => {
                   <h3 className="font-semibold">Serrure Safe</h3>
                   <div className="flex items-center space-x-1 text-sm">
                     <div
-                      className={`w-2 h-2 rounded-full ${
-                        agentOnline ? "bg-green-300" : "bg-gray-400"
-                      }`}
+                      className={`w-2 h-2 rounded-full ${agentOnline ? "bg-green-300" : "bg-gray-400"
+                        }`}
                     />
                     <span>{agentOnline ? "En ligne" : "Hors ligne"}</span>
                   </div>
@@ -211,16 +196,14 @@ const WhatsAppButton: React.FC = () => {
                       key={msg.id}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className={`flex ${
-                        msg.type === "user" ? "justify-end" : "justify-start"
-                      }`}
+                      className={`flex ${msg.type === "user" ? "justify-end" : "justify-start"
+                        }`}
                     >
                       <div
-                        className={`max-w-[80%] p-3 rounded-2xl ${
-                          msg.type === "user"
-                            ? "bg-green-500 text-white"
-                            : "bg-white text-gray-900 border border-gray-200"
-                        }`}
+                        className={`max-w-[80%] p-3 rounded-2xl ${msg.type === "user"
+                          ? "bg-green-500 text-white"
+                          : "bg-white text-gray-900 border border-gray-200"
+                          }`}
                       >
                         <p className="text-sm">{msg.content}</p>
                         <div className="flex items-center justify-between mt-1">

@@ -46,7 +46,7 @@ const QuotePDF: React.FC<{ data: QuoteData }> = ({ data }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <Text style={styles.header}>DEVIS - SERRURE SAFE</Text>
-      
+
       <View style={styles.section}>
         <Text style={styles.text}>Client: {data.name}</Text>
         <Text style={styles.text}>Email: {data.email}</Text>
@@ -98,7 +98,7 @@ const QuoteGenerator: React.FC = () => {
   const calculatePrice = () => {
     const service = serviceTypes.find(s => s.value === quoteData.serviceType);
     const urgency = urgencyLevels.find(u => u.value === quoteData.urgency);
-    
+
     if (service && urgency) {
       const price = Math.round(service.basePrice * urgency.multiplier);
       setQuoteData(prev => ({ ...prev, estimatedPrice: price }));
@@ -113,6 +113,20 @@ const QuoteGenerator: React.FC = () => {
     if (step < 3) {
       setStep(step + 1);
       if (step === 2) calculatePrice();
+    } else if (step === 3) {
+      handleFinalSubmit();
+    }
+  };
+
+  const handleFinalSubmit = async () => {
+    try {
+      console.log("Envoi du devis:", quoteData);
+      // await sendEmail('template_quote', quoteData);
+      alert("Votre demande de devis a été envoyée. Vous allez recevoir une copie par email et nous vous contacterons rapidement.");
+      setIsOpen(false);
+      setStep(1);
+    } catch (error) {
+      alert("Erreur lors de l'envoi du devis. Veuillez nous contacter par téléphone.");
     }
   };
 
@@ -165,19 +179,17 @@ const QuoteGenerator: React.FC = () => {
                 {[1, 2, 3].map((num) => (
                   <div key={num} className="flex items-center">
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
-                        step >= num
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${step >= num
                           ? 'bg-orange-500 text-white'
                           : 'bg-gray-200 text-gray-600'
-                      }`}
+                        }`}
                     >
                       {step > num ? <CheckCircle className="w-4 h-4" /> : num}
                     </div>
                     {num < 3 && (
                       <div
-                        className={`w-12 h-1 mx-2 ${
-                          step > num ? 'bg-orange-500' : 'bg-gray-200'
-                        }`}
+                        className={`w-12 h-1 mx-2 ${step > num ? 'bg-orange-500' : 'bg-gray-200'
+                          }`}
                       />
                     )}
                   </div>
@@ -293,7 +305,7 @@ const QuoteGenerator: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="mt-6">
                     <PDFDownloadLink
                       document={<QuotePDF data={quoteData} />}

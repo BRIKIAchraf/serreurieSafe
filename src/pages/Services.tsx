@@ -122,7 +122,7 @@ const Services: React.FC = () => {
           </div>
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight bg-gradient-to-r from-orange-400 to-yellow-300 bg-clip-text text-transparent drop-shadow-[0_3px_4px_rgba(0,0,0,0.5)]">
-            Sécurisez votre quotidien avec <br /> Serrure Safe il de france
+            Sécurisez votre quotidien avec <br /> Serrure Safe Île-de-France
           </h1>
 
           <p className="text-lg sm:text-xl text-gray-200 mb-8">

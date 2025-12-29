@@ -104,21 +104,27 @@ const Contact: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-        serviceType: "",
-        preferredTime: "",
-      });
-    }, 3000);
+    try {
+      console.log("Envoi message contact:", formData);
+      // await sendEmail('template_contact', formData);
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+          serviceType: "",
+          preferredTime: "",
+        });
+      }, 3000);
+    } catch (error) {
+      alert("Une erreur est survenue lors de l'envoi. Veuillez nous contacter par téléphone.");
+    }
   };
 
   return (
