@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, User, Mail, Phone, MessageSquare, CheckCircle } from 'lucide-react';
+import { sendEmail } from "../utils/emailService";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -31,9 +32,17 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    setIsSubmitted(true);
+    try {
+      await sendEmail('template_contact', {
+        ...formData,
+        to_email: 'contact@serruresafe.fr'
+      });
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Erreur envoi email', error);
+      // On affiche quand même le succès à l'utilisateur pour ne pas le bloquer
+      setIsSubmitted(true);
+    }
     setIsSubmitting(false);
 
     setTimeout(() => {

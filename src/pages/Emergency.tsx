@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Clock, Phone, Shield, CheckCircle, Zap, MapPin } from "lucide-react";
 import EmergencyResponseShowcase from "../components/EmergencyResponseShowcase";
+import { sendEmail } from "../utils/emailService";
 import "leaflet/dist/leaflet.css";
 
 const Emergency: React.FC = () => {
@@ -81,7 +82,10 @@ const Emergency: React.FC = () => {
     e.preventDefault();
     try {
       // Simulation ou EmailJS réel
-      // await sendEmail('template_emergency', formData);
+      await sendEmail('template_emergency', {
+        ...formData,
+        to_email: 'contact@serruresafe.fr'
+      });
       console.log("Demande d'urgence envoyée:", formData);
       alert("Votre demande d'urgence a été envoyée avec succès. Un serrurier vous contactera dans les plus brefs délais.");
       setFormData({

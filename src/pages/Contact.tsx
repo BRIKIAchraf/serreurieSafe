@@ -10,6 +10,7 @@ import {
   Star,
 } from "lucide-react";
 import GlassCard from "../components/GlassCard";
+import { sendEmail } from "../utils/emailService";
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -108,7 +109,10 @@ const Contact: React.FC = () => {
     e.preventDefault();
     try {
       console.log("Envoi message contact:", formData);
-      // await sendEmail('template_contact', formData);
+      await sendEmail('template_contact', {
+        ...formData,
+        to_email: 'contact@serruresafe.fr'
+      });
       setIsSubmitted(true);
       setTimeout(() => {
         setIsSubmitted(false);

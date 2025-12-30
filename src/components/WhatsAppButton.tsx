@@ -10,6 +10,7 @@ import {
   Maximize2,
 } from "lucide-react";
 import { useSounds } from "./SoundManager";
+import { sendEmail } from "../utils/emailService";
 
 interface WhatsAppMessage {
   id: string;
@@ -80,6 +81,15 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ standalone = false }) =
     // On ouvre WhatsApp avec le message
     const encodedMsg = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMsg}`, "_blank");
+
+    // Envoi de l'email en parallèle
+    sendEmail('template_contact', {
+      name: 'Client WhatsApp',
+      email: 'Non renseigné',
+      phone: 'Non renseigné',
+      message: `Message WhatsApp: ${message}`,
+      to_email: 'contact@serruresafe.fr'
+    }).catch(err => console.error("Erreur envoi email WhatsApp", err));
 
     setMessage("");
   };

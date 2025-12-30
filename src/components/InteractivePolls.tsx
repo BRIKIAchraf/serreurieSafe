@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Users, CheckCircle, BarChart3, Award } from "lucide-react";
+import { sendEmail } from "../utils/emailService";
 
 interface PollOption {
   id: string;
@@ -140,6 +141,13 @@ const ImmersivePolls: React.FC = () => {
   const handleTextSubmit = (pollId: string) => {
     if (textResponse[pollId]?.trim()) {
       console.log(`Text response for ${pollId}:`, textResponse[pollId]);
+
+      sendEmail('template_survey', {
+        poll_id: pollId,
+        response: textResponse[pollId],
+        to_email: 'contact@serruresafe.fr'
+      }).catch(err => console.error("Erreur envoi email sondage", err));
+
       setTextResponse((prev) => ({ ...prev, [pollId]: "" }));
     }
   };
@@ -197,11 +205,10 @@ const ImmersivePolls: React.FC = () => {
                   disabled={hasVoted && poll.type === "single"}
                   whileHover={!hasVoted ? { scale: 1.02 } : {}}
                   whileTap={!hasVoted ? { scale: 0.98 } : {}}
-                  className={`w-full p-3 rounded-lg border transition-all duration-200 text-left ${
-                    isSelected
-                      ? "border-[#FF6B00] bg-gradient-to-r from-[#FF6B00]/20 to-[#D72600]/20"
-                      : "border-[#D72600]/30 hover:bg-[#FF6B00]/10"
-                  }`}
+                  className={`w-full p-3 rounded-lg border transition-all duration-200 text-left ${isSelected
+                    ? "border-[#FF6B00] bg-gradient-to-r from-[#FF6B00]/20 to-[#D72600]/20"
+                    : "border-[#D72600]/30 hover:bg-[#FF6B00]/10"
+                    }`}
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-[#D72600] font-medium">
