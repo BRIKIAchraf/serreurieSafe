@@ -81,7 +81,7 @@ const ResponsiveHome: React.FC = () => {
             <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight text-gray-900 dark:text-white">
               Serrurier Expert{" "}
               <span className="block bg-gradient-to-r from-[#FF6B00] to-[#FF3C00] bg-clip-text text-transparent">
-                Ile-de-France
+                Île-de-France
               </span>
             </h1>
 

@@ -120,12 +120,14 @@ const Layout: React.FC = () => {
 
             {/* === ICONES AVEC LABELS === */}
             {[
+              /* 
               {
                 icon: "💬",
                 color: "from-green-600 to-green-500",
                 label: "Chat WhatsApp",
                 onClick: () => openPopup(<WhatsAppButton standalone={true} />),
-              },
+              }, 
+              */
               {
                 icon: "🧱",
                 color: "from-orange-600 to-orange-500",

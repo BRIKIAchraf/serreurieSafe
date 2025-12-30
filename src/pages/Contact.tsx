@@ -127,7 +127,8 @@ const Contact: React.FC = () => {
         });
       }, 3000);
     } catch (error) {
-      alert("Une erreur est survenue lors de l'envoi. Veuillez nous contacter par téléphone.");
+      console.error("Erreur Contact:", error);
+      alert("Une erreur est survenue lors de l'envoi. Si le problème persiste, vérifiez les clés EmailJS ou contactez-nous par téléphone.");
     }
   };
 

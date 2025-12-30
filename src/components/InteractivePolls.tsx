@@ -146,7 +146,12 @@ const ImmersivePolls: React.FC = () => {
         poll_id: pollId,
         response: textResponse[pollId],
         to_email: 'contact@serruresafe.fr'
-      }).catch(err => console.error("Erreur envoi email sondage", err));
+      }).then(() => {
+        alert("Merci ! Votre suggestion a bien été envoyée.");
+      }).catch(err => {
+        console.error("Erreur envoi email sondage", err);
+        alert("Une erreur est survenue lors de l'envoi de votre suggestion.");
+      });
 
       setTextResponse((prev) => ({ ...prev, [pollId]: "" }));
     }

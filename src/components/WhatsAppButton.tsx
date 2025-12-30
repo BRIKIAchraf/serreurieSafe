@@ -78,9 +78,9 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ standalone = false }) =
 
     setMessages((prev) => [...prev, userMessage]);
 
-    // On ouvre WhatsApp avec le message
-    const encodedMsg = encodeURIComponent(message);
-    window.open(`https://wa.me/${phoneNumber}?text=${encodedMsg}`, "_blank");
+    // On n'ouvre PLUS WhatsApp, on envoie juste un email
+    // const encodedMsg = encodeURIComponent(message);
+    // window.open(`https://wa.me/${phoneNumber}?text=${encodedMsg}`, "_blank");
 
     // Envoi de l'email en parallèle
     sendEmail('template_contact', {
