@@ -1,8 +1,8 @@
 import emailjs from '@emailjs/browser';
 
 // Ces IDs doivent être configurés dans EmailJS
-const SERVICE_ID = 'service_serrure_safe'; // À remplacer par l'ID réel
-const PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // À remplacer par la clé publique réelle
+const SERVICE_ID = 'contact@serruresafe.fr'; // À remplacer par l'ID réel
+const PUBLIC_KEY = 'tFLv-UrhW-xjGz-ra74'; // À remplacer par la clé publique réelle
 
 export const sendEmail = async (templateId: string, templateParams: any) => {
     try {

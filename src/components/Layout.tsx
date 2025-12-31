@@ -7,11 +7,9 @@ import Footer from "./Footer";
 import { SoundProvider } from "./SoundManager";
 import CustomCursor from "./CustomCursor";
 import QuoteGenerator from "./QuoteGenerator";
-import WhatsAppButton from "./WhatsAppButton";
 import VirtualBusinessCard from "./VirtualBusinessCard";
 import Lock3DViewer from "./Lock3DViewer";
 import LockConfigurator from "./LockConfigurator";
-import Chatbot from "./Chatbot";
 import UserJourneyGuide from "./UserJourneyGuide"; // 🧭 Guide virtuel
 
 const Layout: React.FC = () => {
@@ -147,10 +145,10 @@ const Layout: React.FC = () => {
                 onClick: () => openPopup(<VirtualBusinessCard />),
               },
               {
-                icon: "🤖",
-                color: "from-amber-500 to-yellow-400",
-                label: "Assistant IA (Chatbot)",
-                onClick: () => openPopup(<Chatbot />),
+                icon: "💬",
+                color: "from-green-600 to-green-500",
+                label: "WhatsApp",
+                onClick: () => window.open("https://wa.me/33783867650", "_blank"),
               },
             ].map((item, i) => (
               <div key={i} className="relative group">

@@ -101,7 +101,7 @@ const About: React.FC = () => {
               </span>
             </h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              Fondée en 2023, Serrure Safe est née de la passion d’un artisan
+              Fondée en 2025, Serrure Safe est née de la passion d’un artisan
               serrurier souhaitant offrir un service fiable, humain et
               transparent.
             </p>

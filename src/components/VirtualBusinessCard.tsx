@@ -27,7 +27,7 @@ const VirtualBusinessCard: React.FC = () => {
     name: "Tayeb sad",
     title: "Technicien Certifié A2P",
     company: "Serrure Safe",
-    phone: "+33 01 85 09 73 65",
+    phone: "+33 07 83 86 76 50",
     email: "contact@serruresafe.fr",
     website: "https://serruresafe.fr/",
     address: "7 allée de Dijon 91170 viry-Châtillon ",
@@ -173,11 +173,10 @@ END:VCARD`;
                           setSelectedTemplate(t.id as any);
                           playUnlockSound();
                         }}
-                        className={`px-2 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
-                          selectedTemplate === t.id
-                            ? "bg-[#E83E00] text-white"
-                            : "bg-gray-100 hover:bg-gray-200 text-gray-700"
-                        }`}
+                        className={`px-2 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors ${selectedTemplate === t.id
+                          ? "bg-[#E83E00] text-white"
+                          : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+                          }`}
                       >
                         {t.name}
                       </button>
@@ -192,9 +191,8 @@ END:VCARD`;
                     key={selectedTemplate}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`relative p-4 sm:p-6 rounded-2xl ${
-                      getCurrentTemplate().bg
-                    } ${getCurrentTemplate().text} shadow-xl backdrop-blur-md`}
+                    className={`relative p-4 sm:p-6 rounded-2xl ${getCurrentTemplate().bg
+                      } ${getCurrentTemplate().text} shadow-xl backdrop-blur-md`}
                   >
                     {/* Profil */}
                     <div className="flex items-center mb-4 gap-3 sm:gap-4">
